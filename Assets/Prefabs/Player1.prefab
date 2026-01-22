@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3377601079083681597}
   - component: {fileID: 3139791982679616289}
   - component: {fileID: 6886098582055165151}
+  - component: {fileID: 1513047785502268046}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -133,11 +134,53 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 613d2b7e-25f8-4d74-8011-a0d8cd181604
     m_ActionName: 'PlayerController/Movement[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2297227945421911816}
+        m_TargetAssemblyTypeName: PlayerInputScript, Assembly-CSharp
+        m_MethodName: OnAlargar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5012b4fb-7631-4fa7-86bd-ae17ca4ddeec
+    m_ActionName: 'PlayerController/Alargar[/DualShock4GamepadHID/buttonWest,/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8bdd87e5-f6fc-4c0e-9c81-6aa0c4572c49
+    m_ActionName: 'Player2Keyboard/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f9ca7868-2588-4cae-a254-9a5cd16845f9
+    m_ActionName: 'Player2Keyboard/Alargar[/Keyboard/l]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1513047785502268046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076025221261844912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db4f2a60b9bef844a283defbb637d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAlargar
+  body: {fileID: 1658133910859851379}
+  head: {fileID: 8595465091332466555}
+  bottom: {fileID: 6527067107288410525}
+  alargarAmount: 0.5
+  maxRange: 3
+  isAlargarHeld: 0
 --- !u!1 &1658133910859851379
 GameObject:
   m_ObjectHideFlags: 0
