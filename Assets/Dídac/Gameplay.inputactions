@@ -23,6 +23,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Alargar",
+                    "type": "Button",
+                    "id": "5012b4fb-7631-4fa7-86bd-ae17ca4ddeec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -105,12 +114,34 @@
                 },
                 {
                     "name": "",
+                    "id": "fcd6f29b-4df4-4183-8034-228132acef9a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Alargar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "19507c9a-3024-4b3f-8939-3d0e6c8decc1",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8ab762a-a347-48f5-8058-6628e025fddf",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Alargar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -133,6 +164,15 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "ca6e53e1-3f91-47a3-abdf-5ea0c4eb9422",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Alargar",
+                    "type": "Button",
+                    "id": "f9ca7868-2588-4cae-a254-9a5cd16845f9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -203,6 +243,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ddbdb0f3-946f-49ea-8b63-d57f169b701d",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Alargar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
