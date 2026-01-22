@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -16,24 +17,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Vector3 player1InitialPosition;
     [SerializeField] private Vector3 player2InitialPosition;
 
-    public struct LevelData
-    {
-        public int levelIndex;
-        public int templeIndex;
-    }
-
-    public struct TempleData
-    {
-        public int templeIndex;
-        public int numberOfLevels;
-        public List<LevelData> levels;
-    }
-
-    public List<TempleData> temples = new List<TempleData>();
-
     [Header("Level Settings")]
-    public int currentLevel = 0;
+    public int currentLevel = 1;
     public int currentTemple = 1;
+    public List<TempleData> templesData;
 
     private bool isChangingLevel = false;
 
@@ -90,16 +77,23 @@ public class LevelManager : MonoBehaviour
 
     public void NewLevelPositions()
     {
-        player1.transform.position = new Vector3(player1InitialPosition.x + 30f * currentLevel, player1InitialPosition.y, player1InitialPosition.z);
-        player2.transform.position = new Vector3(player2InitialPosition.x + 30f * currentLevel, player2InitialPosition.y, player2InitialPosition.z);
+        player1.transform.position = new Vector3(player1InitialPosition.x + 30f * (currentLevel - 1), player1InitialPosition.y, player1InitialPosition.z);
+        player2.transform.position = new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z);
     }
 
     public void NextLevelTransition()
     {
         currentLevel++;
-        isChangingLevel = true;
 
-        targetCameraPosition = new Vector3(initialCameraPosition.x + 30f * currentLevel, initialCameraPosition.y, initialCameraPosition.z);
+        if (currentLevel > templesData[currentTemple - 1].numberOfLevels)
+        {
+            currentTemple++;
+            currentLevel = 1;
+            SceneManager.LoadScene("TemplesMap");
+        }
+
+        isChangingLevel = true;
+        targetCameraPosition = new Vector3(initialCameraPosition.x + 30f * (currentLevel - 1), initialCameraPosition.y, initialCameraPosition.z);
         
     }
 }
