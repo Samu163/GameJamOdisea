@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 3470116188038376801, guid: 9510d0279c484814088077a7e36d7d82, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3798666599570788423, guid: 9510d0279c484814088077a7e36d7d82, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.585216
@@ -930,8 +934,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8536300048522847888, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2573944957378159298, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
