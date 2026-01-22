@@ -159,19 +159,7 @@ MonoBehaviour:
     m_ActionId: f9ca7868-2588-4cae-a254-9a5cd16845f9
     m_ActionName: 'Player2Keyboard/Alargar[/Keyboard/l]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2795626519999036230}
-        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
-        m_MethodName: TryToInteract
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: e012699f-8c39-4b72-b866-375542d16ddb
     m_ActionName: 'PlayerController/Interact[/Keyboard/c,/DualShock4GamepadHID/buttonSouth]'
   - m_PersistentCalls:
