@@ -605,9 +605,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 215936248}
+  - component: {fileID: 215936251}
   - component: {fileID: 215936250}
   - component: {fileID: 215936249}
-  - component: {fileID: 215936251}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215936247}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputPromptUI
   text: {fileID: 215936249}
-  action: {fileID: 540158488}
+  action: {fileID: 1085716058}
 --- !u!1001 &239385850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1456,20 +1456,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9162583702306994332, guid: 259622ec41d3b9e4e95cb51878b7f803, type: 3}
   m_PrefabInstance: {fileID: 483513277}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &540158488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: Player/Interact
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
 --- !u!1001 &582639188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2598,6 +2584,20 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &1085716058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: PlayerController/Interact
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: bc0ebafa0b6165a4ebf87a9c3272aa1c, type: 3}
+  m_ActionId: e012699f-8c39-4b72-b866-375542d16ddb
 --- !u!1001 &1110354527
 PrefabInstance:
   m_ObjectHideFlags: 0

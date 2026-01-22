@@ -8,20 +8,45 @@ public class InputPromptUI : MonoBehaviour
     public TMP_Text text;
     public InputActionReference action;
 
-    void OnEnable()
+    private void OnEnable()
     {
-        InputWatcher.InputTypeChanged += OnInputTypeChanged;
+        if (InputWatcher.Instance != null)
+            InputWatcher.Instance.OnInputTypeChanged += OnInputTypeChanged;
+
+        UpdateText(); // initial update
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        InputWatcher.InputTypeChanged -= OnInputTypeChanged;
+        if (InputWatcher.Instance != null)
+            InputWatcher.Instance.OnInputTypeChanged -= OnInputTypeChanged;
     }
 
-    void OnInputTypeChanged(InputType type, InputDevice device)
+    private void OnInputTypeChanged(InputType type, InputDevice device)
     {
-        string icon = InputIconMapper.GetIconName(InputWatcher.LastUsedControl);
-        text.text = $"Press <sprite name=\"{icon}\">";
+        UpdateText();
     }
 
+    private void Update()
+    {
+        // Optional: constantly update in editor/play mode in case bindings change
+        if (action != null && text != null)
+        {
+            UpdateText();
+        }
+    }
+
+    private void UpdateText()
+    {
+        if (action == null || text == null || InputWatcher.Instance == null)
+            return;
+
+        var device = InputWatcher.Instance.LastDevice;
+
+        // Get the correct icon for this action on the current device
+        string iconName = InputIconMapper.GetIconForAction(action.action, device);
+
+        // Set TMP text with sprite tag
+        text.text = $"Press <sprite name=\"{iconName}\">";
+    }
 }

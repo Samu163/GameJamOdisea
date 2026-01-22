@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public enum InputType
 {
@@ -10,81 +11,35 @@ public enum InputType
 
 public class InputWatcher : MonoBehaviour
 {
-    public static InputControl LastUsedControl { get; private set; }
-
     public static InputWatcher Instance { get; private set; }
 
-    public static event Action<InputType, InputDevice> InputTypeChanged;
+    public InputDevice LastDevice { get; private set; }
+    public InputType LastInputType { get; private set; }
 
-    InputType lastInputType;
-    InputDevice lastDevice;
+    public event Action<InputType, InputDevice> OnInputTypeChanged;
 
-    void Awake()
+    private void Awake()
     {
-        // Singleton pattern
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // Subscribe to any input
+        InputSystem.onAnyButtonPress.Call(OnAnyInput);
     }
 
-    void OnEnable()
+    private void OnAnyInput(InputControl control)
     {
-        InputSystem.onActionChange += OnActionChange;
-        InputSystem.onDeviceChange += OnDeviceChange;
-    }
+        if (control == null) return;
 
-    void OnDisable()
-    {
-        InputSystem.onActionChange -= OnActionChange;
-        InputSystem.onDeviceChange -= OnDeviceChange;
-    }
+        var device = control.device;
+        var type = (device is Keyboard || device is Mouse) ? InputType.KeyboardMouse : InputType.Controller;
 
-
-    void OnActionChange(object obj, InputActionChange change)
-    {
-        if (change != InputActionChange.ActionPerformed)
-            return;
-
-        var action = obj as InputAction;
-        if (action?.activeControl == null)
-            return;
-
-        LastUsedControl = action.activeControl;
-
-        var device = LastUsedControl.device;
-
-        InputType newType =
-            device is Keyboard || device is Mouse
-                ? InputType.KeyboardMouse
-                : InputType.Controller;
-
-        if (newType != lastInputType || device != lastDevice)
+        if (device != LastDevice || type != LastInputType)
         {
-            lastInputType = newType;
-            lastDevice = device;
-            InputTypeChanged?.Invoke(newType, device);
+            LastDevice = device;
+            LastInputType = type;
+            OnInputTypeChanged?.Invoke(type, device);
         }
     }
-
-    void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-
-        if (change == InputDeviceChange.Disconnected)
-        {
-            if (Gamepad.all.Count == 0)
-            {
-                lastInputType = InputType.KeyboardMouse;
-                lastDevice = null;
-                InputTypeChanged?.Invoke(lastInputType, null);
-            }
-        }
-    }
-
-    public InputType GetLastInputType() => lastInputType;
-    public InputDevice GetLastDevice() => lastDevice;
 }
