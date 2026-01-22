@@ -14,21 +14,21 @@ public class PlayerInputScript : MonoBehaviour
     }
 
     public void OnMovement(InputAction.CallbackContext context)
-    {
-        if (playerAlargar.isAlargarHeld)
-        {
-            playerMovement.inputDir = Vector3.zero;
-            return;
-        }
-            
+    {   
 
         if (context.performed)
-       {
+        {
+           if (playerAlargar.isAlargarHeld)
+           {
+               playerMovement.inputDir = Vector3.zero;
+               return;
+           }
+
            Vector2 movement = context.ReadValue<Vector2>();
            playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
-       }
-       else if (context.canceled)
-       {
+        }
+        else if (context.canceled)
+        {
            playerMovement.inputDir = Vector3.zero;
         }
     }
