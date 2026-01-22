@@ -26,7 +26,8 @@ public class GridObject : MonoBehaviour
         Obstacle,
         Stair,
         Platform,
-        Decoration
+        Decoration,
+        Cachorro
     }
 
     private void OnValidate()

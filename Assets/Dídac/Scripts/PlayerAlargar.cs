@@ -58,6 +58,17 @@ public class PlayerAlargar : MonoBehaviour
 
         initialBottomLocalPos = bottom.transform.localPosition;
         targetBottomPosition = bottom.transform.localPosition;
+
+        if (playerInput.playerIndex == 1)
+        {
+            LevelManager.instance.player1 = this.gameObject;
+            LevelManager.instance.SpawnPlayersOnInitialPosition(1);
+        }
+        else if (playerInput.playerIndex == 2)
+        {
+            LevelManager.instance.player2 = this.gameObject;
+            LevelManager.instance.SpawnPlayersOnInitialPosition(2);
+        }
     }
 
     public void Update()

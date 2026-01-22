@@ -126,9 +126,10 @@ GameObject:
   - component: {fileID: 7210314622359543671}
   - component: {fileID: 6978889908408408269}
   - component: {fileID: 4276538366156094335}
+  - component: {fileID: 8514550286223105392}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 1868700009934093577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.54, y: 1.823755, z: 1.2119952}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -270,6 +271,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f9ca7868-2588-4cae-a254-9a5cd16845f9
     m_ActionName: 'Player2Keyboard/Alargar[/Keyboard/l]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e012699f-8c39-4b72-b866-375542d16ddb
+    m_ActionName: 'PlayerController/Interact[/Keyboard/c,/DualShock4GamepadHID/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ca6e53e1-3f91-47a3-abdf-5ea0c4eb9422
+    m_ActionName: 'Player2Keyboard/Interact[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerController
@@ -294,6 +303,29 @@ MonoBehaviour:
   maxRange: 3
   isAlargarHeld: 0
   jumpPlayer2Force: 7
+--- !u!136 &8514550286223105392
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868700009934093577}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: -0.1, y: 0, z: 0.18}
 --- !u!1 &2776692672154900002
 GameObject:
   m_ObjectHideFlags: 0
