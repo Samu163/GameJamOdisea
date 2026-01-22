@@ -12,7 +12,7 @@ public class InteractableArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Interactor"))
         {
             interactableObject.Activate();
         }
@@ -20,7 +20,7 @@ public class InteractableArea : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Interactor"))
         {
             interactableObject.Deactivate();
         }

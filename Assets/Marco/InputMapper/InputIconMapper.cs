@@ -128,8 +128,13 @@ public static class InputIconMapper
         if (type == InputType.KeyboardMouse)
         {
             foreach (var kv in keyboardIcons)
+            {
+
+                string sanitizedKey = bindingPath.Replace("<Keyboard>/", "").Replace("<Mouse>/","");
+
                 if (bindingPath.ToLower().Contains(kv.Key.ToLower()))
                     return kv.Value;
+            }
             return "key/unknown";
         }
         else

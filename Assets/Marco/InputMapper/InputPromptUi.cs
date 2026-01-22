@@ -13,7 +13,7 @@ public class InputPromptUI : MonoBehaviour
         if (InputWatcher.Instance != null)
             InputWatcher.Instance.OnInputTypeChanged += OnInputTypeChanged;
 
-        UpdateText(); // initial update
+        UpdateText();
     }
 
     private void OnDisable()
@@ -29,7 +29,7 @@ public class InputPromptUI : MonoBehaviour
 
     private void Update()
     {
-        // Optional: constantly update in editor/play mode in case bindings change
+        // Constantly update in editor/play mode in case bindings change
         if (action != null && text != null)
         {
             UpdateText();
