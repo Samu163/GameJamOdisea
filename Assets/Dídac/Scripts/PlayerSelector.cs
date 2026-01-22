@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,9 +8,12 @@ public class PlayerSelector : MonoBehaviour
     public PlayerInputManager playerInputManager;
     public GameObject player1Prefab;
     public GameObject player2Prefab;
+    public GameObject player2KeyboardPrefab;
     public InputAction joinAction;
 
     private int numPlayers = 0;
+    private readonly HashSet<int> pairedDeviceIds = new HashSet<int>();
+    private bool bothPlayersKeyboard = false;
 
     private void OnEnable()
     {
@@ -31,19 +35,50 @@ public class PlayerSelector : MonoBehaviour
 
         InputDevice device = context.control.device;
 
+        if (IsDeviceAlreadyPaired(device))
+        {
+            if (IsDeviceGamepad(device))
+            {
+                return;
+            }
+            else
+            {
+                bothPlayersKeyboard = true;
+            }
+        }
+
+        pairedDeviceIds.Add(device.deviceId);
+
         if (numPlayers == 0)
         {
             numPlayers++;
             playerInputManager.playerPrefab = player1Prefab;
             playerInputManager.JoinPlayer(numPlayers, -1, "Gamepad", device);
         }
-        else if (numPlayers == 1)
+        else if (numPlayers == 1 && !bothPlayersKeyboard)
         {
             numPlayers++;
             playerInputManager.playerPrefab = player2Prefab;
             playerInputManager.JoinPlayer(numPlayers, -1, "Gamepad", device);
         }
+        else if (numPlayers == 1 && bothPlayersKeyboard)
+        {
+            numPlayers++;
+            playerInputManager.playerPrefab = player2KeyboardPrefab;
+            playerInputManager.JoinPlayer(numPlayers, -1, "Keyboard", device);
+        }
 
 
+    }
+
+    private bool IsDeviceAlreadyPaired(InputDevice device)
+    {
+        if (device == null) return false;
+        return pairedDeviceIds.Contains(device.deviceId);
+    }
+
+    private bool IsDeviceGamepad(InputDevice device)
+    {
+        return device is Gamepad;
     }
 }

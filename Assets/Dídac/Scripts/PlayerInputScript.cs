@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputScript : MonoBehaviour
 {
-
+    
     private PlayerMovement playerMovement;
 
     private void Awake()
