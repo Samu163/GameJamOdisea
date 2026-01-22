@@ -29,9 +29,9 @@ public static class InputIconMapper
         // map all letter and number keys to values 'a' = 'a'
 
         for (char c = 'a'; c <= 'z'; c++)
-            keyboardIcons.Add(c.ToString(), c.ToString());
+            keyboardIcons.Add(c.ToString(),  c.ToString());
         for (int i = 0; i <= 9; i++)
-            keyboardIcons.Add(i.ToString(),i.ToString());
+            keyboardIcons.Add(i.ToString(),"key/" + i.ToString());
     }
 
     // ===== Xbox icons =====
@@ -132,7 +132,7 @@ public static class InputIconMapper
 
                 string sanitizedKey = bindingPath.Replace("<Keyboard>/", "").Replace("<Mouse>/","");
 
-                if (bindingPath.ToLower().Contains(kv.Key.ToLower()))
+                if (sanitizedKey.ToLower().Contains(kv.Key.ToLower()))
                     return kv.Value;
             }
             return "key/unknown";
