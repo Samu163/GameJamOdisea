@@ -44,5 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4bf26f4ac71c947bbb78b64d7801b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  mainCamera: {fileID: 0}
+  initialCameraPosition: {x: 0, y: 0, z: 0}
+  targetCameraPosition: {x: 0, y: 0, z: 0}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  player1InitialPosition: {x: -7, y: 1.5, z: 1}
+  player2InitialPosition: {x: -5, y: 2.5, z: 0}
   currentLevel: 1
   currentTemple: 1
+  templesData:
+  - {fileID: 11400000, guid: 32cb6482464583d418978949f5d01395, type: 2}

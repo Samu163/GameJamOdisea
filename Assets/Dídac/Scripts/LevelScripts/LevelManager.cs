@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     [Header("Level Settings")]
     public int currentLevel = 1;
     public int currentTemple = 1;
+    public int templesUnlocked = 1;
     public List<TempleData> templesData;
 
     private bool isChangingLevel = false;
@@ -37,12 +38,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        initialCameraPosition = mainCamera.transform.position;
-        targetCameraPosition = initialCameraPosition;
-    }
-
     private void Update()
     {
         if (isChangingLevel)
@@ -50,6 +45,13 @@ public class LevelManager : MonoBehaviour
             ChangeLevelTransition();
         }
         
+    }
+
+    public void AssignCamera(GameObject camera)
+    {
+        mainCamera = camera;
+        initialCameraPosition = mainCamera.transform.position;
+        targetCameraPosition = initialCameraPosition;
     }
 
     private void ChangeLevelTransition()
@@ -84,16 +86,18 @@ public class LevelManager : MonoBehaviour
     public void NextLevelTransition()
     {
         currentLevel++;
+        isChangingLevel = true;
+        targetCameraPosition = new Vector3(initialCameraPosition.x + 30f * (currentLevel - 1), initialCameraPosition.y, initialCameraPosition.z);
 
         if (currentLevel > templesData[currentTemple - 1].numberOfLevels)
         {
-            currentTemple++;
+            templesUnlocked++;
             currentLevel = 1;
+            isChangingLevel = false;
             SceneManager.LoadScene("TemplesMap");
         }
 
-        isChangingLevel = true;
-        targetCameraPosition = new Vector3(initialCameraPosition.x + 30f * (currentLevel - 1), initialCameraPosition.y, initialCameraPosition.z);
+        
         
     }
 }

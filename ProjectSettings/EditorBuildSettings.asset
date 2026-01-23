@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/D\xEDdac/Scenes/TemplesMap.unity"
     guid: febd3e3cbf8760d4d98ca6ae5c51928b
+  - enabled: 1
+    path: "Assets/D\xEDdac/Scenes/MainMenu.unity"
+    guid: b54e2ebb6d8aed14d91c75d633a07f31
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: bc0ebafa0b6165a4ebf87a9c3272aa1c, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -18,7 +18,7 @@ public class PlayerInputScript : MonoBehaviour
 
         if (context.performed)
         {
-           if (playerAlargar.isAlargarHeld)
+           if (playerAlargar.isAlargarHeld || !GameManager.instance.hasGameStarted)
            {
                playerMovement.inputDir = Vector3.zero;
                return;
@@ -35,9 +35,13 @@ public class PlayerInputScript : MonoBehaviour
 
     public void OnAlargar(InputAction.CallbackContext context)
     {
+        if (GameManager.instance.hasGameStarted == false)
+            return;
+
         if (context.started)
         {
             playerAlargar.isAlargarHeld = true;
+            playerMovement.inputDir = Vector3.zero;
         }
         else if (context.canceled)
         {
