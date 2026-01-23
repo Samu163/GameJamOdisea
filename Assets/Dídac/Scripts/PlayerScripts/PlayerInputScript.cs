@@ -6,11 +6,12 @@ public class PlayerInputScript : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private PlayerAlargar playerAlargar;
-
+    private Interactor playerInteractor;
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAlargar = GetComponent<PlayerAlargar>();
+        playerInteractor = GetComponentInChildren<Interactor>();
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -46,5 +47,13 @@ public class PlayerInputScript : MonoBehaviour
         {
             playerAlargar.CancelAlargar();
         }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        
+        playerInteractor.TryToInteract();
+        
     }
 }

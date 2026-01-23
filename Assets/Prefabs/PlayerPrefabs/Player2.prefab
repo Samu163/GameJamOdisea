@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4947388723296055364}
+  - {fileID: 4948404585810001564}
   m_Father: {fileID: 5907745210388696547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &1580440021689560330
@@ -159,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec9508c26521a442bda6b922be50c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  playerStateMachine: {fileID: 1550261065192230488}
 --- !u!65 &7355705998121073844
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -245,6 +247,7 @@ Transform:
   - {fileID: 8303456465187738782}
   - {fileID: 5850420641142042392}
   - {fileID: 7516992647310419467}
+  - {fileID: 175392251563608923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1017107431921205933
@@ -373,7 +376,19 @@ MonoBehaviour:
     m_ActionId: f9ca7868-2588-4cae-a254-9a5cd16845f9
     m_ActionName: 'Player2Keyboard/Alargar[/Keyboard/l]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1017107431921205933}
+        m_TargetAssemblyTypeName: PlayerInputScript, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e012699f-8c39-4b72-b866-375542d16ddb
     m_ActionName: 'PlayerController/Interact[/Keyboard/c,/DualShock4GamepadHID/buttonSouth]'
   - m_PersistentCalls:
@@ -675,3 +690,111 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6196452024050806057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4948404585810001564}
+  m_Layer: 0
+  m_Name: CarryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4948404585810001564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196452024050806057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: -0.18, y: -0.02, z: 0.51}
+  m_LocalScale: {x: 1.4708968, y: 0.6798565, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7516992647310419467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2589771094918863758
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5907745210388696547}
+    m_Modifications:
+    - target: {fileID: 345907318769701337, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_Name
+      value: PlayerStateMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.29984
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.30371
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027091924438330872, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+      propertyPath: carryPoint
+      value: 
+      objectReference: {fileID: 4948404585810001564}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+--- !u!4 &175392251563608923 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2422841234624647381, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+  m_PrefabInstance: {fileID: 2589771094918863758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1550261065192230488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3923502993350088150, guid: b380a823e9fa3394ca165626bed516a1, type: 3}
+  m_PrefabInstance: {fileID: 2589771094918863758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41423372c5f66cc4384c1f82c2e21fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StateMachine

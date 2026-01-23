@@ -7,15 +7,14 @@ public class InputInteractable : MonoBehaviour , IInteractableObject
     public InputActionReference interactableAction;
     private Billboard interactorBillboard;
     public ACTIVE_STATE active_state = ACTIVE_STATE.OFF;
-
     public UnityEvent on_interact;
 
     void Awake()
     {
         GetComponentInChildren<InputPromptUI>().action = interactableAction; // Set the text's icon to the action we listen to
 
-        interactableAction.action.Enable(); // Enable the input action
-        interactableAction.action.performed += _ => TryTointeract(); // when this input is pressed TryTointeract is called
+        //interactableAction.action.Enable(); // Enable the input action
+        //interactableAction.action.performed += _ => TryTointeract(); // when this input is pressed TryTointeract is called
         interactorBillboard = GetComponentInChildren<Billboard>();
     }
 
@@ -26,19 +25,17 @@ public class InputInteractable : MonoBehaviour , IInteractableObject
         active_state = ACTIVE_STATE.ON;
     }
 
-    public void Interact()
-    {
+    public virtual void Interact(Interactor interactor)
+    { // Received the interactor from the player who interacted with self
 
         on_interact?.Invoke();
         print("You are interacting with " + gameObject.name + "!");
     }
 
-    private void TryTointeract()
-    {
-        if (active_state == ACTIVE_STATE.OFF) return;
-
-        Interact();
-    }
+    //private void TryTointeract()
+    //{
+    //    if (active_state == ACTIVE_STATE.OFF) return;
+    //}
 
     // Disables interaction
     public void Deactivate()

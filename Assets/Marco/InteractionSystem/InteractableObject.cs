@@ -8,7 +8,7 @@ public interface IInteractableObject
 
     }
 
-    public void Interact()
+    public void Interact(Interactor interactor)
     {
 
     }

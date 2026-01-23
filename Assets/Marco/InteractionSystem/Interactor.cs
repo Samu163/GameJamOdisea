@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 public class Interactor : MonoBehaviour
 {
     public IInteractableObject currentIntreactable = null;
-
+    public StateMachine playerStateMachine;
     private void OnTriggerEnter(Collider other)
     {
-        IInteractableObject interactable = other.GetComponent<IInteractableObject>();
+         IInteractableObject interactable = other.GetComponentInParent<IInteractableObject>();
         if (interactable != null)
         {
             currentIntreactable = interactable;
@@ -16,7 +16,7 @@ public class Interactor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        IInteractableObject interactable = other.GetComponent<IInteractableObject>();
+        IInteractableObject interactable = other.GetComponentInParent<IInteractableObject>();
         if (interactable != null && interactable == currentIntreactable)
         {
             currentIntreactable = null;
@@ -24,12 +24,21 @@ public class Interactor : MonoBehaviour
     }
 
     // Connected thru the PlayerInput component
-    public void TryToInteract(InputAction.CallbackContext context)
+    public void TryToInteract()
     {
-        if (context.performed && currentIntreactable != null)
+        if (IsCarryingInteractable())
         {
-            currentIntreactable.Interact();
+            // Drop interactable
         }
+        else if (currentIntreactable != null)
+        {
+            currentIntreactable.Interact(this);
+        }
+    }
+
+    public bool IsCarryingInteractable()
+    {
+        return playerStateMachine.CurrentState is CarryingState;
     }
 
 }
