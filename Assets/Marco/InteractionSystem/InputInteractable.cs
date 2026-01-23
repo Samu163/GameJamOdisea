@@ -12,9 +12,6 @@ public class InputInteractable : MonoBehaviour , IInteractableObject
     protected virtual void Awake()
     {
         GetComponentInChildren<InputPromptUI>().action = interactableAction; // Set the text's icon to the action we listen to
-
-        //interactableAction.action.Enable(); // Enable the input action
-        //interactableAction.action.performed += _ => TryTointeract(); // when this input is pressed TryTointeract is called
         interactorBillboard = GetComponentInChildren<Billboard>();
     }
 
@@ -31,11 +28,6 @@ public class InputInteractable : MonoBehaviour , IInteractableObject
         on_interact?.Invoke();
         print("You are interacting with " + gameObject.name + "!");
     }
-
-    //private void TryTointeract()
-    //{
-    //    if (active_state == ACTIVE_STATE.OFF) return;
-    //}
 
     // Disables interaction
     public void Deactivate()

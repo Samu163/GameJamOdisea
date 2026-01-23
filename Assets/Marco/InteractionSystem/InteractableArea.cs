@@ -14,6 +14,7 @@ public class InteractableArea : MonoBehaviour
     {
         if (other.CompareTag("Interactor"))
         {
+            print(other.gameObject.name + " entered interactable area of " + gameObject.name);
             interactableObject.Activate();
         }
     }
@@ -22,6 +23,7 @@ public class InteractableArea : MonoBehaviour
     {
         if (other.CompareTag("Interactor"))
         {
+            print(other.gameObject.name + " exited interactable area of " + gameObject.name);
             interactableObject.Deactivate();
         }
     }

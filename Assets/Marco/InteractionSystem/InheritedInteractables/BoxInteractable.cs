@@ -2,6 +2,7 @@ using System.ComponentModel;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Animations;
+using DG.Tweening;
 
 public class BoxInteractable : InputInteractable
 {
@@ -44,12 +45,38 @@ public class BoxInteractable : InputInteractable
     // Called by the CarryingState when the box is grabbed
     public void Grab(Transform grabPoint)
     {
-        transform.position = grabPoint.position; // Go to the grab point's position
-        transform.rotation = grabPoint.rotation; // Match rotation  
-
-        objectConstraint.FakeParent(this.gameObject, grabPoint.gameObject);
+        StartCoroutine(GrabRoutine(grabPoint));
     }
 
+
+    public void FakeParent(Transform grabPoint) {
+        objectConstraint.FakeParent(this.gameObject, grabPoint.gameObject);
+        
+    }
+
+    float grabTime = 0.4f;
+
+    private IEnumerator GrabRoutine(Transform grabPoint)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < grabTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / grabTime; // 0 to 1 value
+
+            Vector3 lpos = Vector3.Lerp(transform.position, grabPoint.position, t);
+            Vector3 lrot = Vector3.Lerp(transform.rotation.eulerAngles, grabPoint.rotation.eulerAngles, t);
+
+            transform.position = lpos;
+            transform.rotation = Quaternion.Euler(lrot);
+
+            yield return null;
+        }
+
+        FakeParent(grabPoint);
+
+    }
 
     public void Drop(Interactor interactor)
     {
