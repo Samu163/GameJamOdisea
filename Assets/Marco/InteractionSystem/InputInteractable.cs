@@ -9,7 +9,7 @@ public class InputInteractable : MonoBehaviour , IInteractableObject
     public ACTIVE_STATE active_state = ACTIVE_STATE.OFF;
     public UnityEvent on_interact;
 
-    void Awake()
+    protected virtual void Awake()
     {
         GetComponentInChildren<InputPromptUI>().action = interactableAction; // Set the text's icon to the action we listen to
 
