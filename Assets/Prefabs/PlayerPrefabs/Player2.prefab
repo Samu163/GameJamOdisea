@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 6978889908408408269}
   - component: {fileID: 4276538366156094335}
   - component: {fileID: 8514550286223105392}
+  - component: {fileID: 3826910920234847712}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
@@ -440,6 +441,7 @@ MonoBehaviour:
   frontObstacleCheckDistance: 1
   frontObstacleCheckRadius: 0.5
   frontObstacleOffset: {x: 0, y: 0.5, z: 0}
+  grabDetectionRadius: 0.6
   isJumping: 0
 --- !u!136 &8514550286223105392
 CapsuleCollider:
@@ -464,6 +466,18 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: -0.1, y: 0, z: 0.18}
+--- !u!114 &3826910920234847712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868700009934093577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21deeda5c7da2644f99af0b88a0c347f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
 --- !u!1 &2776692672154900002
 GameObject:
   m_ObjectHideFlags: 0
