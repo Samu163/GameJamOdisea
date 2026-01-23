@@ -28,6 +28,7 @@ public class Interactor : MonoBehaviour
     {
         if (IsCarryingInteractable())
         {
+            playerStateMachine.ChangeState( playerStateMachine.CurrentState ,"state");
             // Drop interactable
         }
         else if (currentIntreactable != null)

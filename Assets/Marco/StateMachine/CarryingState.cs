@@ -50,5 +50,11 @@ public class CarryingState : State
         {
             carryPoint.localPosition = defaultCarryPosition;
         }
+        if (currentBox != null)
+        {
+           //Unparent the box
+            currentBox.transform.SetParent(null);
+            currentBox = null;
+        }
     }
 }

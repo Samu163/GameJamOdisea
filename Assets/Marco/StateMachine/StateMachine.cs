@@ -76,12 +76,12 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-    public void ChangeState(State state, string newStateName, Dictionary<string, object> extraArgs)
+    public void ChangeState(State state, string newStateName, Dictionary<string, object> extraArgs = null)
     {
         OnChildTransition(state, newStateName, extraArgs);
     }
 
-    private void OnChildTransition(State state, string newStateName, Dictionary<string, object> extraArgs)
+    private void OnChildTransition(State state, string newStateName, Dictionary<string, object> extraArgs = null)
     {
         if (state != CurrentState) return;
 
