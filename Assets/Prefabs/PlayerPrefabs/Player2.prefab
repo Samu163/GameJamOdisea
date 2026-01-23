@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2600601313851764008}
   m_Layer: 0
   m_Name: MadreParteDelantera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -463,9 +463,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: -0.1, y: 0, z: 0.18}
+  m_Center: {x: -0.1, y: -0.36, z: 0.18}
 --- !u!114 &3826910920234847712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,9 +490,9 @@ GameObject:
   - component: {fileID: 4025575741248454417}
   - component: {fileID: 4931706627684324984}
   - component: {fileID: 3830873896260349312}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MadreBody
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -604,9 +604,9 @@ GameObject:
   - component: {fileID: 5285764986958630070}
   - component: {fileID: 5354302600793714982}
   - component: {fileID: 4863189550219286916}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MadreParteTrasera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

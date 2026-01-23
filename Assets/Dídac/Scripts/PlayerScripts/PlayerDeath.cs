@@ -21,4 +21,12 @@ public class PlayerDeath : MonoBehaviour
            LevelManager.instance.ResetPlayerPositions();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Death"))
+        {
+            LevelManager.instance.ResetPlayerPositions();
+        }
+    }
 }

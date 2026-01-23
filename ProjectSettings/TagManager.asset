@@ -9,6 +9,8 @@ TagManager:
   - Player1
   - Player2
   - Wall
+  - Death
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - Water
   - UI
   - CarriedObjects
-  - 
-  - 
+  - Player
+  - Mirror
   - 
   - 
   - 
