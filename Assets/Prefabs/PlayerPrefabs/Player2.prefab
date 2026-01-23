@@ -440,6 +440,7 @@ MonoBehaviour:
   frontObstacleCheckDistance: 1
   frontObstacleCheckRadius: 0.5
   frontObstacleOffset: {x: 0, y: 0.5, z: 0}
+  grabDetectionRadius: 0.6
   isJumping: 0
 --- !u!136 &8514550286223105392
 CapsuleCollider:
@@ -715,7 +716,7 @@ Transform:
   m_GameObject: {fileID: 6196452024050806057}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
-  m_LocalPosition: {x: -0.18, y: -0.02, z: 0.51}
+  m_LocalPosition: {x: -0.18, y: -0.02, z: 0.63}
   m_LocalScale: {x: 1.4708968, y: 0.6798565, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

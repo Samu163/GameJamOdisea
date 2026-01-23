@@ -16,6 +16,7 @@ public class CarryingState : State
         }
     }
 
+    // The box/ carryable object changes to this state
     public override void Enter(System.Collections.Generic.Dictionary<string, object> extraArgs = null)
     {
         if (extraArgs != null && extraArgs.ContainsKey("box"))
@@ -23,7 +24,7 @@ public class CarryingState : State
             currentBox = extraArgs["box"] as BoxInteractable;
             if (currentBox != null)
             {
-                Collider boxCollider = currentBox.GetComponent<Collider>();
+                Collider boxCollider = currentBox.meshCollider;
 
                 float forwardOffset = 0f;
                 if (boxCollider != null)
@@ -31,14 +32,13 @@ public class CarryingState : State
                     forwardOffset = boxCollider.bounds.extents.z;
                 }
 
-                // Move the carry point forward away from the player
-                // We add a little base offset (forwardOffset)
-                carryPoint.localPosition = defaultCarryPosition + (Vector3.forward * forwardOffset);
+                // Move the carry point forward away from the player, Idk why 1.5 offset
+                carryPoint.localPosition = defaultCarryPosition + (Vector3.forward * forwardOffset * 1.5f);
+
                 //Parent the box to the carry point
-                currentBox.transform.SetParent(carryPoint);
-                // Reset box position to 0,0,0 relative to the new carry point
-                currentBox.transform.localPosition = Vector3.zero;
-                currentBox.transform.localRotation = Quaternion.identity; // Reset rotation
+                currentBox.Grab(carryPoint);
+
+                
             }
         }
     }
@@ -52,8 +52,8 @@ public class CarryingState : State
         }
         if (currentBox != null)
         {
-           //Unparent the box
-            currentBox.transform.SetParent(null);
+            //Unparent the box
+            currentBox.Drop(null);
             currentBox = null;
         }
     }
