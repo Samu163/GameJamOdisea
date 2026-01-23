@@ -44,6 +44,10 @@ public class PlayerAlargar : MonoBehaviour
     [SerializeField] private float frontObstacleCheckRadius = 0.5f;
     [SerializeField] private Vector3 frontObstacleOffset = new Vector3(0, 0.5f, 0);
 
+    [Header("Grabbable Objects")]
+    [SerializeField] private float grabDetectionRadius = 0.6f;
+    [Tooltip("Radio para detectar objetos agarrables")]
+
     // Estados
     private bool isRetracting = false;
     private bool isQuickRetracting = false;
@@ -51,6 +55,10 @@ public class PlayerAlargar : MonoBehaviour
     private bool shouldJumpAfterRetract = false;
     public bool isJumping = false;
     private bool canInteract = true;
+
+    // Estado de agarre
+    private bool isGrabbingObject = false;
+    private GrabbableObject currentGrabbedBox = null;
 
     private float alargarTimer = 0f;
     private const float alargarInterval = 0.1f;
@@ -121,16 +129,30 @@ public class PlayerAlargar : MonoBehaviour
         // EXTENSIÓN
         if (isAlargarHeld && canExtend)
         {
-            if (totalAlargar < maxRange)
+            // Si ya está agarrando algo, mantener el estado sin extender más
+            if (isGrabbingObject)
             {
-                // NUEVO: Check de obstáculos antes de extender
-                if (HasObstacleInExtensionPath())
+                HandleGrabbingState();
+            }
+            else if (totalAlargar < maxRange)
+            {
+                // Verificar obstáculos y objetos agarrables
+                ObstacleCheckResult obstacleResult = CheckObstaclesAndGrabbables();
+
+                if (obstacleResult.hasGrabbable)
                 {
+                    // Intentar agarrar el objeto
+                    TryGrabObject(obstacleResult.grabbableBox);
+                }
+                else if (obstacleResult.hasObstacle)
+                {
+                    // Obstáculo normal - retracción rápida
                     Debug.Log("¡Obstáculo detectado! Cancelando extensión...");
                     ForceQuickRetract();
                 }
                 else
                 {
+                    // Extensión normal
                     HandleExtension();
                 }
             }
@@ -145,12 +167,93 @@ public class PlayerAlargar : MonoBehaviour
             HandleExtensionBlocked(isGrounded);
         }
 
-        // RETRACCIÓN
         if (isRetracting)
         {
             HandleRetraction();
         }
     }
+
+    #region Grabbable Object System
+
+    private struct ObstacleCheckResult
+    {
+        public bool hasObstacle;
+        public bool hasGrabbable;
+        public GrabbableObject grabbableBox;
+    }
+    private ObstacleCheckResult CheckObstaclesAndGrabbables()
+    {
+        ObstacleCheckResult result = new ObstacleCheckResult();
+
+        // Primero buscar objetos agarrables
+        GrabbableObject grabbable = DetectGrabbableObject();
+        if (grabbable != null)
+        {
+            result.hasGrabbable = true;
+            result.grabbableBox = grabbable;
+            return result; 
+        }
+
+        result.hasObstacle = HasObstacleInExtensionPath();
+        return result;
+    }
+
+    private GrabbableObject DetectGrabbableObject()
+    {
+        Collider[] nearbyColliders = Physics.OverlapSphere(
+            head.transform.position,
+            grabDetectionRadius
+        );
+
+        foreach (Collider col in nearbyColliders)
+        {
+            if (col.transform.IsChildOf(transform)) continue;
+
+            GrabbableObject grabbable = col.GetComponent<GrabbableObject>();
+            if (grabbable != null && !grabbable.IsBeingGrabbed)
+            {
+                return grabbable;
+            }
+        }
+
+        return null;
+    }
+
+    private void TryGrabObject(GrabbableObject grabbable)
+    {
+        if (grabbable.TryGrab(this, playerInput.playerIndex))
+        {
+            currentGrabbedBox = grabbable;
+            isGrabbingObject = true;
+            Debug.Log($"[Player {playerInput.playerIndex}] ¡Objeto agarrado!");
+        }
+    }
+    private void HandleGrabbingState()
+    {
+        Debug.Log($"[Player {playerInput.playerIndex}] Manteniendo agarre...");
+    }
+
+    public void OnGrabbedObject(GrabbableObject box)
+    {
+        currentGrabbedBox = box;
+        isGrabbingObject = true;
+        isMovementLocked = true;
+    }
+
+    public void OnReleasedObject()
+    {
+        currentGrabbedBox = null;
+        isGrabbingObject = false;
+        isMovementLocked = false;
+
+        if (totalAlargar > 0)
+        {
+            Debug.Log($"[Player {playerInput.playerIndex}] Objeto soltado - iniciando retracción");
+            ForceQuickRetract();
+        }
+    }
+
+    #endregion
 
     #region Extension Logic
 
@@ -177,6 +280,10 @@ public class PlayerAlargar : MonoBehaviour
         {
             Debug.Log("Cooldown activo, espera...");
         }
+        else if (isGrabbingObject)
+        {
+            Debug.Log("Manteniendo objeto agarrado...");
+        }
     }
 
     public void Alargar()
@@ -201,6 +308,7 @@ public class PlayerAlargar : MonoBehaviour
     #endregion
 
     #region Obstacle Detection
+
     private bool HasObstacleInExtensionPath()
     {
         if (isPlayer1)
@@ -214,10 +322,11 @@ public class PlayerAlargar : MonoBehaviour
 
         return false;
     }
+
     private bool CheckCeilingAhead()
     {
         Vector3 checkOrigin = head.transform.position + head.transform.TransformDirection(ceilingCheckOffset);
-        Vector3 checkDirection = transform.forward; 
+        Vector3 checkDirection = transform.forward;
 
         bool hasCeiling = Physics.SphereCast(
             checkOrigin,
@@ -230,12 +339,17 @@ public class PlayerAlargar : MonoBehaviour
 
         if (hasCeiling)
         {
+            // Verificar si es un objeto agarrable
+            GrabbableObject grabbable = hitInfo.collider.GetComponent<GrabbableObject>();
+            if (grabbable != null)
+            {
+                return false; 
+            }
+
             Debug.Log($"TECHO DETECTADO: {hitInfo.collider.name} a {hitInfo.distance:F2}m");
         }
 
-        // Debug visual
         Debug.DrawRay(checkOrigin, checkDirection * ceilingCheckDistance, hasCeiling ? Color.red : Color.yellow, 0.1f);
-
         return hasCeiling;
     }
 
@@ -255,12 +369,17 @@ public class PlayerAlargar : MonoBehaviour
 
         if (hasObstacle)
         {
+            // Verificar si es un objeto agarrable
+                GrabbableObject grabbable = hitInfo.collider.GetComponent<GrabbableObject>();
+            if (grabbable != null)
+            {
+                return false;
+            }
+
             Debug.Log($"OBSTÁCULO FRONTAL DETECTADO: {hitInfo.collider.name} a {hitInfo.distance:F2}m");
         }
 
-        // Debug visual
         Debug.DrawRay(checkOrigin, checkDirection * frontObstacleCheckDistance, hasObstacle ? Color.red : Color.yellow, 0.1f);
-
         return hasObstacle;
     }
 
@@ -320,6 +439,13 @@ public class PlayerAlargar : MonoBehaviour
 
         if (totalAlargar <= 0f) return;
 
+        // Si está agarrando algo, soltar primero
+        if (isGrabbingObject && currentGrabbedBox != null)
+        {
+            currentGrabbedBox.ReleasePlayer();
+            return;
+        }
+
         bool canRetractNormal = DetermineRetractionType();
 
         isRetracting = true;
@@ -338,11 +464,18 @@ public class PlayerAlargar : MonoBehaviour
             shouldJumpAfterRetract = false;
         }
     }
+
     private void ForceQuickRetract()
     {
         isAlargarHeld = false;
 
         if (totalAlargar <= 0f) return;
+
+        // Si está agarrando algo, soltar
+        if (isGrabbingObject && currentGrabbedBox != null)
+        {
+            currentGrabbedBox.ReleasePlayer();
+        }
 
         isRetracting = true;
         isQuickRetracting = true;
@@ -431,7 +564,6 @@ public class PlayerAlargar : MonoBehaviour
 
         Vector3 checkOrigin = head.transform.position + head.transform.TransformDirection(wallCheckOffset);
 
-        // MÉTODO 1: OverlapSphere - más eficiente para detección cercana
         Collider[] hitColliders = Physics.OverlapSphere(checkOrigin, wallCheckRadius);
 
         foreach (Collider col in hitColliders)
@@ -445,7 +577,6 @@ public class PlayerAlargar : MonoBehaviour
             }
         }
 
-        // MÉTODO 2: SphereCast - para detección direccional
         if (Physics.SphereCast(checkOrigin, wallCheckRadius, transform.forward, out RaycastHit hitInfo, wallCheckDistance))
         {
             if (hitInfo.collider.CompareTag(wallTag))
@@ -510,7 +641,7 @@ public class PlayerAlargar : MonoBehaviour
 
     public bool IsMovementLocked()
     {
-        return isMovementLocked || isRetracting;
+        return isMovementLocked || isRetracting || isGrabbingObject;
     }
 
     #endregion
@@ -529,6 +660,10 @@ public class PlayerAlargar : MonoBehaviour
         {
             DrawPlayer2Gizmos();
         }
+
+        // Gizmo para detección de objetos agarrables
+        Gizmos.color = isGrabbingObject ? Color.green : Color.magenta;
+        Gizmos.DrawWireSphere(head.transform.position, grabDetectionRadius);
     }
 
     private void DrawPlayer1Gizmos()
