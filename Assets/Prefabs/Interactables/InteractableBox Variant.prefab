@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6240895129838661965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8154291480102182537}
+  - component: {fileID: 191709770172432053}
+  m_Layer: 0
+  m_Name: Interactor
+  m_TagString: Interactor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8154291480102182537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6240895129838661965}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3138199280579405926}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &191709770172432053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6240895129838661965}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.20558894, z: 1}
+  m_Center: {x: 0, y: -0.503478, z: 0}
 --- !u!1 &9134079058542030619
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,9 +82,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 8154291480102182537}
   m_Father: {fileID: 7144196386310502267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &98049062018102173
@@ -122,31 +176,47 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6354752421748399, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: gridSizeX
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6354752421748399, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: gridSizeY
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6354752421748399, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: gridSizeZ
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Size.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1094330222572568187, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_TagString
-      value: Interactor
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476856469098666107, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2573944957378159298, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.8
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2573944957378159298, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0000001
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 2573944957378159298, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.901167
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2573944957378159298, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_LocalRotation.w
@@ -191,6 +261,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9188972428213521592, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       insertIndex: 1
       addedObject: {fileID: 8499165366914018482}
+    - targetCorrespondingSourceObject: {fileID: 9188972428213521592, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8449105283685207308}
     - targetCorrespondingSourceObject: {fileID: 1094330222572568187, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1275130138009037626}
@@ -217,6 +290,7 @@ MonoBehaviour:
   on_interact:
     m_PersistentCalls:
       m_Calls: []
+  my_interactor: {fileID: 191709770172432053}
   meshCollider: {fileID: 7131624928579416591}
   dropDuration: 0.5
   arcHeight: 1
@@ -286,6 +360,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &8449105283685207308
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546661119246391553}
+  serializedVersion: 5
+  m_Mass: 100
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &5742900982517148610 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1094330222572568187, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}

@@ -9,6 +9,9 @@ public class BoxInteractable : InputInteractable
     GridObject gridComponent;
     ObjectConstraint objectConstraint;
 
+    [Description("Object with interactor collider enabling this interactable to acts as interactor for other interactables")]
+    public Collider my_interactor;
+
     [Description("Collider used to calculate the box bounds for carrying purposes")]
     public Collider meshCollider;
 
@@ -46,6 +49,7 @@ public class BoxInteractable : InputInteractable
     public void Grab(Transform grabPoint)
     {
         StartCoroutine(GrabRoutine(grabPoint));
+        my_interactor.enabled = false; // Disable the interactor collider while being carried
     }
 
 
@@ -93,6 +97,8 @@ public class BoxInteractable : InputInteractable
 
         // Start the Animation Routine
         StartCoroutine(AnimateToss(startPos, targetPos, startRot, targetRot));
+
+        my_interactor.enabled = true; // Re-enable the interactor collider
 
         //Re-enable interaction
         Activate();

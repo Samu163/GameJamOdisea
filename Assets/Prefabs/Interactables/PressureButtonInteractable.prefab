@@ -132,6 +132,22 @@ PrefabInstance:
       propertyPath: gridSizeZ
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: 18334e4ab56d8f249bb768ad9ac6b6a8, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: 18334e4ab56d8f249bb768ad9ac6b6a8, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2201543
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: 18334e4ab56d8f249bb768ad9ac6b6a8, type: 3}
+      propertyPath: m_Size.z
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: 18334e4ab56d8f249bb768ad9ac6b6a8, type: 3}
+      propertyPath: m_Center.y
+      value: -0.23992288
+      objectReference: {fileID: 0}
     - target: {fileID: 2573944957378159298, guid: 18334e4ab56d8f249bb768ad9ac6b6a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -218,7 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1ca6b9f0861204ab94a9c0f80f4b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressureButtonInteractable
-  interactableAction: {fileID: 0}
   active_state: 1
   on_interact:
     m_PersistentCalls:
