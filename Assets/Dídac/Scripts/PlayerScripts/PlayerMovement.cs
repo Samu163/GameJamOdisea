@@ -1,26 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    public Vector3 inputDir;
-    [SerializeField] private float rotationSmooth = 10f;
+    [SerializeField] private float maxSpeed = 8f;
+    [SerializeField] private float acceleration = 50f;
+    [SerializeField] private float deceleration = 40f;
+    [SerializeField] private float turnSpeed = 900f;
 
+    [HideInInspector] public Vector3 inputDir;
     private Rigidbody rb;
+    private PlayerAlargar playerAlargar;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAlargar = GetComponent<PlayerAlargar>();
         transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
     private void FixedUpdate()
@@ -30,30 +29,45 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (inputDir.sqrMagnitude > 0.001f)
+        //mecanicas salto 
+        if (playerAlargar != null && playerAlargar.isAlargarHeld)
         {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            return;
+        }
+        if (playerAlargar != null && playerAlargar.isJumping)
+        {
+            return;
+        }
 
-            Vector3 move = inputDir;
+        Vector3 currentHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
+        if (playerAlargar != null && playerAlargar.IsMovementLocked())
+        {
+            ApplyDeceleration(currentHorizontalVelocity);
+            return;
+        }
 
-            Vector3 velocity = rb.linearVelocity;
-            Vector3 targetHorizontal = move * moveSpeed;
-            Vector3 newVelocity = Vector3.Lerp(velocity, new Vector3(targetHorizontal.x, velocity.y, targetHorizontal.z), 0.9f);
+        if (inputDir.sqrMagnitude > 0.01f)
+        {
+            Vector3 moveDirection = inputDir.normalized;
+            Vector3 targetVelocity = moveDirection * maxSpeed;
+            Vector3 newVelocity = Vector3.MoveTowards(currentHorizontalVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
 
-            rb.linearVelocity = newVelocity;
+            rb.linearVelocity = new Vector3(newVelocity.x, rb.linearVelocity.y, newVelocity.z);
 
-
-            Quaternion targetRot = Quaternion.LookRotation(new Vector3(move.x, 0f, move.z));
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSmooth * Time.fixedDeltaTime);
+            Quaternion targetRot = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, turnSpeed * Time.fixedDeltaTime);
         }
         else
         {
-
-            Vector3 v = rb.linearVelocity;
-            Vector3 dec = Vector3.Lerp(new Vector3(v.x, 0f, v.z), Vector3.zero, 8f * Time.fixedDeltaTime);
-            rb.linearVelocity = new Vector3(dec.x, v.y, dec.z);
+            ApplyDeceleration(currentHorizontalVelocity);
         }
     }
 
-
+    private void ApplyDeceleration(Vector3 currentHorizontalVelocity)
+    {
+        Vector3 newVelocity = Vector3.MoveTowards(currentHorizontalVelocity, Vector3.zero, deceleration * Time.fixedDeltaTime);
+        rb.linearVelocity = new Vector3(newVelocity.x, rb.linearVelocity.y, newVelocity.z);
+    }
 }

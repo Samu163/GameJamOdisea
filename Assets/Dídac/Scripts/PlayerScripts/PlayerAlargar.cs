@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerAlargar : MonoBehaviour
 {
-
     private PlayerInput playerInput;
 
     [Header("Alargar Settings")]
@@ -13,30 +13,46 @@ public class PlayerAlargar : MonoBehaviour
     [SerializeField] private float alargarAmount = 0.05f;
     [SerializeField] private float maxRange = 9f;
     public bool isAlargarHeld = false;
-    [SerializeField] private float jumpPlayer2Force = 10f;
 
+    [Header("Jump Physics")]
+    [SerializeField] private float jumpForceUp = 8f;
+    [SerializeField] private float jumpForceForward = 3f;
+    [SerializeField] private float jumpDelay = 0.1f;
+    [SerializeField] private float jumpLockDuration = 0.3f;
+    [SerializeField] private float jumpCooldown = 0.8f;
+
+    [Header("Ground Check - Player 1")]
+    [SerializeField] private float groundCheckDistance = 1f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundCheckRadius = 0.3f;
+
+    [Header("Wall Check - Player 2")]
+    [SerializeField] private string wallTag = "Wall";
+    [SerializeField] private float wallCheckDistance = 2f;
+    [SerializeField] private float wallCheckRadius = 0.8f;
+    [SerializeField] private Vector3 wallCheckOffset = Vector3.zero;
+    [SerializeField] private float player2GroundCheckDistance = 0.5f;
+    [SerializeField] private float player2GroundCheckRadius = 0.3f;
+
+    // Estados
     private bool isRetracting = false;
+    private bool isQuickRetracting = false;
+    private bool isMovementLocked = false;
+    private bool shouldJumpAfterRetract = false;
+    public bool isJumping = false;
+    private bool canInteract = true; 
 
     private float alargarTimer = 0f;
     private float alargarInterval = 0.1f;
-
     private float totalAlargar = 0f;
 
-    private Vector3 initialBodyScale;
-    private Vector3 targetBodyScale;
-
-    private Vector3 initialBodyLocalPos;
-    private Vector3 targetBodyPosition;
-
-    private Vector3 initialHeadLocalPos;
-    private Vector3 targetHeadPosition;
-
-    private Vector3 initialBottomLocalPos;
-    private Vector3 targetBottomPosition;
+    // Posiciones iniciales
+    private Vector3 initialBodyScale, targetBodyScale;
+    private Vector3 initialBodyLocalPos, targetBodyPosition;
+    private Vector3 initialHeadLocalPos, targetHeadPosition;
+    private Vector3 initialBottomLocalPos, targetBottomPosition;
 
     private Rigidbody rb;
-
-    // Posición mundial objetivo de la cabeza cuando se suelta el botón
     private Vector3 releaseHeadWorldPos;
 
     private void Awake()
@@ -48,16 +64,13 @@ public class PlayerAlargar : MonoBehaviour
     private void Start()
     {
         initialBodyScale = body.transform.localScale;
-        targetBodyScale = body.transform.localScale;
-
+        targetBodyScale = initialBodyScale;
         initialBodyLocalPos = body.transform.localPosition;
-        targetBodyPosition = body.transform.localPosition;
-
+        targetBodyPosition = initialBodyLocalPos;
         initialHeadLocalPos = head.transform.localPosition;
-        targetHeadPosition = head.transform.localPosition;
-
+        targetHeadPosition = initialHeadLocalPos;
         initialBottomLocalPos = bottom.transform.localPosition;
-        targetBottomPosition = bottom.transform.localPosition;
+        targetBottomPosition = initialBottomLocalPos;
 
         if (playerInput.playerIndex == 1)
         {
@@ -73,8 +86,11 @@ public class PlayerAlargar : MonoBehaviour
 
     public void Update()
     {
-        // Extender mientras se mantiene
-        if (isAlargarHeld && totalAlargar < maxRange)
+        bool isGrounded = playerInput.playerIndex == 2 ? IsPlayer2Grounded() : true;
+
+        bool canExtend = !isRetracting && !isMovementLocked && !isJumping && isGrounded && canInteract;
+
+        if (isAlargarHeld && canExtend && totalAlargar < maxRange)
         {
             alargarTimer += Time.deltaTime;
             if (alargarTimer >= alargarInterval)
@@ -82,73 +98,69 @@ public class PlayerAlargar : MonoBehaviour
                 Alargar();
                 alargarTimer = 0f;
             }
-
-            body.transform.localScale = Vector3.Lerp(body.transform.localScale, targetBodyScale, 0.1f);
-            body.transform.localPosition = Vector3.Lerp(body.transform.localPosition, targetBodyPosition, 0.1f);
-            head.transform.localPosition = Vector3.Lerp(head.transform.localPosition, targetHeadPosition, 0.1f);
+            LerpParts(targetBodyScale, targetBodyPosition, targetHeadPosition, targetBottomPosition, 0.1f);
+        }
+        else if (isAlargarHeld && canExtend && totalAlargar >= maxRange)
+        {
+            CancelAlargar();
+        }
+        // SI INTENTA ESTIRARSE EN EL AIRE O EN COOLDOWN -> IGNORAR
+        else if (isAlargarHeld && !canExtend)
+        {
+            if (!isGrounded)
+            {
+                Debug.Log("No puedes estirarte en el aire!");
+            }
+            else if (!canInteract)
+            {
+                Debug.Log("Cooldown activo, espera...");
+            }
         }
 
-        // Retracción: interpolar hacia valores iniciales y mantener la cabeza fija en el mundo
+        // RETRACCIÃ“N
         if (isRetracting)
         {
-            // Interpolar locales hacia los iniciales
-            body.transform.localScale = Vector3.Lerp(body.transform.localScale, initialBodyScale, 0.1f);
-            body.transform.localPosition = Vector3.Lerp(body.transform.localPosition, initialBodyLocalPos, 0.1f);
-            head.transform.localPosition = Vector3.Lerp(head.transform.localPosition, initialHeadLocalPos, 0.1f);
-            bottom.transform.localPosition = Vector3.Lerp(bottom.transform.localPosition, initialBottomLocalPos, 0.1f);
+            float lerpSpeed = isQuickRetracting ? 0.3f : 0.1f;
+            LerpParts(initialBodyScale, initialBodyLocalPos, initialHeadLocalPos, initialBottomLocalPos, lerpSpeed);
 
-            // Después de aplicar Lerp, calcular desplazamiento necesario para mantener la cabeza en su posición mundial registrada
-            Vector3 currentHeadWorld = head.transform.position;
-            Vector3 delta = releaseHeadWorldPos - currentHeadWorld;
-            // Desplazar la raíz para compensar movimiento de la cabeza
-            if (delta.sqrMagnitude > 0f)
+            if (!isQuickRetracting)
             {
-                transform.position += delta;
+                Vector3 currentHeadWorld = head.transform.position;
+                Vector3 delta = releaseHeadWorldPos - currentHeadWorld;
+                if (delta.sqrMagnitude > 0f) transform.position += delta;
             }
 
-                // Si ya llegamos cerca de la configuración inicial, finalizar retracción
-                const float eps = 0.01f;
+            const float eps = 0.01f;
             if (Vector3.Distance(body.transform.localScale, initialBodyScale) < eps &&
-                Vector3.Distance(body.transform.localPosition, initialBodyLocalPos) < eps &&
                 Vector3.Distance(head.transform.localPosition, initialHeadLocalPos) < eps)
             {
-                body.transform.localScale = initialBodyScale;
-                body.transform.localPosition = initialBodyLocalPos;
-                head.transform.localPosition = initialHeadLocalPos;
-                bottom.transform.localPosition = initialBottomLocalPos;
+                ResetPositions();
 
-                targetBodyScale = initialBodyScale;
-                targetBodyPosition = initialBodyLocalPos;
-                targetHeadPosition = initialHeadLocalPos;
-                targetBottomPosition = initialBottomLocalPos;
+                if (playerInput.playerIndex == 2 && shouldJumpAfterRetract)
+                {
+                    StartCoroutine(WallJumpRoutine());
+                }
 
                 isRetracting = false;
-                totalAlargar = 0f;
-
-                if (playerInput.playerIndex == 2)
-                {
-                    Player2JumpEndOfAlargar();
-                }
+                shouldJumpAfterRetract = false;
             }
         }
     }
 
     public void Alargar()
     {
+        Vector3 increment = new Vector3(0, alargarAmount / 2, 0);
+        targetBodyScale += increment;
 
         if (playerInput.playerIndex == 1)
         {
-            targetBodyScale += new Vector3(0, alargarAmount / 2, 0);
             targetBodyPosition += new Vector3(0, 0, alargarAmount / 2);
             targetHeadPosition += new Vector3(0, 0, alargarAmount);
-            targetBottomPosition += new Vector3(0, 0, alargarAmount);
         }
         else if (playerInput.playerIndex == 2)
         {
-            targetBodyScale += new Vector3(0, alargarAmount / 2, 0);
-            targetBodyPosition += new Vector3(0, alargarAmount / 2, 0);
+            targetBodyPosition += increment;
             targetHeadPosition += new Vector3(0, alargarAmount, 0);
-            targetBottomPosition += new Vector3(0, alargarAmount, 0);
         }
 
         totalAlargar += alargarAmount;
@@ -157,22 +169,183 @@ public class PlayerAlargar : MonoBehaviour
     public void CancelAlargar()
     {
         isAlargarHeld = false;
+
+        if (totalAlargar <= 0f)
+        {
+            return;
+        }
+
+        bool canRetractNormal = false;
+
+        if (playerInput.playerIndex == 1)
+        {
+            canRetractNormal = CheckGroundUnderHead();
+        }
+        else if (playerInput.playerIndex == 2)
+        {
+            bool hasWall = CheckWallInFront();
+            canRetractNormal = hasWall;
+
+            if (hasWall && canInteract)
+            {
+                shouldJumpAfterRetract = true;
+                Debug.Log("MURO DETECTADO - Salto preparado");
+            }
+            else
+            {
+                Debug.Log("Sin muro - RetracciÃ³n rÃ¡pida");
+            }
+        }
+
         isRetracting = true;
         totalAlargar = 0f;
 
-        // Registrar la posición mundial de la cabeza en el momento de soltar
-        releaseHeadWorldPos = head.transform.position;
+        if (canRetractNormal)
+        {
+            isQuickRetracting = false;
+            releaseHeadWorldPos = head.transform.position;
+        }
+        else
+        {
+            isQuickRetracting = true;
+            shouldJumpAfterRetract = false;
+        }
 
-        // Asegurar que las metas vuelvan a la posición/local inicial (empezamos la Lerp hacia ellas)
         targetBodyScale = initialBodyScale;
         targetBodyPosition = initialBodyLocalPos;
         targetHeadPosition = initialHeadLocalPos;
         targetBottomPosition = initialBottomLocalPos;
     }
 
-    public void Player2JumpEndOfAlargar()
+    private IEnumerator WallJumpRoutine()
     {
-        rb.AddForce(Vector3.up * jumpPlayer2Force, ForceMode.Impulse);
+        Debug.Log("Iniciando salto!");
+
+        isMovementLocked = true;
+        isJumping = true;
+        canInteract = false;
+
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(Vector3.up * jumpForceUp, ForceMode.Impulse);
+        yield return new WaitForSeconds(jumpDelay);
+
+        rb.AddForce(transform.forward * jumpForceForward, ForceMode.Impulse);
+        yield return new WaitForSeconds(jumpLockDuration);
+
+        isMovementLocked = false;
+        isJumping = false;
+
+        Debug.Log("Cooldown iniciado - NO puedes estirarte");
+        yield return new WaitForSeconds(jumpCooldown);
+
+        canInteract = true;
+        Debug.Log("Cooldown terminado - Puedes estirarte de nuevo");
     }
 
+    private void LerpParts(Vector3 scale, Vector3 bodyPos, Vector3 headPos, Vector3 bottomPos, float t)
+    {
+        body.transform.localScale = Vector3.Lerp(body.transform.localScale, scale, t);
+        body.transform.localPosition = Vector3.Lerp(body.transform.localPosition, bodyPos, t);
+        head.transform.localPosition = Vector3.Lerp(head.transform.localPosition, headPos, t);
+        bottom.transform.localPosition = Vector3.Lerp(bottom.transform.localPosition, bottomPos, t);
+    }
+
+    private void ResetPositions()
+    {
+        body.transform.localScale = initialBodyScale;
+        body.transform.localPosition = initialBodyLocalPos;
+        head.transform.localPosition = initialHeadLocalPos;
+        bottom.transform.localPosition = initialBottomLocalPos;
+
+        targetBodyScale = initialBodyScale;
+        targetBodyPosition = initialBodyLocalPos;
+        targetHeadPosition = initialHeadLocalPos;
+        targetBottomPosition = initialBottomLocalPos;
+
+        totalAlargar = 0f;
+    }
+
+    public bool IsMovementLocked()
+    {
+        return isMovementLocked || isRetracting;
+    }
+
+    private bool CheckWallInFront()
+    {
+        if (playerInput.playerIndex != 2) return false;
+
+        Vector3 checkOrigin = head.transform.position + head.transform.TransformDirection(wallCheckOffset);
+        Vector3 direction = transform.forward;
+
+        // MÃ‰TODO 1: OverlapSphere 
+        Collider[] hitColliders = Physics.OverlapSphere(checkOrigin, wallCheckRadius);
+        foreach (Collider col in hitColliders)
+        {
+            if (col.transform.IsChildOf(transform)) continue;
+
+            if (col.CompareTag(wallTag))
+            {
+                Debug.Log($"MURO ENCONTRADO (OverlapSphere): {col.name}");
+                return true;
+            }
+        }
+
+        // MÃ‰TODO 2: SphereCast 
+        if (Physics.SphereCast(checkOrigin, wallCheckRadius, direction, out RaycastHit hitInfo, wallCheckDistance))
+        {
+            if (hitInfo.collider.CompareTag(wallTag))
+            {
+                Debug.Log($"MURO ENCONTRADO (SphereCast): {hitInfo.collider.name}");
+                return true;
+            }
+        }
+
+        Debug.Log("Sin muro delante");
+        return false;
+    }
+
+    private bool CheckGroundUnderHead()
+    {
+        Vector3 rayOrigin = head.transform.position;
+        bool hit = Physics.SphereCast(rayOrigin, groundCheckRadius, Vector3.down, out RaycastHit hitInfo, groundCheckDistance, groundLayer);
+        Debug.DrawRay(rayOrigin, Vector3.down * groundCheckDistance, hit ? Color.green : Color.red, 0.5f);
+        return hit;
+    }
+
+    private bool IsPlayer2Grounded()
+    {
+        if (playerInput.playerIndex != 2) return true;
+
+        Vector3 rayOrigin = bottom.transform.position;
+        bool grounded = Physics.SphereCast(rayOrigin, player2GroundCheckRadius, Vector3.down, out RaycastHit hitInfo, player2GroundCheckDistance, groundLayer);
+        Debug.DrawRay(rayOrigin, Vector3.down * player2GroundCheckDistance, grounded ? Color.green : Color.red, 0.1f);
+        return grounded;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (head != null && playerInput != null)
+        {
+            if (playerInput.playerIndex == 1)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(head.transform.position, groundCheckRadius);
+                Gizmos.DrawLine(head.transform.position, head.transform.position + Vector3.down * groundCheckDistance);
+            }
+            else if (playerInput.playerIndex == 2)
+            {
+                Vector3 checkOrigin = head.transform.position + head.transform.TransformDirection(wallCheckOffset);
+
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(checkOrigin, wallCheckRadius);
+
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(checkOrigin, checkOrigin + transform.forward * wallCheckDistance);
+
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(bottom.transform.position, player2GroundCheckRadius);
+                Gizmos.DrawLine(bottom.transform.position, bottom.transform.position + Vector3.down * player2GroundCheckDistance);
+            }
+        }
+    }
 }

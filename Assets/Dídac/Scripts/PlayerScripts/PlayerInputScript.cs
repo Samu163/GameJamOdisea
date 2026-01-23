@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputScript : MonoBehaviour
 {
-    
+
     private PlayerMovement playerMovement;
     private PlayerAlargar playerAlargar;
 
@@ -14,30 +14,29 @@ public class PlayerInputScript : MonoBehaviour
     }
 
     public void OnMovement(InputAction.CallbackContext context)
-    {   
-
+    {
+       
         if (context.performed)
         {
-           if (playerAlargar.isAlargarHeld)
-           {
-               playerMovement.inputDir = Vector3.zero;
-               return;
-           }
-
-           Vector2 movement = context.ReadValue<Vector2>();
-           playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
+            if (playerAlargar.isAlargarHeld)
+            {
+                playerMovement.inputDir = Vector3.zero;
+                return;
+            }
+            Vector2 movement = context.ReadValue<Vector2>();
+            playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
         }
         else if (context.canceled)
         {
-           playerMovement.inputDir = Vector3.zero;
+            playerMovement.inputDir = Vector3.zero;
         }
     }
-
     public void OnAlargar(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             playerAlargar.isAlargarHeld = true;
+            playerMovement.inputDir = Vector3.zero;
         }
         else if (context.canceled)
         {
