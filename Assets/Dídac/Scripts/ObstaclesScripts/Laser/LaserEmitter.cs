@@ -6,6 +6,7 @@ public class LaserEmitter : MonoBehaviour
     public LayerMask mirrorMask;
     private MirrorLaser currentHittingMirror;
     private Vector3 reflectionDir;
+    private Vector3 hitPos;
 
     // Update is called once per frame
     void Update()
@@ -15,6 +16,8 @@ public class LaserEmitter : MonoBehaviour
         {
             Vector3 distanceToHit = hitInfo.point - transform.position;
             Debug.DrawRay(transform.position, distanceToHit, Color.red);
+
+            hitPos = hitInfo.point;
 
             Vector3 incomingDir = distanceToHit.normalized;
             Vector3 surfaceNormal = hitInfo.normal;
@@ -31,7 +34,7 @@ public class LaserEmitter : MonoBehaviour
             currentHittingMirror = hitInfo.collider.GetComponent<MirrorLaser>();
             if (currentHittingMirror != null)
             {
-                currentHittingMirror.ActivateMirror(reflectionDir);
+                currentHittingMirror.ActivateMirror(reflectionDir, hitPos);
             }
         }
         else

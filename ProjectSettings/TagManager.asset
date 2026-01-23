@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Death
   - Mirror
+  - LaserReceiver
   layers:
   - Default
   - TransparentFX
