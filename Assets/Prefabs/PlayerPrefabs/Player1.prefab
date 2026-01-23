@@ -281,9 +281,9 @@ GameObject:
   - component: {fileID: 2629736039568539452}
   - component: {fileID: 7690078071661444224}
   - component: {fileID: 9069707250807471528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PadreBody
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 3605305092398627690}
   m_Layer: 0
   m_Name: PadreParteTrasera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 456548139267800777}
   m_Layer: 0
   m_Name: PadreParteDelantera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
