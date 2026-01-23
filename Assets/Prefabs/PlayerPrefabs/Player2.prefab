@@ -108,7 +108,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5907745210388696547
 Transform:
   m_ObjectHideFlags: 0
@@ -176,9 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a4cd3b869c08c4f9f3a3f4589a48ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
+  maxSpeed: 8
+  acceleration: 50
+  deceleration: 40
+  turnSpeed: 500
   inputDir: {x: 0, y: 0, z: 0}
-  rotationSmooth: 10
 --- !u!54 &7210314622359543671
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -204,7 +206,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 48
   m_CollisionDetection: 0
 --- !u!114 &6978889908408408269
 MonoBehaviour:
@@ -302,7 +304,23 @@ MonoBehaviour:
   alargarAmount: 0.5
   maxRange: 3
   isAlargarHeld: 0
-  jumpPlayer2Force: 7
+  jumpForceUp: 7
+  jumpForceForward: 3
+  jumpDelay: 0.35
+  jumpLockDuration: 0.5
+  jumpCooldown: 1
+  groundCheckDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  groundCheckRadius: 0.3
+  wallTag: Wall
+  wallCheckDistance: 0.1
+  wallCheckRadius: 0.5
+  wallCheckOffset: {x: 0, y: 0, z: 0}
+  player2GroundCheckDistance: 0.5
+  player2GroundCheckRadius: 0.3
+  isJumping: 0
 --- !u!136 &8514550286223105392
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -310,7 +328,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868700009934093577}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b8e2b17d34e66e14c81e49e9f99dbeb7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -424,7 +442,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2776692672154900002}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b8e2b17d34e66e14c81e49e9f99dbeb7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -538,7 +556,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102935307496450452}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b8e2b17d34e66e14c81e49e9f99dbeb7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3798666599570788423
 Transform:
   m_ObjectHideFlags: 0
@@ -64,9 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a4cd3b869c08c4f9f3a3f4589a48ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
+  maxSpeed: 8
+  acceleration: 50
+  deceleration: 30
+  turnSpeed: 500
   inputDir: {x: 0, y: 0, z: 0}
-  rotationSmooth: 10
 --- !u!54 &3139791982679616289
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -190,7 +192,22 @@ MonoBehaviour:
   alargarAmount: 0.5
   maxRange: 3
   isAlargarHeld: 0
-  jumpPlayer2Force: 10
+  jumpPlayer2ForceUp: 15
+  jumpPlayer2ForceForward: 6
+  jumpDelayBeforeForward: 0.15
+  jumpMovementLockDuration: 0.5
+  groundCheckDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  groundCheckRadius: 0.3
+  blockTag: Wall
+  blockCheckDistance: 1.5
+  blockCheckRadius: 0.5
+  blockCheckOffset: {x: 0, y: 0, z: 0.3}
+  wallCollisionCheckRadius: 0.6
+  player2GroundCheckDistance: 0.5
+  player2GroundCheckRadius: 0.3
 --- !u!136 &8041565155420814028
 CapsuleCollider:
   m_ObjectHideFlags: 0
