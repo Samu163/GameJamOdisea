@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerInputScript : MonoBehaviour
 {
+
+    public UnityEvent<InputAction.CallbackContext> onMovementInput;
+    public UnityEvent<InputAction.CallbackContext> onInteractInput;
 
     private PlayerMovement playerMovement;
     private PlayerAlargar playerAlargar;
@@ -20,7 +24,9 @@ public class PlayerInputScript : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        if (! enabled) return;
+        onMovementInput?.Invoke(context);
+        if (!enabled) return; // If movement is not enable, we read and emit the input but we dont move
+
 
         if (context.performed)
         {
@@ -30,8 +36,10 @@ public class PlayerInputScript : MonoBehaviour
                return;
            }
 
-           Vector2 movement = context.ReadValue<Vector2>();
-           playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
+            Vector2 movement = context.ReadValue<Vector2>();
+
+
+            playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
         }
         else if (context.canceled)
         {
@@ -58,6 +66,9 @@ public class PlayerInputScript : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        onInteractInput?.Invoke(context);
+        if (!enabled) return; // If movement is not enable, we read and emit the input but we dont interact
+
         if (!context.performed) return;
         
         playerInteractor.TryToInteract();

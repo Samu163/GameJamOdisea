@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using System.Collections;
 
 public class RudderInteractable : InputInteractable
 {
@@ -17,7 +18,7 @@ public class RudderInteractable : InputInteractable
     [SerializeField] private float linearTurnSpeed = 70f; // Speed for Keyboard
     [SerializeField] private float radialSensitivity = -1.5f; // Sensitivity for Joystick spin
 
-    private PlayerInput pInput;
+    bool isBeingInteractedWith = false;
     private Interactor _interactor;
 
     // State
@@ -31,12 +32,14 @@ public class RudderInteractable : InputInteractable
     // Mode Switching
     private bool _isRadialMode = false; // Default to radial
 
+
+    PlayerInputScript currentPlayerInputScript = null;
+
     #endregion
 
     protected override void Awake()
     {
         base.Awake();
-        pInput = GetComponent<PlayerInput>();
         if (rudderMesh == null) rudderMesh = transform;
     }
 
@@ -46,18 +49,23 @@ public class RudderInteractable : InputInteractable
         _interactor = interactor;
         Deactivate();
 
-        pInput.enabled = true;
+        // Get the player using the rudder 's input script, connect it's input events to control the rudder
+        currentPlayerInputScript = interactor.GetComponentInParent<PlayerInputScript>();
+        currentPlayerInputScript.onMovementInput.AddListener(OnRudderMovement);
+        currentPlayerInputScript.onInteractInput.AddListener(OnInteractPressedWhileInteracting);
+
+
+        isBeingInteractedWith = true;
         interactor.onInteractionLockMovement?.Invoke();
 
         _isTrackingRotation = false;
     }
 
-
     #region Interacting with Rudder
 
     private void Update()
     {
-        if (pInput.enabled)
+        if (isBeingInteractedWith)
         {
             if (_isRadialMode)
             {
@@ -90,11 +98,19 @@ public class RudderInteractable : InputInteractable
 
         float deltaAngle = currentStickAngle - _lastStickAngle;
 
-        // Wrap-around fixes
         if (deltaAngle > 180f) deltaAngle -= 360f;
         if (deltaAngle < -180f) deltaAngle += 360f;
 
-        ApplyRotation(deltaAngle * radialSensitivity);
+        // Calculate the raw amount the stick wants to move
+        float proposedChange = deltaAngle * radialSensitivity;
+
+        // Calculate the speed limit for this specific frame (same as Linear mode)
+        float maxChangePerFrame = linearTurnSpeed * Time.deltaTime;
+
+        // Clamp the stick input so it never exceeds the keyboard speed
+        float finalChange = Mathf.Clamp(proposedChange, -maxChangePerFrame, maxChangePerFrame);
+
+        ApplyRotation(finalChange);
 
         _lastStickAngle = currentStickAngle;
     }
@@ -146,16 +162,30 @@ public class RudderInteractable : InputInteractable
     {
         if (context.performed && _interactor != null)
         {
-            _interactor.onInteractionUnlockMovement?.Invoke();
-            Activate();
+            StartCoroutine(HandleInteractionPress());
         }
+    }
+
+    private IEnumerator HandleInteractionPress()
+    {
+        yield return null;
+        _interactor.onInteractionUnlockMovement?.Invoke();
+        Activate();
     }
 
     #endregion
 
-    public override void Activate()
+    public override void Activate() // Disables rudder, enables interact with rudder
     {
-        pInput.enabled = false;
+        // On deactivate, remove listener
+        if (currentPlayerInputScript)
+        {
+            currentPlayerInputScript.onInteractInput.RemoveListener(OnInteractPressedWhileInteracting);
+            currentPlayerInputScript.onMovementInput.RemoveListener(OnRudderMovement);
+            currentPlayerInputScript = null;
+        }
+
+        isBeingInteractedWith = false;
         base.Activate();
     }
 }

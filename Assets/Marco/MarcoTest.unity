@@ -16338,7 +16338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6685240189401282995, guid: 0fadc4f019881264f94064d453fa9462, type: 3}
       propertyPath: m_Name
-      value: RudderIMoveable
+      value: RudderMoveable
       objectReference: {fileID: 0}
     - target: {fileID: 8277005256275483556, guid: 0fadc4f019881264f94064d453fa9462, type: 3}
       propertyPath: myRudder
@@ -16581,7 +16581,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3591084818352092028, guid: 48846acaefcc366488cb8240a3c7a082, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
