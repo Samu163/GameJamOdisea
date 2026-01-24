@@ -59,7 +59,7 @@ public class PlayerInputScript : MonoBehaviour
 
     public void OnNextLine(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && UIController.instance.isDialogueActive)
         {
             UIController.instance.NextLineDialogue();
         }

@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
     public DialogueController dialogueController;
     public CameraZoomController cameraZoomController;
 
+    public bool isDialogueActive = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -35,11 +37,13 @@ public class UIController : MonoBehaviour
     {
         dialogueController.ShowDialogueBox(NPCsprite, nameTalker, dialogue);
         cameraZoomController.ActivarZoomDialogo();
+        isDialogueActive = true;
     }
 
     public void DeactivateDialogue()
     {
         cameraZoomController.DesactivarZoomDialogo();
+        isDialogueActive = false;
     }
 
 }
