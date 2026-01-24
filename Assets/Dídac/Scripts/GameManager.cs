@@ -23,24 +23,24 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("TemplesMap");
+        SceneTransitionManager.instance.ChangeScene("TemplesMap");
     }
 
     public void LoadTemple1()
     {
         LevelManager.instance.currentTemple = 1;
-        SceneManager.LoadScene("GameLoopTesting");
+        SceneTransitionManager.instance.ChangeScene("GameLoopTesting");
     }
 
     public void LoadTemple2()
     {
         LevelManager.instance.currentTemple = 2;
-        SceneManager.LoadScene("Temple_2");
+        SceneTransitionManager.instance.ChangeScene("Temple_2");
     }
 
     public void LoadTemple3()
     {
         LevelManager.instance.currentTemple = 3;
-        SceneManager.LoadScene("Temple_3");
+        SceneTransitionManager.instance.ChangeScene("Temple_3");
     }
 }
