@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NextLineDialogue",
+                    "type": "Button",
+                    "id": "6cae8510-8a55-415c-b493-05b2e314ac07",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -144,6 +153,28 @@
                     "action": "Alargar",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79448400-16b3-4325-ab75-3c7751bea20c",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextLineDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5251f4c3-7f01-4595-9719-3f5d112d8f9b",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextLineDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -173,6 +204,15 @@
                     "name": "Alargar",
                     "type": "Button",
                     "id": "f9ca7868-2588-4cae-a254-9a5cd16845f9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextLineDialogue",
+                    "type": "Button",
+                    "id": "b51921e7-f57d-4443-a6b1-6c55dd4dd9c6",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -254,6 +294,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Alargar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e9f92ad-9393-4cc6-bc7f-8a2be853993a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextLineDialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

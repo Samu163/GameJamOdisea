@@ -56,4 +56,13 @@ public class PlayerInputScript : MonoBehaviour
         playerInteractor.TryToInteract();
         
     }
+
+    public void OnNextLine(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            UIController.instance.NextLineDialogue();
+        }
+        
+    }
 }
