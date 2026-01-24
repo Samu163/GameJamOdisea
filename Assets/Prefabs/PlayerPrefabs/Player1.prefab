@@ -218,7 +218,7 @@ MonoBehaviour:
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   groundCheckRadius: 0.3
   ceilingCheckDistance: 1
   ceilingCheckRadius: 0.3
