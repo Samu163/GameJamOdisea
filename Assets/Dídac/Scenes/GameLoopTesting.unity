@@ -8312,37 +8312,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9162583702306994332, guid: 259622ec41d3b9e4e95cb51878b7f803, type: 3}
   m_PrefabInstance: {fileID: 1196819888}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1208167346
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1208167347}
-  m_Layer: 0
-  m_Name: LookAt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1208167347
+--- !u!4 &1208167347 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 521400872062441739, guid: c12442ed00113024ba108626514c29fa, type: 3}
+  m_PrefabInstance: {fileID: 1880340099814559840}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1208167346}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1880340099814559841}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1210756158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16080,50 +16054,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1727639706}
     m_Modifications:
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: sprite
-      value: 
-      objectReference: {fileID: -1428079781, guid: 069a00c4a21d8654bbe27600f3ba7103, type: 3}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: nameTalkers.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: finalDialogues.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'nameTalkers.Array.data[0]'
-      value: NPC
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'nameTalkers.Array.data[1]'
-      value: Father
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'nameTalkers.Array.data[2]'
-      value: Mother
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'nameTalkers.Array.data[3]'
-      value: NPC
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'finalDialogues.Array.data[0]'
-      value: Soy el cachorro
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'finalDialogues.Array.data[1]'
-      value: Soy el padre
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'finalDialogues.Array.data[2]'
-      value: Soy la madre
-      objectReference: {fileID: 0}
-    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: 'finalDialogues.Array.data[3]'
-      value: Soy el cachorro otra vez
-      objectReference: {fileID: 0}
     - target: {fileID: 2588985446537016582, guid: c12442ed00113024ba108626514c29fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.5
@@ -16164,20 +16094,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4670131407653587530, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4823128999940527661, guid: c12442ed00113024ba108626514c29fa, type: 3}
       propertyPath: m_Name
       value: Cachorro
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2588985446537016582, guid: c12442ed00113024ba108626514c29fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1208167347}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c12442ed00113024ba108626514c29fa, type: 3}
 --- !u!4 &1880340099814559841 stripped
