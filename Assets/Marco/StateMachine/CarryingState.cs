@@ -33,7 +33,7 @@ public class CarryingState : State
                 }
 
                 // Move the carry point forward away from the player, Idk why 1.5 offset
-                carryPoint.localPosition = defaultCarryPosition + (Vector3.forward * forwardOffset * 1.5f);
+                carryPoint.localPosition = defaultCarryPosition + (Vector3.forward * forwardOffset * 2.8f);
 
                 //Parent the box to the carry point
                 currentBox.Grab(carryPoint);

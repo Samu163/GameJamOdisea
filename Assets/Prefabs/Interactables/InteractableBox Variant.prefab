@@ -246,6 +246,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2675380327334202454, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370612992588965886, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488358918694231208, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9188972428213521592, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_Name
       value: InteractableBox Variant

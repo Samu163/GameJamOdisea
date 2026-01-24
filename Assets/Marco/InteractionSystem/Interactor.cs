@@ -42,4 +42,9 @@ public class Interactor : MonoBehaviour
         return playerStateMachine.CurrentState is CarryingState;
     }
 
+    public void Deactivate()
+    {
+        
+    }
+
 }

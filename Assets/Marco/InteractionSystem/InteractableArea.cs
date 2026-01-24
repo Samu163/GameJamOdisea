@@ -1,64 +1,75 @@
 using UnityEngine;
-using System.Collections;
-using NUnit.Framework;
-using System.Collections.Generic;
 
 public class InteractableArea : MonoBehaviour
 {
-
     private IInteractableObject interactableObject;
+    private BoxCollider zoneCollider;
+    private bool wasActive = false;
 
-    public List<Collider> activeInteractors = new List<Collider>();
+    // Default to "Everything"
+    public LayerMask detectionLayer = ~0;
+    public Collider[] hits;
 
     private void Awake()
     {
         interactableObject = GetComponentInParent<IInteractableObject>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Interactor"))
-        {
-            print(other.gameObject.name + " entered interactable area of " + gameObject.name);
-            activeInteractors.Add(other);
-            OnInteractorListChanged();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Interactor"))
-        {
-            print(other.gameObject.name + " exited interactable area of " + gameObject.name);
-            activeInteractors.Remove(other);
-            OnInteractorListChanged();
-        }
+        zoneCollider = GetComponent<BoxCollider>();
     }
 
     private void FixedUpdate()
     {
-        // Check for interactors that may have been disabled to remove them
-        for (int i = 0; i < activeInteractors.Count; i++)
+        if (zoneCollider == null) return;
+
+        Vector3 worldCenter = transform.TransformPoint(zoneCollider.center);
+        Vector3 worldHalfExtents = Vector3.Scale(zoneCollider.size, transform.lossyScale) * 0.5f;
+        hits = Physics.OverlapBox(
+            worldCenter,
+            worldHalfExtents,
+            transform.rotation,
+            detectionLayer,
+            QueryTriggerInteraction.Collide 
+        );
+
+        bool isCurrentlyActive = false;
+        foreach (Collider hit in hits)
         {
-            if (activeInteractors[i].enabled == false)
+            if (hit.gameObject == this.gameObject) continue; // Ignore self
+
+            if (hit.CompareTag("Interactor"))
             {
-                print(activeInteractors[i].gameObject.name + " was deactivated while in interactable area of " + gameObject.name);
-                activeInteractors.RemoveAt(i);
-                OnInteractorListChanged();
+                isCurrentlyActive = true;
+                break;
             }
         }
+
+        if (isCurrentlyActive != wasActive)
+        {
+            wasActive = isCurrentlyActive;
+            if (isCurrentlyActive) interactableObject.Activate();
+            else interactableObject.Deactivate();
+        }
     }
 
-    void OnInteractorListChanged()
+    // --- VISUAL DEBUGGER ---
+    // This draws the box that Physics is checking.
+    // If the Red/Green box doesn't match your object, adjust the Collider size.
+    private void OnDrawGizmos()
     {
-        if(activeInteractors.Count > 0)
-        {
-            interactableObject.Activate();
-        }
-        else
-        {
-            interactableObject.Deactivate();
-        }
-    }
+        if (zoneCollider == null) zoneCollider = GetComponent<BoxCollider>();
+        if (zoneCollider == null) return;
 
+        Gizmos.color = wasActive ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
+
+        // Use the same matrix the physics engine uses
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(
+            transform.TransformPoint(zoneCollider.center),
+            transform.rotation,
+            transform.lossyScale
+        );
+
+        Gizmos.matrix = rotationMatrix;
+        // Draw the cube using Local Size (Gizmos matrix handles the scale/pos)
+        Gizmos.DrawCube(Vector3.zero, zoneCollider.size);
+        Gizmos.DrawWireCube(Vector3.zero, zoneCollider.size);
+    }
 }
