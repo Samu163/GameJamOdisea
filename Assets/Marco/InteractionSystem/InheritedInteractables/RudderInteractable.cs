@@ -144,7 +144,7 @@ public class RudderInteractable : InputInteractable
 
     public void OnInteractPressedWhileInteracting(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && _interactor != null)
         {
             _interactor.onInteractionUnlockMovement?.Invoke();
             Activate();
