@@ -1492,6 +1492,7 @@ MonoBehaviour:
   - {fileID: 1099027226}
   - {fileID: 2099874541}
   - {fileID: 2094070549}
+  - {fileID: 1722672756}
   camino2:
   - {fileID: 2093726510}
   - {fileID: 2095370300}
@@ -1500,6 +1501,7 @@ MonoBehaviour:
   - {fileID: 263320533}
   - {fileID: 1200493847}
   - {fileID: 1389996859}
+  - {fileID: 1129728978}
   camino3:
   - {fileID: 680419799}
   - {fileID: 985549098}
@@ -1508,6 +1510,7 @@ MonoBehaviour:
   - {fileID: 1326167335}
   - {fileID: 1787708366}
   - {fileID: 917818748}
+  - {fileID: 66512039}
   originalScale: {x: 0, y: 0, z: 0}
   toAnimateIndex: 0
 --- !u!1 &1274364664
