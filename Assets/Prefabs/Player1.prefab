@@ -63,9 +63,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a4cd3b869c08c4f9f3a3f4589a48ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
+  maxSpeed: 8
+  acceleration: 50
+  deceleration: 40
+  turnSpeed: 900
+  inputDeadzone: 0.01
+  velocitySmoothing: 0.1
+  smoothRotation: 1
+  minSpeedForRotation: 0.5
   inputDir: {x: 0, y: 0, z: 0}
-  rotationSmooth: 10
 --- !u!54 &3139791982679616289
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,6 +172,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ca6e53e1-3f91-47a3-abdf-5ea0c4eb9422
     m_ActionName: 'Player2Keyboard/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6cae8510-8a55-415c-b493-05b2e314ac07
+    m_ActionName: 'PlayerController/NextLineDialogue[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b51921e7-f57d-4443-a6b1-6c55dd4dd9c6
+    m_ActionName: 'Player2Keyboard/NextLineDialogue[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerController
@@ -189,7 +203,30 @@ MonoBehaviour:
   alargarAmount: 0.5
   maxRange: 3
   isAlargarHeld: 0
-  jumpPlayer2Force: 10
+  jumpForceUp: 8
+  jumpForceForward: 3
+  jumpDelay: 0.1
+  jumpLockDuration: 0.3
+  jumpCooldown: 0.8
+  groundCheckDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheckRadius: 0.3
+  ceilingCheckDistance: 1
+  ceilingCheckRadius: 0.3
+  ceilingCheckOffset: {x: 0, y: 0, z: 0.5}
+  wallTag: Wall
+  wallCheckDistance: 2
+  wallCheckRadius: 0.8
+  wallCheckOffset: {x: 0, y: 0, z: 0}
+  player2GroundCheckDistance: 0.5
+  player2GroundCheckRadius: 0.3
+  frontObstacleCheckDistance: 1
+  frontObstacleCheckRadius: 0.5
+  frontObstacleOffset: {x: 0, y: 0.5, z: 0}
+  grabDetectionRadius: 0.6
+  isJumping: 0
 --- !u!1 &1658133910859851379
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec9508c26521a442bda6b922be50c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  playerStateMachine: {fileID: 0}
 --- !u!65 &1850256245441563052
 BoxCollider:
   m_ObjectHideFlags: 0
