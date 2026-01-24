@@ -13,10 +13,21 @@ public class InputInteractable : MonoBehaviour , IInteractableObject
     {
         GetComponentInChildren<InputPromptUI>().action = interactableAction; // Set the text's icon to the action we listen to
         interactorBillboard = GetComponentInChildren<Billboard>();
+
+        // Handle initial state
+        switch (active_state)
+        {
+            case ACTIVE_STATE.ON:
+                Activate();
+                break;
+            case ACTIVE_STATE.OFF:
+                Deactivate();
+                break;
+        }
     }
 
     // Enables interaction
-    public void Activate()
+    public virtual void Activate()
     {
         interactorBillboard.gameObject.SetActive(true);
         active_state = ACTIVE_STATE.ON;
@@ -30,7 +41,7 @@ public class InputInteractable : MonoBehaviour , IInteractableObject
     }
 
     // Disables interaction
-    public void Deactivate()
+    public virtual void Deactivate()
     {
         interactorBillboard.gameObject.SetActive(false);
         active_state = ACTIVE_STATE.OFF;

@@ -12,11 +12,16 @@ public class PlayerInputScript : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerAlargar = GetComponent<PlayerAlargar>();
         playerInteractor = GetComponentInChildren<Interactor>();
+
+        // Enable or disable this script if a interaction locks movement
+        playerInteractor.onInteractionLockMovement.AddListener(LockMovement);
+        playerInteractor.onInteractionUnlockMovement.AddListener(UnlockMovement);
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-       
+        if (! enabled) return;
+
         if (context.performed)
         {
            if (playerAlargar.isAlargarHeld || !GameManager.instance.hasGameStarted)
@@ -35,6 +40,8 @@ public class PlayerInputScript : MonoBehaviour
     }
     public void OnAlargar(InputAction.CallbackContext context)
     {
+        if (!enabled) return;
+
         if (GameManager.instance.hasGameStarted == false)
             return;
 
@@ -64,5 +71,15 @@ public class PlayerInputScript : MonoBehaviour
             UIController.instance.NextLineDialogue();
         }
         
+    }
+
+    private void LockMovement()
+    {
+        enabled = false;
+    }
+
+    private void UnlockMovement()
+    {
+        enabled = true;
     }
 }

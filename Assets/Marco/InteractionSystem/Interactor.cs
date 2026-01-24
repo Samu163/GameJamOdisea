@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class Interactor : MonoBehaviour
 {
+    public UnityEvent onInteractionLockMovement;
+    public UnityEvent onInteractionUnlockMovement;
+
     public IInteractableObject currentIntreactable = null;
     public StateMachine playerStateMachine;
     private void OnTriggerEnter(Collider other)
