@@ -6500,6 +6500,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9162583702306994332, guid: 259622ec41d3b9e4e95cb51878b7f803, type: 3}
   m_PrefabInstance: {fileID: 885947502}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &892107047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892107049}
+  - component: {fileID: 892107048}
+  m_Layer: 0
+  m_Name: DeathZone
+  m_TagString: Death
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &892107048
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892107047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &892107049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892107047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.7, y: -4.63, z: 1.6}
+  m_LocalScale: {x: 126.3009, y: 1, z: 21.238909}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &905244797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15741,6 +15794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIController
   dialogueController: {fileID: 1281647891}
   cameraZoomController: {fileID: 341604991}
+  isDialogueActive: 0
 --- !u!4 &2140158256
 Transform:
   m_ObjectHideFlags: 0
@@ -16135,3 +16189,4 @@ SceneRoots:
   - {fileID: 401485963}
   - {fileID: 1457223548}
   - {fileID: 2140158256}
+  - {fileID: 892107049}

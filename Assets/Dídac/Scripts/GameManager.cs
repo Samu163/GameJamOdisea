@@ -21,6 +21,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResetLevel()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneTransitionManager.instance.ChangeScene(currentScene.name);
+        LevelManager.instance.ResetPlayerPositions();
+    }
+
     public void StartGame()
     {
         SceneTransitionManager.instance.ChangeScene("TemplesMap");

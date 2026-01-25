@@ -38,6 +38,12 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+       
+    }
+
+
     private void Update()
     {
         if (isChangingLevel)
@@ -51,7 +57,9 @@ public class LevelManager : MonoBehaviour
     {
         mainCamera = camera;
         initialCameraPosition = mainCamera.transform.position;
-        targetCameraPosition = initialCameraPosition;
+        targetCameraPosition = new Vector3(initialCameraPosition.x + 30f * (currentLevel - 1), initialCameraPosition.y, initialCameraPosition.z);
+        mainCamera.transform.position = targetCameraPosition;
+
     }
 
     private void ChangeLevelTransition()
