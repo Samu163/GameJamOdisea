@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RudderMoveable : MonoBehaviour
@@ -7,7 +8,7 @@ public class RudderMoveable : MonoBehaviour
     [SerializeField] Vector3 minMove = new Vector3(0, 0, 0);
 
     [Tooltip("HSelect the rudder interactable on this scene that moves this platform")]
-    public RudderInteractable myRudder;
+    public List<RudderInteractable> myRudder;
 
     [Tooltip("How many degrees of rudder rotation does it take to move from Min to Max?")]
     [SerializeField] float rangeInDegrees = 150f;
@@ -18,7 +19,8 @@ public class RudderMoveable : MonoBehaviour
 
     private void Awake()
     {
-        myRudder.onRudderTurned.AddListener(OnRudderTurned);
+        foreach (var rudder in myRudder)
+            rudder.onRudderTurned.AddListener(OnRudderTurned);
         transform.localPosition = minMove;
     }
 
