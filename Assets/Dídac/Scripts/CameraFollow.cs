@@ -39,6 +39,15 @@ public class CameraFollow : MonoBehaviour
         currentLerpTime = 0f;
     }
 
+    public void ResetCameraLevel()
+    {
+        currentWaypointIndex = 2 * (LevelManager.instance.currentLevel - 1);
+        if (waypoints.Count == 0 || currentWaypointIndex >= waypoints.Count) return;
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+        transform.position = targetWaypoint.position;
+        transform.rotation = targetWaypoint.rotation;
+    }
+
     private void Update()
     {
         if (isChangingPosition)
@@ -54,7 +63,6 @@ public class CameraFollow : MonoBehaviour
             {
                 isChangingPosition = false;
                 currentLerpTime = 0f;
-                LevelManager.instance.ResetPlayerPositions();
             }
         }
 

@@ -36,6 +36,7 @@ public class SceneTransitionManager : MonoBehaviour
     // Método público para llamar desde tus botones o triggers
     public void ChangeScene(string sceneName)
     {
+        GameManager.instance.currentSceneName = sceneName;
         StartCoroutine(TransitionRoutine(sceneName));
     }
 

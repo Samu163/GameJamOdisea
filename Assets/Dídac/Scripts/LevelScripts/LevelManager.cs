@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -73,10 +74,18 @@ public class LevelManager : MonoBehaviour
         player2.transform.position = new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z);
     }
 
+    public IEnumerator ResetLevel()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ResetPlayerPositions();
+        cameraFollow.ResetCameraLevel();
+    }
+
     public void NextLevelTransition()
     {
         currentLevel++;
         cameraFollow.NextCameraPosition();
+        ResetPlayerPositions();
 
         if (currentLevel > templesData[currentTemple - 1].numberOfLevels)
         {

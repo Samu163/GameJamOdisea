@@ -12,8 +12,7 @@ public class PlayerSelector : MonoBehaviour
     public GameObject player2Prefab;
     public GameObject player2KeyboardPrefab;
     public InputAction joinAction;
-    public InputDevice player1Device;
-    public InputDevice player2Device;
+    
 
     private int numPlayers = 0;
     private readonly HashSet<int> pairedDeviceIds = new HashSet<int>();
@@ -21,6 +20,11 @@ public class PlayerSelector : MonoBehaviour
 
     [SerializeField] private Image player1Selected;
     [SerializeField] private Image player2Selected;
+
+    private void Start()
+    {
+        GameManager.instance.playerSelector = this;
+    }
 
 
     private void OnEnable()
@@ -60,7 +64,7 @@ public class PlayerSelector : MonoBehaviour
         if (numPlayers == 0)
         {
             numPlayers++;
-            player1Device = device;
+            GameManager.instance.player1Device = device;
             player1Selected.color = Color.green;
             playerInputManager.playerPrefab = player1Prefab;
             playerInputManager.JoinPlayer(numPlayers, -1, "Gamepad", device);
@@ -68,7 +72,7 @@ public class PlayerSelector : MonoBehaviour
         else if (numPlayers == 1 && !bothPlayersKeyboard)
         {
             numPlayers++;
-            player2Device = device;
+            GameManager.instance.player2Device = device;
             player2Selected.color = Color.green;
             playerInputManager.playerPrefab = player2Prefab;
             playerInputManager.JoinPlayer(numPlayers, -1, "Gamepad", device);
@@ -76,7 +80,7 @@ public class PlayerSelector : MonoBehaviour
         else if (numPlayers == 1 && bothPlayersKeyboard)
         {
             numPlayers++;
-            player2Device = device;
+            GameManager.instance.player2Device = device;
             player2Selected.color = Color.green;
             playerInputManager.playerPrefab = player2KeyboardPrefab;
             playerInputManager.JoinPlayer(numPlayers, -1, "Keyboard", device);
@@ -88,6 +92,24 @@ public class PlayerSelector : MonoBehaviour
             StartCoroutine(StartGame());
         }
 
+    }
+
+    public void ResetLevelPlayers()
+    {
+        playerInputManager.playerPrefab = player1Prefab;
+        playerInputManager.JoinPlayer(1, -1, "Gamepad", GameManager.instance.player1Device);
+
+        if (IsDeviceGamepad(GameManager.instance.player2Device))
+        {
+            playerInputManager.playerPrefab = player2Prefab;
+            playerInputManager.JoinPlayer(2, -1, "Gamepad", GameManager.instance.player2Device);
+        }
+        else
+        {
+            playerInputManager.playerPrefab = player2KeyboardPrefab;
+            playerInputManager.JoinPlayer(2, -1, "Keyboard", GameManager.instance.player2Device);
+        }
+        StartCoroutine(LevelManager.instance.ResetLevel());
     }
 
     private bool IsDeviceAlreadyPaired(InputDevice device)

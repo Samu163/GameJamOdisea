@@ -1,12 +1,20 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
 
+    public PlayerSelector playerSelector;
+    public InputDevice player1Device;
+    public InputDevice player2Device;
+
     public bool hasGameStarted = false;
+
+    public string currentSceneName = "";
 
     private void Awake()
     {
@@ -23,9 +31,14 @@ public class GameManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneTransitionManager.instance.ChangeScene(currentScene.name);
-        LevelManager.instance.ResetPlayerPositions();
+        SceneTransitionManager.instance.ChangeScene(currentSceneName);
+        StartCoroutine(ResetPlayersCoroutine());
+    }
+
+    public IEnumerator ResetPlayersCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        playerSelector.ResetLevelPlayers();
     }
 
     public void StartGame()

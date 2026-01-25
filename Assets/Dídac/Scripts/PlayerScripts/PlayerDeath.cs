@@ -18,7 +18,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Death"))
         {
-           LevelManager.instance.ResetPlayerPositions();
+           GameManager.instance.ResetLevel();
         }
     }
 
@@ -26,7 +26,7 @@ public class PlayerDeath : MonoBehaviour
     {
         if (other.CompareTag("Death"))
         {
-            LevelManager.instance.ResetPlayerPositions();
+           GameManager.instance.ResetLevel();
         }
     }
 }

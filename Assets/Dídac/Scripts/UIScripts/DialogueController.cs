@@ -25,6 +25,11 @@ public class DialogueController : MonoBehaviour
     private int currentDialogueIndex = 0;
     private string[] orderOfTalkers;
 
+    private void Start()
+    {
+        UIController.instance.dialogueController = this;
+    }
+
     public void ShowDialogueBox(Sprite NPCsprite, string[] nameTalker, string[] dialogue)
     {
         npcSprite = NPCsprite;
