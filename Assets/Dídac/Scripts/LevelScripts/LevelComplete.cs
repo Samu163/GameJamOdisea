@@ -10,10 +10,13 @@ public class LevelComplete : MonoBehaviour
     public string[] nameTalkers;
     public string[] finalDialogues;
 
+    public CameraFollow cameraFollow;
+
     private void LevelCompleted()
     {
         hasPlayer1Completed = false;
         hasPlayer2Completed = false;
+        cameraFollow.NextCameraPosition();
     }
 
     private void OnTriggerEnter(Collider other)

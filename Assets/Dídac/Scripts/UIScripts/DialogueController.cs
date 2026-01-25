@@ -57,10 +57,12 @@ public class DialogueController : MonoBehaviour
     {
         dialogueBox.GetComponent<RectTransform>().DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
         {
+            LevelManager.instance.NextLevelTransition();
             dialogueText.text = "";
             dialogueBox.SetActive(false);
             UIController.instance.DeactivateDialogue();
-            LevelManager.instance.NextLevelTransition();
+            
+            
         });
     }
 

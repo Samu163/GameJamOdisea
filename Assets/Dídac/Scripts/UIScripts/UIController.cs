@@ -36,13 +36,11 @@ public class UIController : MonoBehaviour
     public void ActivateDialogue(Sprite NPCsprite, string[] nameTalker, string[] dialogue)
     {
         dialogueController.ShowDialogueBox(NPCsprite, nameTalker, dialogue);
-        cameraZoomController.ActivarZoomDialogo();
         isDialogueActive = true;
     }
 
     public void DeactivateDialogue()
     {
-        cameraZoomController.DesactivarZoomDialogo();
         isDialogueActive = false;
     }
 

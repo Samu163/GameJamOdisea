@@ -6,5 +6,6 @@ public class AssignCamera : MonoBehaviour
     {
         if (LevelManager.instance == null) return;
         LevelManager.instance.AssignCamera(gameObject);
+        LevelManager.instance.cameraFollow = gameObject.GetComponent<CameraFollow>();
     }
 }
