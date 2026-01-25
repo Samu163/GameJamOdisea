@@ -80,7 +80,7 @@ MonoBehaviour:
   velocitySmoothing: 0.1
   smoothRotation: 1
   minSpeedForRotation: 0.5
-  fallMultiplier: 0
+  fallMultiplier: 4
   inputDir: {x: 0, y: 0, z: 0}
 --- !u!54 &3139791982679616289
 Rigidbody:
