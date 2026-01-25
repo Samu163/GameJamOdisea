@@ -54,6 +54,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099b6664f1b166e41bad686d1a4ff08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
+  onMovementInput:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteractInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3377601079083681597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a4cd3b869c08c4f9f3a3f4589a48ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  maxSpeed: 7
+  maxSpeed: 8
   acceleration: 50
   deceleration: 40
   turnSpeed: 750
@@ -74,6 +80,7 @@ MonoBehaviour:
   velocitySmoothing: 0.1
   smoothRotation: 1
   minSpeedForRotation: 0.5
+  fallMultiplier: 0
   inputDir: {x: 0, y: 0, z: 0}
 --- !u!54 &3139791982679616289
 Rigidbody:
@@ -207,6 +214,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b51921e7-f57d-4443-a6b1-6c55dd4dd9c6
     m_ActionName: 'Player2Keyboard/NextLineDialogue[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a77b75da-68a3-4a76-a59f-00ecd8039041
+    m_ActionName: 'PlayerController/Rudder[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4300da8e-d036-4c35-886c-610f4126a2bf
+    m_ActionName: 'Player2Keyboard/Rudder[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerController
@@ -228,7 +243,7 @@ MonoBehaviour:
   head: {fileID: 8595465091332466555}
   bottom: {fileID: 6527067107288410525}
   alargarAmount: 0.5
-  maxRange: 6
+  maxRange: 7
   isAlargarHeld: 0
   jumpForceUp: 8
   jumpForceForward: 3
@@ -238,9 +253,9 @@ MonoBehaviour:
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 513
   groundCheckRadius: 0.3
-  ceilingCheckDistance: 1
+  ceilingCheckDistance: 0.01
   ceilingCheckRadius: 0.3
   ceilingCheckOffset: {x: 0, y: 0, z: 0.5}
   wallTag: Wall
@@ -318,7 +333,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0.00828445, y: 0, z: 0.2269}
-  m_LocalScale: {x: 1, y: 0.5581612, z: 1}
+  m_LocalScale: {x: 1, y: 0.508083, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3798666599570788423}
@@ -450,6 +465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec9508c26521a442bda6b922be50c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  onInteractionLockMovement:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteractionUnlockMovement:
+    m_PersistentCalls:
+      m_Calls: []
   playerStateMachine: {fileID: 2376861894072232971}
 --- !u!65 &1850256245441563052
 BoxCollider:
@@ -558,7 +579,7 @@ Transform:
   m_GameObject: {fileID: 6527067107288410525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.324}
+  m_LocalPosition: {x: -0, y: 0, z: -0.261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -671,7 +692,7 @@ Transform:
   m_GameObject: {fileID: 8595465091332466555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.014999986, z: 0.725}
+  m_LocalPosition: {x: 0, y: 0.014999986, z: 0.572}
   m_LocalScale: {x: 0.810612, y: 0.5510993, z: 0.5510993}
   m_ConstrainProportionsScale: 0
   m_Children:

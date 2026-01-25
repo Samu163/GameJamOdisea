@@ -167,6 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099b6664f1b166e41bad686d1a4ff08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
+  onMovementInput:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteractInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4606116055747014893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +193,7 @@ MonoBehaviour:
   velocitySmoothing: 0.1
   smoothRotation: 1
   minSpeedForRotation: 0.5
+  fallMultiplier: 4
   inputDir: {x: 0, y: 0, z: 0}
 --- !u!54 &7210314622359543671
 Rigidbody:
@@ -320,6 +327,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b51921e7-f57d-4443-a6b1-6c55dd4dd9c6
     m_ActionName: 'Player2Keyboard/NextLineDialogue[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a77b75da-68a3-4a76-a59f-00ecd8039041
+    m_ActionName: 'PlayerController/Rudder[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4300da8e-d036-4c35-886c-610f4126a2bf
+    m_ActionName: 'Player2Keyboard/Rudder[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerController
@@ -562,6 +577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec9508c26521a442bda6b922be50c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  onInteractionLockMovement:
+    m_PersistentCalls:
+      m_Calls: []
+  onInteractionUnlockMovement:
+    m_PersistentCalls:
+      m_Calls: []
   playerStateMachine: {fileID: 1550261065192230488}
 --- !u!65 &2725400477400869991
 BoxCollider:

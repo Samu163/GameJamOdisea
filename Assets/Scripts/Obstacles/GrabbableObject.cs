@@ -32,17 +32,6 @@ public class GrabbableObject : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (isBeingGrabbed && currentGrabbingPlayer != null)
-        {
-            if (!currentGrabbingPlayer.isAlargarHeld)
-            {
-                ReleasePlayer();
-            }
-        }
-    }
-
     public bool TryGrab(PlayerAlargar player, int playerIndex)
     {
         if (playerIndex == 1 && !canBeGrabbedByPlayer1) return false;

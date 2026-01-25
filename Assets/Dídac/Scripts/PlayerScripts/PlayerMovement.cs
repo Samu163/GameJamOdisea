@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool smoothRotation = true;
     [SerializeField] private float minSpeedForRotation = 0.5f;
 
+    [SerializeField] private float fallMultiplier = 2.5f;
+
     [HideInInspector] public Vector3 inputDir;
 
     private Rigidbody rb;
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         ProcessMovement();
+        ApplyExtraGravity();
     }
 
     #region Initialization
@@ -137,6 +140,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    private void ApplyExtraGravity()
+    {
+        if (rb.linearVelocity.y < -0.5f)
+        {
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+    }
 
     #region Rotation
 
