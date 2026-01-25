@@ -68,12 +68,6 @@ public class LevelManager : MonoBehaviour
         player2.transform.position = new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z);
     }
 
-    public void NewLevelPositions()
-    {
-        player1.transform.position = new Vector3(player1InitialPosition.x + 30f * (currentLevel - 1), player1InitialPosition.y, player1InitialPosition.z);
-        player2.transform.position = new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z);
-    }
-
     public IEnumerator ResetLevel()
     {
         yield return new WaitForSeconds(0.1f);
@@ -83,6 +77,7 @@ public class LevelManager : MonoBehaviour
 
     public void NextLevelTransition()
     {
+        Debug.Log("Next Level Transition");
         currentLevel++;
         cameraFollow.NextCameraPosition();
         ResetPlayerPositions();
