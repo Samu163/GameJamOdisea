@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerInputScript : MonoBehaviour
 {
+
+    public UnityEvent<InputAction.CallbackContext> onMovementInput;
+    public UnityEvent<InputAction.CallbackContext> onInteractInput;
 
     private PlayerMovement playerMovement;
     private PlayerAlargar playerAlargar;
@@ -12,11 +16,18 @@ public class PlayerInputScript : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerAlargar = GetComponent<PlayerAlargar>();
         playerInteractor = GetComponentInChildren<Interactor>();
+
+        // Enable or disable this script if a interaction locks movement
+        playerInteractor.onInteractionLockMovement.AddListener(LockMovement);
+        playerInteractor.onInteractionUnlockMovement.AddListener(UnlockMovement);
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-       
+        onMovementInput?.Invoke(context);
+        if (!enabled) return; // If movement is not enable, we read and emit the input but we dont move
+
+
         if (context.performed)
         {
            if (playerAlargar.isAlargarHeld || !GameManager.instance.hasGameStarted)
@@ -25,8 +36,10 @@ public class PlayerInputScript : MonoBehaviour
                return;
            }
 
-           Vector2 movement = context.ReadValue<Vector2>();
-           playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
+            Vector2 movement = context.ReadValue<Vector2>();
+
+
+            playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
         }
         else if (context.canceled)
         {
@@ -35,6 +48,8 @@ public class PlayerInputScript : MonoBehaviour
     }
     public void OnAlargar(InputAction.CallbackContext context)
     {
+        if (!enabled) return;
+
         if (GameManager.instance.hasGameStarted == false)
             return;
 
@@ -51,6 +66,9 @@ public class PlayerInputScript : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        onInteractInput?.Invoke(context);
+        if (!enabled) return; // If movement is not enable, we read and emit the input but we dont interact
+
         if (!context.performed) return;
         
         playerInteractor.TryToInteract();
@@ -64,5 +82,15 @@ public class PlayerInputScript : MonoBehaviour
             UIController.instance.NextLineDialogue();
         }
         
+    }
+
+    private void LockMovement()
+    {
+        enabled = false;
+    }
+
+    private void UnlockMovement()
+    {
+        enabled = true;
     }
 }

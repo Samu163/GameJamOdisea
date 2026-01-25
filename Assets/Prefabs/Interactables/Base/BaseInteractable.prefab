@@ -66,6 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d8ae7e109cd6644b524059b587cbf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableArea
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hits: []
 --- !u!1 &2675380327334202454
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,8 +152,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text <sprite= >
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99300fe9c98c047448b3c4903f25ad47, type: 2}
+  m_sharedMaterial: {fileID: 7556650255902459230, guid: 99300fe9c98c047448b3c4903f25ad47, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
