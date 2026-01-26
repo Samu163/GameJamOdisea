@@ -331,6 +331,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6370612992588965886, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9188972428213521592, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_Name
       value: LeverInteractable Variant
@@ -369,7 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d3d1d8789999b44b41c7f9aec70e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeverInteractable
-  interactableAction: {fileID: 0}
   active_state: 1
   on_interact:
     m_PersistentCalls:

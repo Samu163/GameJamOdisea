@@ -13,7 +13,7 @@ public class InputInteractable : MonoBehaviour, IInteractableObject
     protected virtual void Awake()
     {
         promptUI = GetComponentInChildren<InputPromptUI>(true);
-        interactorBillboard = GetComponentInChildren<Billboard>();
+        interactorBillboard = GetComponentInChildren<Billboard>(true);
 
         if (active_state == ACTIVE_STATE.ON) Activate();
         else Deactivate();
@@ -21,7 +21,7 @@ public class InputInteractable : MonoBehaviour, IInteractableObject
 
     public virtual void Activate()
     {
-        if (active_state != ACTIVE_STATE.ON) return;
+        if (active_state == ACTIVE_STATE.ON) return;
 
         interactorBillboard.gameObject.SetActive(true);
         active_state = ACTIVE_STATE.ON;
@@ -29,7 +29,7 @@ public class InputInteractable : MonoBehaviour, IInteractableObject
 
     public virtual void Deactivate()
     {
-        if (active_state != ACTIVE_STATE.OFF) return;
+        if (active_state == ACTIVE_STATE.OFF) return;
 
         interactorBillboard.gameObject.SetActive(false);
         active_state = ACTIVE_STATE.OFF;
