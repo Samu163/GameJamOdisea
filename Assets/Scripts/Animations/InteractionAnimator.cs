@@ -109,16 +109,14 @@ public class InteractionAnimator : MonoBehaviour
     {
         for (int i = bridgeBlocks.Count - 1; i >= 0; i -= 2)
         {
+            bool blocksNeedReset = HasMovedFromStart(i) || HasMovedFromStart(i - 1);
 
-            bool blocksNeedMoving = IsBlockUp(i) || IsBlockUp(i - 1);
-
-            if (!blocksNeedMoving)
+            if (!blocksNeedReset)
             {
                 continue;
             }
 
             MovePair(i, startY, usePrevIndex: true);
-
             yield return new WaitForSeconds(delayBetweenPairs);
         }
     }
@@ -137,7 +135,12 @@ public class InteractionAnimator : MonoBehaviour
         if (IsValidBlock(secondIndex))
             StartCoroutine(MoveBlock(bridgeBlocks[secondIndex], destY));
     }
+    private bool HasMovedFromStart(int index)
+    {
+        if (!IsValidBlock(index)) return false;
 
+        return Mathf.Abs(bridgeBlocks[index].position.y - startY) > 0.05f;
+    }
     private bool IsValidBlock(int index)
     {
         return index >= 0 && index < bridgeBlocks.Count && bridgeBlocks[index] != null;
