@@ -188,7 +188,6 @@ MonoBehaviour:
   maxSpeed: 7
   acceleration: 50
   deceleration: 40
-  turnSpeed: 750
   turnSpeed: 1250
   inputDeadzone: 0.01
   velocitySmoothing: 0.1
