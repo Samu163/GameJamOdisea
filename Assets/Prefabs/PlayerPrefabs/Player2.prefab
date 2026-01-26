@@ -459,6 +459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21deeda5c7da2644f99af0b88a0c347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
+  rbHead: {fileID: 589675609805453749}
+  rbBody: {fileID: 2776692672154900002}
+  rbBottom: {fileID: 5102935307496450452}
+  deathLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &1543248359708509356
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22321,7 +22321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1625488779}
   - component: {fileID: 1625488780}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DeathCollider
   m_TagString: Death
   m_Icon: {fileID: 0}
@@ -22337,7 +22337,7 @@ Transform:
   m_GameObject: {fileID: 1625488778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: 0.61499906, y: -0.83, z: 0}
+  m_LocalPosition: {x: 0.61499906, y: -1.85, z: 0}
   m_LocalScale: {x: 1, y: 29.677061, z: 13.2283945}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22358,7 +22358,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

@@ -346,6 +346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21deeda5c7da2644f99af0b88a0c347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
+  rbHead: {fileID: 8595465091332466555}
+  rbBody: {fileID: 1658133910859851379}
+  rbBottom: {fileID: 6527067107288410525}
+  deathLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &4043834419561722132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +834,6 @@ GameObject:
   - component: {fileID: 6206912651720116267}
   - component: {fileID: 3126675504012130918}
   - component: {fileID: 6192996385800097123}
-  - component: {fileID: 456548139267800777}
   m_Layer: 0
   m_Name: PadreParteDelantera
   m_TagString: Player
@@ -925,27 +930,6 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &456548139267800777
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8595465091332466555}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
