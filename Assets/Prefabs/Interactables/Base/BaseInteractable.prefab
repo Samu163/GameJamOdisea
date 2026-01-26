@@ -121,7 +121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputPromptUI
   text: {fileID: 452163932194443194}
-  action: {fileID: 0}
 --- !u!222 &3723435080264836834
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -231,6 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5063430382994041701}
+  - component: {fileID: 6723332191498044894}
   - component: {fileID: 3748857601106272329}
   - component: {fileID: 6488358918694231208}
   - component: {fileID: 5509798547715455353}
@@ -262,6 +262,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6723332191498044894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370612992588965886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f768fbd8fb78fa74992f97b1747f5238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiScaleCompensator
 --- !u!114 &3748857601106272329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41430c710d8fc8c40ae3748153f77f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputInteractable
-  interactableAction: {fileID: 0}
   active_state: 1
   on_interact:
     m_PersistentCalls:
