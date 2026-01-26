@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 589675609805453749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.083, y: 0.07, z: 0.565}
+  m_LocalPosition: {x: -0.083, y: 0.265, z: 0.565}
   m_LocalScale: {x: 0.810612, y: 0.5510993, z: 0.5510993}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -189,6 +189,7 @@ MonoBehaviour:
   acceleration: 50
   deceleration: 40
   turnSpeed: 750
+  turnSpeed: 1250
   inputDeadzone: 0.01
   velocitySmoothing: 0.1
   smoothRotation: 1
@@ -360,21 +361,21 @@ MonoBehaviour:
   isAlargarHeld: 0
   jumpForceUp: 6
   jumpForceForward: 3
-  jumpDelay: 0.35
+  jumpDelay: 0.4
   jumpLockDuration: 0.5
   jumpCooldown: 1
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 513
   groundCheckRadius: 0.3
   ceilingCheckDistance: 1
   ceilingCheckRadius: 0.3
   ceilingCheckOffset: {x: 0, y: 0, z: 0.5}
   wallTag: Wall
   wallCheckDistance: 0.1
-  wallCheckRadius: 0.5
-  wallCheckOffset: {x: -0.3, y: 0, z: 0}
+  wallCheckRadius: 0.7
+  wallCheckOffset: {x: 0, y: 0, z: 0}
   player2GroundCheckDistance: 0.5
   player2GroundCheckRadius: 0.3
   frontObstacleCheckDistance: 1
@@ -445,8 +446,8 @@ Transform:
   m_GameObject: {fileID: 2776692672154900002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09754732, y: -0.295, z: 0.2}
-  m_LocalScale: {x: 1, y: 0.5286653, z: 1}
+  m_LocalPosition: {x: -0.09754732, y: -0.212, z: 0.2}
+  m_LocalScale: {x: 1, y: 0.62018156, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5907745210388696547}

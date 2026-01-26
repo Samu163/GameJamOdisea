@@ -243,7 +243,7 @@ MonoBehaviour:
   head: {fileID: 8595465091332466555}
   bottom: {fileID: 6527067107288410525}
   alargarAmount: 0.5
-  maxRange: 7
+  maxRange: 5
   isAlargarHeld: 0
   jumpForceUp: 8
   jumpForceForward: 3
@@ -253,11 +253,11 @@ MonoBehaviour:
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 512
   groundCheckRadius: 0.3
   ceilingCheckDistance: 0.01
   ceilingCheckRadius: 0.3
-  ceilingCheckOffset: {x: 0, y: 0, z: 0.5}
+  ceilingCheckOffset: {x: 0, y: 0, z: 0}
   wallTag: Wall
   wallCheckDistance: 2
   wallCheckRadius: 0.8
