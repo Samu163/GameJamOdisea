@@ -415,8 +415,8 @@ MonoBehaviour:
   ceilingCheckOffset: {x: 0, y: 0, z: 0.5}
   wallTag: Wall
   wallCheckDistance: 0.1
-  wallCheckRadius: 0.7
-  wallCheckOffset: {x: 0, y: 0, z: 0}
+  wallCheckRadius: 1
+  wallCheckOffset: {x: -0.4, y: 0, z: 0}
   player2GroundCheckDistance: 0.5
   player2GroundCheckRadius: 0.3
   frontObstacleCheckDistance: 1
