@@ -10,11 +10,13 @@ public class PlayerInputScript : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private PlayerAlargar playerAlargar;
+    private PlayerAudioSystem playerAudioSystem;
     private Interactor playerInteractor;
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAlargar = GetComponent<PlayerAlargar>();
+        playerAudioSystem = GetComponent<PlayerAudioSystem>();
         playerInteractor = GetComponentInChildren<Interactor>();
 
         // Enable or disable this script if a interaction locks movement
@@ -82,6 +84,27 @@ public class PlayerInputScript : MonoBehaviour
             UIController.instance.NextLineDialogue();
         }
         
+    }
+
+    public void OnSkipDialogue(InputAction.CallbackContext context)
+    {
+        if (context.started && UIController.instance.isDialogueActive)
+        {
+            UIController.instance.SkipDialogue();
+        }
+    }
+
+    public void OnLadrar(InputAction.CallbackContext context)
+    {
+        if (!enabled) return;
+
+        if (GameManager.instance.hasGameStarted == false)
+            return;
+
+        if (context.started)
+        {
+            playerAudioSystem.PlayLadrido();
+        }
     }
 
     private void LockMovement()

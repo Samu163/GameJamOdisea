@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Temple 1
   m_EditorClassIdentifier: Assembly-CSharp::TempleData
   templeIndex: 1
-  numberOfLevels: 3
+  numberOfLevels: 8
   levels:
   - {fileID: 11400000, guid: d756b1a14e082fc43aca8eb6622189ae, type: 2}
   - {fileID: 11400000, guid: 7d3b491a23cf695428c39fe748b186a8, type: 2}
