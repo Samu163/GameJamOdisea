@@ -276,6 +276,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9188972428213521592, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8449105283685207308}
+    - targetCorrespondingSourceObject: {fileID: 9188972428213521592, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5917016873261416126}
     - targetCorrespondingSourceObject: {fileID: 1094330222572568187, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1275130138009037626}
@@ -399,6 +402,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &5917016873261416126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546661119246391553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc59013b21046f409d212186336c739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnableObject
 --- !u!1 &5742900982517148610 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1094330222572568187, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}

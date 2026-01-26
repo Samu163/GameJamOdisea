@@ -1,11 +1,11 @@
 using System.ComponentModel;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Animations;
-using DG.Tweening;
 
 public class BoxInteractable : InputInteractable
 {
+    #region Initialization
+
     GridObject gridComponent;
     ObjectConstraint objectConstraint;
 
@@ -32,6 +32,8 @@ public class BoxInteractable : InputInteractable
         objectConstraint = GetComponent<ObjectConstraint>();
     }
 
+    #endregion
+
     public override void Interact(Interactor interactor)
     { // Received the interactor from the player who interacted with self
 
@@ -45,6 +47,8 @@ public class BoxInteractable : InputInteractable
         // TODO: should also disable the interactor so that you can't interact with other things while carrying
     }
 
+    #region Grab Box
+
     // Called by the CarryingState when the box is grabbed
     public void Grab(Transform grabPoint)
     {
@@ -55,11 +59,11 @@ public class BoxInteractable : InputInteractable
 
     public void FakeParent(Transform grabPoint) {
         objectConstraint.FakeParent(this.gameObject, grabPoint.gameObject);
-        
     }
 
     float grabTime = 0.4f;
 
+    // Corroutine to lerp the box's position to the player's hands before parenting
     private IEnumerator GrabRoutine(Transform grabPoint)
     {
         float elapsed = 0f;
@@ -82,6 +86,9 @@ public class BoxInteractable : InputInteractable
 
     }
 
+    #endregion
+
+    #region Drop Box
     public void Drop(Interactor interactor)
     {
         objectConstraint.StopFollowing(this.gameObject);
@@ -104,6 +111,9 @@ public class BoxInteractable : InputInteractable
         Activate();
     }
 
+    #endregion
+
+    #region Drop Animation Routines
     private IEnumerator AnimateToss(Vector3 start, Vector3 end, Quaternion startRot, Quaternion endRot)
     {
         float elapsed = 0f;
@@ -161,4 +171,6 @@ public class BoxInteractable : InputInteractable
         // Reset to perfect one at the end
         transform.localScale = Vector3.one;
     }
+
+    #endregion
 }

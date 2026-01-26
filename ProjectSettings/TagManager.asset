@@ -12,6 +12,7 @@ TagManager:
   - Death
   - Mirror
   - LaserReceiver
+  - LevelRespawnBounds
   layers:
   - Default
   - TransparentFX
