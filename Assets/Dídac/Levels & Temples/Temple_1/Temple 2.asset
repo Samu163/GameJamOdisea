@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a61998f22b66f643ad4306919303f30, type: 3}
-  m_Name: Temple 1
+  m_Name: Temple 2
   m_EditorClassIdentifier: Assembly-CSharp::TempleData
-  templeIndex: 1
+  templeIndex: 2
   numberOfLevels: 5

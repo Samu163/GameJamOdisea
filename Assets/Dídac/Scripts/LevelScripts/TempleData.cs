@@ -6,5 +6,4 @@ public class TempleData : ScriptableObject
 {
     public int templeIndex;
     public int numberOfLevels;
-    public List<LevelData> levels;
 }
