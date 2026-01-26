@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MovingPlatform : MonoBehaviour
 {
@@ -12,49 +13,103 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private MovementType movementType = MovementType.Horizontal;
     [SerializeField] private float movementDistance = 5f;
     [SerializeField] private float movementSpeed = 2f;
+    [SerializeField] private float pauseDuration = 0.5f;
     private Vector3 initialPosition;
 
     public bool isActive = true;
+
+    private Vector3 pointA;
+    private Vector3 pointB;
+    private Vector3 target;
+    private bool isPaused = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         initialPosition = transform.position;
+
+        Vector3 axis = Vector3.right;
+        switch (movementType)
+        {
+            case MovementType.Horizontal:
+                axis = Vector3.right;
+                break;
+            case MovementType.Vertical:
+                axis = Vector3.up;
+                break;
+            case MovementType.Depth:
+                axis = Vector3.forward;
+                break;
+        }
+
+        pointA = initialPosition - axis * movementDistance;
+        pointB = initialPosition + axis * movementDistance;
+        target = pointB;
     }
 
     private void FixedUpdate()
     {
-        if (isActive)
-        {
-            Move();
-        }
-            
+        if (!isActive || isPaused) return;
+
+        Move();
+
     }
 
     private void Move()
     {
-        float movementOffset = Mathf.Sin(Time.time * movementSpeed) * movementDistance;
-        Vector3 newPosition = initialPosition;
-        switch (movementType)
+        transform.position = Vector3.MoveTowards(transform.position, target, movementSpeed * Time.fixedDeltaTime);
+
+        if (Vector3.Distance(transform.position, target) <= 0.01f)
         {
-            case MovementType.Horizontal:
-                newPosition.x += movementOffset;
-                break;
-            case MovementType.Vertical:
-                newPosition.y += movementOffset;
-                break;
-            case MovementType.Depth:
-                newPosition.z += movementOffset;
-                break;
+            StartCoroutine(PauseAndSwitch());
         }
-        transform.position = newPosition;
+    }
+
+    private IEnumerator PauseAndSwitch()
+    {
+        isPaused = true;
+        yield return new WaitForSeconds(pauseDuration);
+        target = (target == pointA) ? pointB : pointA;
+        isPaused = false;
+    }
+
+    // NEW: Parenting del jugador cuando está encima de la plataforma
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
+        {
+            Debug.Log("Player collided with moving platform");
+            if (movementType != MovementType.Horizontal && movementType != MovementType.Depth) return;
+
+            foreach (var contact in collision.contacts)
+            {
+                Debug.Log("Contact normal: " + contact.normal);
+                if (Vector3.Dot(contact.normal, Vector3.up) < -0.5f)
+                {
+                    collision.transform.SetParent(transform, true);
+                    break;
+                }
+            }
+        }
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
+        {
+            collision.transform.SetParent(null, true);
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = transform.position;
+
+        Vector3 center = Application.isPlaying ? initialPosition : transform.position;
+
+        Vector3 startPosition = center;
+        Vector3 endPosition = center;
         switch (movementType)
         {
             case MovementType.Horizontal:

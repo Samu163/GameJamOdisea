@@ -49,18 +49,18 @@ public class GameManager : MonoBehaviour
     public void LoadTemple1()
     {
         LevelManager.instance.currentTemple = 1;
-        SceneTransitionManager.instance.ChangeScene("GameLoopTesting");
+        SceneTransitionManager.instance.ChangeScene("Temple 1");
     }
 
     public void LoadTemple2()
     {
         LevelManager.instance.currentTemple = 2;
-        SceneTransitionManager.instance.ChangeScene("Temple_2");
+        SceneTransitionManager.instance.ChangeScene("Temple 2");
     }
 
     public void LoadTemple3()
     {
         LevelManager.instance.currentTemple = 3;
-        SceneTransitionManager.instance.ChangeScene("Temple_3");
+        SceneTransitionManager.instance.ChangeScene("Temple 3");
     }
 }
