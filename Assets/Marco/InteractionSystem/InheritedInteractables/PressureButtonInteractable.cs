@@ -18,6 +18,8 @@ public class PressureButtonInteractable : TriggerInteractable
 
     public override void Activate()
     {
+        if (active_state == ACTIVE_STATE.ON) return;
+
         buttonMesh.transform.DOKill();
         buttonMesh.transform.DOScaleY(0.2f, 0.1f).SetEase(Ease.OutExpo);
         onActivate?.Invoke();
@@ -25,6 +27,8 @@ public class PressureButtonInteractable : TriggerInteractable
 
     public override void Deactivate()
     {
+        if (active_state == ACTIVE_STATE.OFF) return;
+
         buttonMesh.transform.DOKill();
         buttonMesh.transform.DOScaleY(defaultScaleY, 0.8f).SetEase(Ease.OutElastic);
         onDeactivate?.Invoke();

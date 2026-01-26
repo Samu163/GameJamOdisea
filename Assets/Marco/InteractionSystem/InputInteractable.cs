@@ -21,12 +21,16 @@ public class InputInteractable : MonoBehaviour, IInteractableObject
 
     public virtual void Activate()
     {
+        if (active_state != ACTIVE_STATE.ON) return;
+
         interactorBillboard.gameObject.SetActive(true);
         active_state = ACTIVE_STATE.ON;
     }
 
     public virtual void Deactivate()
     {
+        if (active_state != ACTIVE_STATE.OFF) return;
+
         interactorBillboard.gameObject.SetActive(false);
         active_state = ACTIVE_STATE.OFF;
     }
