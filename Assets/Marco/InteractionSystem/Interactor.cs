@@ -18,6 +18,15 @@ public class Interactor : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        IInteractableObject interactable = other.GetComponentInParent<IInteractableObject>();
+        if (interactable != null)
+        {
+            currentIntreactable = interactable;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         IInteractableObject interactable = other.GetComponentInParent<IInteractableObject>();
@@ -35,7 +44,7 @@ public class Interactor : MonoBehaviour
             playerStateMachine.ChangeState( playerStateMachine.CurrentState ,"state");
             // Drop interactable
         }
-        else if (currentIntreactable != null)
+        else if (currentIntreactable != null) // Lever is failing sometimes here? currentInteractable = null??
         {
             currentIntreactable.Interact(this);
         }

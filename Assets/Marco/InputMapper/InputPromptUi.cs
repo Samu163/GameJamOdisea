@@ -2,51 +2,30 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[ExecuteAlways]
+// A class for displaying input prompts with the correct icon for the current device
 public class InputPromptUI : MonoBehaviour
 {
     public TMP_Text text;
-    public InputAction action;
 
-    private void OnEnable()
+    private InputAction action;
+    private InputDevice currentDevice;
+
+    // Called from Interactable to set the action of the current player that entered it's interaction area
+    public void Setup(InputAction newAction, InputDevice device)
     {
-        if (InputWatcher.Instance != null)
-            InputWatcher.Instance.OnInputTypeChanged += OnInputTypeChanged;
-
+        action = newAction;
+        currentDevice = device;
         UpdateText();
-    }
-
-    private void OnDisable()
-    {
-        if (InputWatcher.Instance != null)
-            InputWatcher.Instance.OnInputTypeChanged -= OnInputTypeChanged;
-    }
-
-    private void OnInputTypeChanged(InputType type, InputDevice device)
-    {
-        UpdateText();
-    }
-
-    private void Update()
-    {
-        // Constantly update in editor/play mode in case bindings change
-        if (action != null && text != null)
-        {
-            UpdateText();
-        }
     }
 
     private void UpdateText()
     {
-        if (action == null || text == null || InputWatcher.Instance == null)
-            return;
+        if (action == null || text == null || currentDevice == null) return;
 
-        var device = InputWatcher.Instance.LastDevice;
+        // Pass the specific device (e.g. "Player 1's Gamepad"), so the Mapper 
+        string iconName = InputIconMapper.GetIconForAction(action, currentDevice);
+        // knows exactly which dictionary (Xbox vs PS vs Switch) to check.
 
-        // Get the correct icon for this action on the current device
-        string iconName = InputIconMapper.GetIconForAction(action, device);
-
-        // Set TMP text with sprite tag
         text.text = $"Press <sprite name=\"{iconName}\">";
     }
 }
