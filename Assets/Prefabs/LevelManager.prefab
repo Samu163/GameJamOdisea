@@ -47,11 +47,15 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   initialCameraPosition: {x: 0, y: 0, z: 0}
   targetCameraPosition: {x: 0, y: 0, z: 0}
+  cameraTransitionDuration: 2
+  currentCameraTransitionTime: 0
+  cameraFollow: {fileID: 0}
   player1: {fileID: 0}
   player2: {fileID: 0}
-  player1InitialPosition: {x: -7, y: 1.5, z: 1}
-  player2InitialPosition: {x: -5, y: 2.5, z: 0}
+  player1InitialPosition: {x: -34, y: 1.5, z: 2}
+  player2InitialPosition: {x: -34, y: 3, z: 0.25}
   currentLevel: 1
   currentTemple: 1
+  templesUnlocked: 1
   templesData:
   - {fileID: 11400000, guid: 32cb6482464583d418978949f5d01395, type: 2}

@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: "Assets/D\xEDdac/Scenes/GameLoopTesting.unity"
     guid: 2b2fbfaa87a36ad418a7114e6ed01ab6
   - enabled: 1
-    path: "Assets/D\xEDdac/Scenes/TemplesMap.unity"
+    path: Assets/Scenes/TemplesMap.unity
     guid: febd3e3cbf8760d4d98ca6ae5c51928b
   - enabled: 1
-    path: "Assets/D\xEDdac/Scenes/MainMenu.unity"
+    path: Assets/Scenes/MainMenu.unity
     guid: b54e2ebb6d8aed14d91c75d633a07f31
+  - enabled: 1
+    path: Assets/Scenes/Temple 1.unity
+    guid: cb87e0f31bfe41e468b6d0cf9eb6b24a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: bc0ebafa0b6165a4ebf87a9c3272aa1c, type: 3}
   m_UseUCBPForAssetBundles: 0

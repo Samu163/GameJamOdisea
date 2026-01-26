@@ -54,18 +54,18 @@ public class LevelManager : MonoBehaviour
     {
         if (index == 1)
         {
-            player1.transform.position = player1InitialPosition;
+            player1.GetComponent<Rigidbody>().MovePosition(player1InitialPosition);
         }
         else if (index == 2)
         {
-            player2.transform.position = player2InitialPosition;
+            player2.GetComponent<Rigidbody>().MovePosition(player2InitialPosition);
         }
     }
 
     public void ResetPlayerPositions()
     {
-        player1.transform.position = new Vector3(player1InitialPosition.x + 30f * (currentLevel - 1), player1InitialPosition.y, player1InitialPosition.z);
-        player2.transform.position = new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z);
+        player1.GetComponent<Rigidbody>().MovePosition(new Vector3(player1InitialPosition.x + 30f * (currentLevel - 1), player1InitialPosition.y, player1InitialPosition.z));
+        player2.GetComponent<Rigidbody>().MovePosition(new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z));
     }
 
     public IEnumerator ResetLevel()

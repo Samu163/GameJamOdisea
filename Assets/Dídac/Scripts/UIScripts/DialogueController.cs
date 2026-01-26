@@ -18,6 +18,8 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private float typingSpeed = 0.025f;
 
+    private Vector2 originalScale;
+
 
     private int currentIndex = 0;
     private bool isTyping = false;
@@ -28,6 +30,7 @@ public class DialogueController : MonoBehaviour
     private void Start()
     {
         UIController.instance.dialogueController = this;
+        originalScale = dialogueBox.GetComponent<RectTransform>().localScale;
     }
 
     public void ShowDialogueBox(Sprite NPCsprite, string[] nameTalker, string[] dialogue)
@@ -53,7 +56,7 @@ public class DialogueController : MonoBehaviour
         }
 
         dialogueBox.SetActive(true);
-        dialogueBox.GetComponent<RectTransform>().DOScale(Vector3.one, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack);
+        dialogueBox.GetComponent<RectTransform>().DOScale(originalScale, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack);
         StartCoroutine(StartTyping(dialogue[0], 0.5f));
 
     }

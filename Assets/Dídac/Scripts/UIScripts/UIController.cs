@@ -6,7 +6,6 @@ public class UIController : MonoBehaviour
     public static UIController instance;
 
     public DialogueController dialogueController;
-    public CameraZoomController cameraZoomController;
 
     public bool isDialogueActive = false;
 
