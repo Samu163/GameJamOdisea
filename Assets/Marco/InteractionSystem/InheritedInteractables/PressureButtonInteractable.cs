@@ -1,9 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
+using System;
+using UnityEngine.Events;
 
 public class PressureButtonInteractable : TriggerInteractable
 {
-    [SerializeField] private GameObject door;
+    [SerializeField] private UnityEvent onActivate;
+    [SerializeField] private UnityEvent onDeactivate;
     private MeshRenderer buttonMesh;
     float defaultScaleY;
 
@@ -17,13 +20,13 @@ public class PressureButtonInteractable : TriggerInteractable
     {
         buttonMesh.transform.DOKill();
         buttonMesh.transform.DOScaleY(0.2f, 0.1f).SetEase(Ease.OutExpo);
-        door.gameObject.SetActive(false);
+        onActivate?.Invoke();
     }
 
     public override void Deactivate()
     {
         buttonMesh.transform.DOKill();
         buttonMesh.transform.DOScaleY(defaultScaleY, 0.8f).SetEase(Ease.OutElastic);
-        door.gameObject.SetActive(true);
+        onDeactivate?.Invoke();
     }
 }
