@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7947123064763110587}
   - component: {fileID: 3245537874428207637}
   - component: {fileID: 7954899310145915581}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'HeightTile (2x2) '
   m_TagString: Wall
   m_Icon: {fileID: 0}
