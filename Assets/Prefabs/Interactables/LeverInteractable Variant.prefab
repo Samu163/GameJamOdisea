@@ -279,6 +279,18 @@ PrefabInstance:
       propertyPath: gridSizeZ
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_Size.z
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2573944957378159298, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.013386
