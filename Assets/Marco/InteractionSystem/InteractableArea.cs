@@ -30,40 +30,37 @@ public class InteractableArea : MonoBehaviour
             worldHalfExtents,
             transform.rotation,
             detectionLayer,
-            QueryTriggerInteraction.Collide 
+            QueryTriggerInteraction.Collide
         );
+        Collider last_hit = null;
 
         bool isCurrentlyActive = false;
         foreach (Collider hit in hits)
         {
+            last_hit = hit;
             if (hit.gameObject == this.gameObject) continue; // Ignore self
 
             if (hit.CompareTag("Interactor"))
             {
                 isCurrentlyActive = true;
-                //break;
+                break;
             }
+        }
 
-
-            if (isCurrentlyActive != wasActive)
+        if (isCurrentlyActive != wasActive)
+        {
+            wasActive = isCurrentlyActive;
+            if (isCurrentlyActive)
             {
-                wasActive = isCurrentlyActive;
-                if (isCurrentlyActive)
+                
+                interactableObject.Activate();
+                if (interactableObject is InputInteractable)
                 {
-                    interactableObject.Activate();
-                    if (interactableObject is InputInteractable)
-                    {
-                        InputInteractable inputInteractable = (InputInteractable)interactableObject;
-                        inputInteractable.OnPlayerEnterRange(hit.gameObject.GetComponentInParent<PlayerInput>());
-                    }
-
+                    InputInteractable inputInteractable = (InputInteractable)interactableObject;
+                    inputInteractable.OnPlayerEnterRange(last_hit.gameObject.GetComponentInParent<PlayerInput>());
                 }
-
-
-
-                else interactableObject.Deactivate();
             }
-
+            else interactableObject.Deactivate();
         }
     }
 
