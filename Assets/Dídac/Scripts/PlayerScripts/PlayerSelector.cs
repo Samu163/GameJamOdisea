@@ -109,6 +109,8 @@ public class PlayerSelector : MonoBehaviour
             playerInputManager.playerPrefab = player2KeyboardPrefab;
             playerInputManager.JoinPlayer(2, -1, "Keyboard", GameManager.instance.player2Device);
         }
+        player1Selected.gameObject.SetActive(false);
+        player2Selected.gameObject.SetActive(false);
         StartCoroutine(LevelManager.instance.ResetLevel());
     }
 
@@ -129,5 +131,6 @@ public class PlayerSelector : MonoBehaviour
         player1Selected.gameObject.SetActive(false);
         player2Selected.gameObject.SetActive(false);
         GameManager.instance.hasGameStarted = true;
+        LevelManager.instance.ResetPlayerPositions();
     }
 }

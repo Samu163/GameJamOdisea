@@ -97,12 +97,10 @@ public class PlayerAlargar : MonoBehaviour
         if (isPlayer1)
         {
             LevelManager.instance.player1 = this.gameObject;
-            LevelManager.instance.SpawnPlayersOnInitialPosition(1);
         }
         else if (isPlayer2)
         {
             LevelManager.instance.player2 = this.gameObject;
-            LevelManager.instance.SpawnPlayersOnInitialPosition(2);
         }
     }
 

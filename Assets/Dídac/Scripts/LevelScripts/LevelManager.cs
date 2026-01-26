@@ -50,27 +50,23 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    public void SpawnPlayersOnInitialPosition(int index)
-    {
-        if (index == 1)
-        {
-            player1.GetComponent<Rigidbody>().MovePosition(player1InitialPosition);
-        }
-        else if (index == 2)
-        {
-            player2.GetComponent<Rigidbody>().MovePosition(player2InitialPosition);
-        }
-    }
-
     public void ResetPlayerPositions()
     {
         player1.GetComponent<Rigidbody>().MovePosition(new Vector3(player1InitialPosition.x + 30f * (currentLevel - 1), player1InitialPosition.y, player1InitialPosition.z));
+        player1.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         player2.GetComponent<Rigidbody>().MovePosition(new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z));
+        player2.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+    }
+
+    public void DeactivatePlayers()
+    {
+        player1.SetActive(false);
+        player2.SetActive(false);
     }
 
     public IEnumerator ResetLevel()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         ResetPlayerPositions();
         cameraFollow.ResetCameraLevel();
     }
