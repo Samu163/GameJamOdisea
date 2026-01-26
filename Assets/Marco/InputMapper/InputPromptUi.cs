@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputPromptUI : MonoBehaviour
 {
     public TMP_Text text;
-    public InputActionReference action;
+    public InputAction action;
 
     private void OnEnable()
     {
@@ -44,7 +44,7 @@ public class InputPromptUI : MonoBehaviour
         var device = InputWatcher.Instance.LastDevice;
 
         // Get the correct icon for this action on the current device
-        string iconName = InputIconMapper.GetIconForAction(action.action, device);
+        string iconName = InputIconMapper.GetIconForAction(action, device);
 
         // Set TMP text with sprite tag
         text.text = $"Press <sprite name=\"{iconName}\">";

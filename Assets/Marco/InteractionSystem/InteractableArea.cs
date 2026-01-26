@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractableArea : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class InteractableArea : MonoBehaviour
 
     // Default to "Everything"
     public LayerMask detectionLayer = ~0;
+
+    // List with every interactor that can currently interact with the interactable (inside interaction area)
     public Collider[] hits;
 
     private void Awake()
@@ -38,15 +41,29 @@ public class InteractableArea : MonoBehaviour
             if (hit.CompareTag("Interactor"))
             {
                 isCurrentlyActive = true;
-                break;
+                //break;
             }
-        }
 
-        if (isCurrentlyActive != wasActive)
-        {
-            wasActive = isCurrentlyActive;
-            if (isCurrentlyActive) interactableObject.Activate();
-            else interactableObject.Deactivate();
+
+            if (isCurrentlyActive != wasActive)
+            {
+                wasActive = isCurrentlyActive;
+                if (isCurrentlyActive)
+                {
+                    interactableObject.Activate();
+                    if (interactableObject is InputInteractable)
+                    {
+                        InputInteractable inputInteractable = (InputInteractable)interactableObject;
+                        inputInteractable.OnPlayerEnterRange(hit.gameObject.GetComponentInParent<PlayerInput>());
+                    }
+
+                }
+
+
+
+                else interactableObject.Deactivate();
+            }
+
         }
     }
 
