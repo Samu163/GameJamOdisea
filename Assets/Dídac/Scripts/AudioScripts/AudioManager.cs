@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Talking SFX")]
     public AudioSource talkingSource;
-    public List<AudioClip> talkingClips;
+    public AudioObject talkingAudio;
 
     [Header("Box SFX")]
     public AudioSource boxSource;
@@ -137,10 +137,12 @@ public class AudioManager : MonoBehaviour
         footstepsSource.Stop();
     }
 
-    public void PlayTalking()
+    public void PlayTalking(float pitch = 1f)
     {
-        int index = Random.Range(0, talkingClips.Count);
-        talkingSource.PlayOneShot(talkingClips[index]);
+        talkingSource.pitch = pitch;
+        talkingSource.PlayOneShot(talkingAudio.GetRandomAudio().clip);
+        //int index = Random.Range(0, talkingClips.Count);
+        //talkingSource.PlayOneShot(talkingClips[index]);
     }
 
     public void StopTalking()
@@ -173,8 +175,8 @@ public class AudioManager : MonoBehaviour
     public void EndAbility()
     {
         abilitySource.Stop();
-        int index = Random.Range(0, endAbilityClips.Count);
-        abilitySource.PlayOneShot(endAbilityClips[index]);
+        //int index = Random.Range(0, endAbilityClips.Count);
+        abilitySource.Stop();
     }
 
     public void PlayDeath()

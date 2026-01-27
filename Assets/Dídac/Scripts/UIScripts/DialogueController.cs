@@ -17,6 +17,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private float typingSpeed = 0.025f;
+    [SerializeField] private float sfxPerXChars = 3f;
 
     private Vector2 originalScale;
 
@@ -27,10 +28,20 @@ public class DialogueController : MonoBehaviour
     private int currentDialogueIndex = 0;
     private string[] orderOfTalkers;
 
+    private Dictionary<string, float> characterPitchDic;
+
     private void Start()
     {
         UIController.instance.dialogueController = this;
         originalScale = dialogueBox.GetComponent<RectTransform>().localScale;
+
+        characterPitchDic = new()
+        {
+            ["NPC"] = 2,
+            ["Father"] = 0.5f,
+            ["Mother"] = 1f
+        };
+
     }
 
     public void ShowDialogueBox(Sprite NPCsprite, string[] nameTalker, string[] dialogue)
@@ -108,7 +119,7 @@ public class DialogueController : MonoBehaviour
         currentIndex = 0;
         dialogueText.text = "";
 
-        AudioManager.instance.PlayTalking();
+        //AudioManager.instance.PlayTalking();
 
         switch (orderOfTalkers[currentDialogueIndex])
         {
@@ -128,6 +139,11 @@ public class DialogueController : MonoBehaviour
 
         while (currentIndex < dialogue.Length && isTyping)
         {
+            if (currentIndex % sfxPerXChars == 0)
+            {
+                AudioManager.instance.PlayTalking(characterPitchDic[orderOfTalkers[currentDialogueIndex]]);
+            }
+
             dialogueText.text += dialogue[currentIndex];
             currentIndex++;
             yield return new WaitForSeconds(typingSpeed);

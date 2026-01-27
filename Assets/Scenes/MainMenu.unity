@@ -976,12 +976,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b447435d54d78af4bbb991f78dbb7a56, type: 3}
   - {fileID: 8300000, guid: a225799eb7fffbf43ae4bd4eef7d5a84, type: 3}
   abilitySource: {fileID: 256867483}
-  startAbilityClip: {fileID: 8300000, guid: 5dc53907ff458e54594be1b4563fb36c, type: 3}
+  startAbilityClip: {fileID: 8300000, guid: c99b383f302927b44a5c7e4e3918f564, type: 3}
   endAbilityClips:
-  - {fileID: 8300000, guid: 4548563854cd8cc42a085f950f8c2e0e, type: 3}
-  - {fileID: 8300000, guid: 5c1f59c125cf1794da23403d140b5241, type: 3}
-  - {fileID: 8300000, guid: 70304cbb5f5e46a4086f32362f3ec267, type: 3}
-  - {fileID: 8300000, guid: 60ae59698d44b9941b46d7de97ead0b2, type: 3}
+  - {fileID: 8300000, guid: c99b383f302927b44a5c7e4e3918f564, type: 3}
+  - {fileID: 8300000, guid: c99b383f302927b44a5c7e4e3918f564, type: 3}
+  - {fileID: 8300000, guid: c99b383f302927b44a5c7e4e3918f564, type: 3}
+  - {fileID: 8300000, guid: c99b383f302927b44a5c7e4e3918f564, type: 3}
   guauSource: {fileID: 1168764251}
   guauClips:
   - {fileID: 8300000, guid: 6f7af2f739254084ca7636c9b5b65b46, type: 3}
@@ -990,10 +990,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8683d9a7e2aea204d9aa0f0800ae2ebd, type: 3}
   deathSource: {fileID: 1380143075}
   talkingSource: {fileID: 2092836936}
-  talkingClips:
-  - {fileID: 8300000, guid: a9beb1f0009efbc48a34995d2eba2910, type: 3}
-  - {fileID: 8300000, guid: e03cb88dc4c4f78489037bbf0a885f69, type: 3}
-  - {fileID: 8300000, guid: 689a0e34cf886a5428bbb3da0c3df69b, type: 3}
+  talkingAudio:
+    audios:
+    - clip: {fileID: 8300000, guid: b71a39ed3e614954d8605a092bd45b65, type: 3}
+      volume: 1
+      volume_variation: 0
+    pitch_variation: 1
+    volume: 1
   boxSource: {fileID: 1033487614}
   boxClips:
   - {fileID: 8300000, guid: 288dae85b5fe8dd43854394cc36af8f7, type: 3}
