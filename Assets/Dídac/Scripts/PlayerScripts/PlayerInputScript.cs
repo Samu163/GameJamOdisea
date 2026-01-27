@@ -46,14 +46,17 @@ public class PlayerInputScript : MonoBehaviour
            }
 
             Vector2 movement = context.ReadValue<Vector2>();
+            
 
             if (GameManager.instance.playerSelector.IsDeviceGamepad(context.control.device))
             {
                 playerMovement.inputDir = GetCameraRelativeDirection(movement);
+                AudioManager.instance.PlayFootstepGamepad();
             }
             else
             {
                 playerMovement.inputDir = GetKeyboardRotatedDirection(movement);
+                AudioManager.instance.PlayFootstepKeyboard();
 
             }
 
@@ -62,6 +65,7 @@ public class PlayerInputScript : MonoBehaviour
         else if (context.canceled)
         {
             playerMovement.inputDir = Vector3.zero;
+            AudioManager.instance.StopFootsteps();
         }
     }
     public void OnAlargar(InputAction.CallbackContext context)
@@ -75,10 +79,12 @@ public class PlayerInputScript : MonoBehaviour
         {
             playerAlargar.isAlargarHeld = true;
             playerMovement.inputDir = Vector3.zero;
+            AudioManager.instance.PlayAbility();
         }
         else if (context.canceled)
         {
             playerAlargar.CancelAlargar();
+            AudioManager.instance.EndAbility();
         }
     }
 
@@ -121,7 +127,7 @@ public class PlayerInputScript : MonoBehaviour
 
         if (context.started)
         {
-            playerAudioSystem.PlayLadrido();
+            AudioManager.instance.PlayGuau();
         }
     }
 

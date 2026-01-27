@@ -108,6 +108,8 @@ public class DialogueController : MonoBehaviour
         currentIndex = 0;
         dialogueText.text = "";
 
+        AudioManager.instance.PlayTalking();
+
         switch (orderOfTalkers[currentDialogueIndex])
         {
             case "NPC":
@@ -131,5 +133,6 @@ public class DialogueController : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
         isTyping = false;
+        AudioManager.instance.StopTalking();
     }
 }

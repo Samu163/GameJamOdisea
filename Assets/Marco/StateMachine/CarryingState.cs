@@ -37,8 +37,9 @@ public class CarryingState : State
 
                 //Parent the box to the carry point
                 currentBox.Grab(carryPoint);
+                AudioManager.instance.PlayCogerBox();
 
-                
+
             }
         }
     }

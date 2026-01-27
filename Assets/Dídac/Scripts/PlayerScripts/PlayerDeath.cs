@@ -11,6 +11,7 @@ public class PlayerDeath : MonoBehaviour
 
     private void ExplodePlayer()
     {
+        AudioManager.instance.PlayDeath();
         rbHead.AddComponent<Rigidbody>();
         rbHead.transform.parent = null;
         rbHead.GetComponent<Rigidbody>().AddForce(Vector3.up * 2f, ForceMode.Impulse);
