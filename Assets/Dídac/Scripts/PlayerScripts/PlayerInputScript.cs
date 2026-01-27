@@ -12,12 +12,17 @@ public class PlayerInputScript : MonoBehaviour
     private PlayerAlargar playerAlargar;
     private PlayerAudioSystem playerAudioSystem;
     private Interactor playerInteractor;
+
+    private Camera mainCamera;
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAlargar = GetComponent<PlayerAlargar>();
         playerAudioSystem = GetComponent<PlayerAudioSystem>();
         playerInteractor = GetComponentInChildren<Interactor>();
+
+        mainCamera = Camera.main;
 
         // Enable or disable this script if a interaction locks movement
         playerInteractor.onInteractionLockMovement.AddListener(LockMovement);
@@ -41,7 +46,7 @@ public class PlayerInputScript : MonoBehaviour
             Vector2 movement = context.ReadValue<Vector2>();
 
 
-            playerMovement.inputDir = new Vector3(movement.x, 0, movement.y).normalized;
+            playerMovement.inputDir = GetCameraRelativeDirection(movement);
         }
         else if (context.canceled)
         {
@@ -129,5 +134,26 @@ public class PlayerInputScript : MonoBehaviour
     private void UnlockMovement()
     {
         enabled = true;
+    }
+
+    private Vector3 GetCameraRelativeDirection(Vector2 input)
+    {
+        if (mainCamera == null)
+        {
+            // Fallback al comportamiento anterior si no hay cámara
+            return new Vector3(input.x, 0f, input.y).normalized;
+        }
+
+        Vector3 camForward = mainCamera.transform.forward;
+        camForward.y = 0f;
+        camForward.Normalize();
+
+        Vector3 camRight = mainCamera.transform.right;
+        camRight.y = 0f;
+        camRight.Normalize();
+
+        Vector3 worldDir = camRight * input.x + camForward * input.y;
+        if (worldDir.sqrMagnitude > 1f) worldDir.Normalize();
+        return worldDir;
     }
 }
