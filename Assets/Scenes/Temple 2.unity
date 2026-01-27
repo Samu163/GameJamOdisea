@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 14853358}
   m_Layer: 0
-  m_Name: EndLevel5
+  m_Name: EndLevel10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,6 +388,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e5da94ef5355da4aa69417b41ae5916, type: 3}
+--- !u!114 &698246639 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7509850181563644347, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+  m_PrefabInstance: {fileID: 2008468673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &707970113
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 707970114}
   m_Layer: 0
-  m_Name: EndLevel4
+  m_Name: EndLevel9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,8 +636,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -650,13 +661,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760293605}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3593743, y: -0, z: -0, w: 0.9331935}
-  m_LocalPosition: {x: -29, y: 13, z: -10}
+  m_LocalRotation: {x: 0.27984515, y: 0.36470553, z: -0.11591565, w: 0.8804772}
+  m_LocalPosition: {x: -39.27, y: 13, z: -9.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.264, y: 45, z: 0}
 --- !u!1001 &975224557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -728,7 +739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 998703057}
   m_Layer: 0
-  m_Name: Level5
+  m_Name: Level10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,7 +770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1094448795}
   m_Layer: 0
-  m_Name: EndLevel3
+  m_Name: EndLevel8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -773,8 +784,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094448794}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000059604638, y: -0.21081416, z: 0.000000014901159, w: 0.9775261}
-  m_LocalPosition: {x: 71.314, y: -1.087, z: 11.419}
+  m_LocalRotation: {x: -0.055271212, y: 0.2986837, z: -0.23923755, w: 0.92222476}
+  m_LocalPosition: {x: 61.25, y: -0.040244173, z: -0.044502325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -795,11 +806,11 @@ PrefabInstance:
     - target: {fileID: 1381880036384927128, guid: d6e7cca14b6f79241b5c9a5a551d3c28, type: 3}
       propertyPath: player1Selected
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 698246639}
     - target: {fileID: 1381880036384927128, guid: d6e7cca14b6f79241b5c9a5a551d3c28, type: 3}
       propertyPath: player2Selected
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1804683169}
     - target: {fileID: 2496706869063776893, guid: d6e7cca14b6f79241b5c9a5a551d3c28, type: 3}
       propertyPath: m_LocalPosition.x
       value: 638.9956
@@ -866,7 +877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1305475347}
   m_Layer: 0
-  m_Name: Level3
+  m_Name: Level8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,8 +891,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305475346}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60, y: 0, z: 0}
+  m_LocalRotation: {x: -0.05527121, y: 0.29868376, z: -0.23923756, w: 0.9222248}
+  m_LocalPosition: {x: 52.98, y: 1.5307028, z: 4.480664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -954,7 +965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1424749863}
   m_Layer: 0
-  m_Name: Level4
+  m_Name: Level9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -999,8 +1010,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443787260}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.05527121, y: 0.29868376, z: -0.23923756, w: 0.9222248}
+  m_LocalPosition: {x: -11.27, y: 0.771341, z: 0.852955}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1095,8 +1106,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689981712}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000059604638, y: -0.21081416, z: 0.000000014901159, w: 0.9775261}
-  m_LocalPosition: {x: 11.314, y: -1.087, z: 11.419}
+  m_LocalRotation: {x: -0.055271212, y: 0.2986837, z: -0.23923755, w: 0.92222476}
+  m_LocalPosition: {x: 1.7600002, y: 2.5621946, z: 2.8332949}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1245,6 +1256,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1804683169 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2715301509841468928, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+  m_PrefabInstance: {fileID: 2008468673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1891722003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1910717479}
   m_Layer: 0
-  m_Name: EndLevel2
+  m_Name: EndLevel7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1396,8 +1418,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910717478}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000059604638, y: -0.21081416, z: 0.000000014901159, w: 0.9775261}
-  m_LocalPosition: {x: 41.314, y: -1.087, z: 11.419}
+  m_LocalRotation: {x: -0.055271212, y: 0.2986837, z: -0.23923755, w: 0.92222476}
+  m_LocalPosition: {x: 28.98, y: 0.83170694, z: 0.9197081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1424,6 +1446,38 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1410260582130881868, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237755316041852478, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237755316041852478, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237755316041852478, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237755316041852478, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364970596567174822, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364970596567174822, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364970596567174822, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364970596567174822, guid: b5243b00d389adf4e881a32cb3bfd4b7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1574,7 +1628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2058003962}
   m_Layer: 0
-  m_Name: Level2
+  m_Name: Level7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1588,8 +1642,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058003961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalRotation: {x: -0.05527121, y: 0.29868376, z: -0.23923756, w: 0.9222248}
+  m_LocalPosition: {x: 19.85, y: 2.4414628, z: 2.6997886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
