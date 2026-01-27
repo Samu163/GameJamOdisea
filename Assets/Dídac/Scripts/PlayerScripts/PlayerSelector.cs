@@ -120,7 +120,7 @@ public class PlayerSelector : MonoBehaviour
         return pairedDeviceIds.Contains(device.deviceId);
     }
 
-    private bool IsDeviceGamepad(InputDevice device)
+    public bool IsDeviceGamepad(InputDevice device)
     {
         return device is Gamepad;
     }

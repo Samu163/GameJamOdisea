@@ -15,6 +15,8 @@ public class PlayerInputScript : MonoBehaviour
 
     private Camera mainCamera;
 
+    [SerializeField] private float keyboardExtraRotationDegrees = 45f;
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -45,8 +47,17 @@ public class PlayerInputScript : MonoBehaviour
 
             Vector2 movement = context.ReadValue<Vector2>();
 
+            if (GameManager.instance.playerSelector.IsDeviceGamepad(context.control.device))
+            {
+                playerMovement.inputDir = GetCameraRelativeDirection(movement);
+            }
+            else
+            {
+                playerMovement.inputDir = GetKeyboardRotatedDirection(movement);
 
-            playerMovement.inputDir = GetCameraRelativeDirection(movement);
+            }
+
+
         }
         else if (context.canceled)
         {
@@ -155,5 +166,22 @@ public class PlayerInputScript : MonoBehaviour
         Vector3 worldDir = camRight * input.x + camForward * input.y;
         if (worldDir.sqrMagnitude > 1f) worldDir.Normalize();
         return worldDir;
+    }
+
+    private Vector3 GetKeyboardRotatedDirection(Vector2 input)
+    {
+        Vector3 input3 = new Vector3(input.x, 0f, input.y);
+
+        float yaw = keyboardExtraRotationDegrees;
+        if (mainCamera != null)
+        {
+            yaw += mainCamera.transform.eulerAngles.y;
+        }
+
+        Quaternion rot = Quaternion.Euler(0f, yaw, 0f);
+        Vector3 rotated = rot * input3;
+
+        if (rotated.sqrMagnitude > 1f) rotated.Normalize();
+        return rotated;
     }
 }
