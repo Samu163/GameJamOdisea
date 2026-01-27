@@ -75,21 +75,21 @@ public class InteractableArea : MonoBehaviour
     // If the Red/Green box doesn't match your object, adjust the Collider size.
     private void OnDrawGizmos()
     {
-        if (zoneCollider == null) zoneCollider = GetComponent<BoxCollider>();
-        if (zoneCollider == null) return;
+        //if (zoneCollider == null) zoneCollider = GetComponent<BoxCollider>();
+        //if (zoneCollider == null) return;
 
-        Gizmos.color = interactableObject.IsActive() ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
+        //Gizmos.color = interactableObject.IsActive() ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
 
-        // Use the same matrix the physics engine uses
-        Matrix4x4 rotationMatrix = Matrix4x4.TRS(
-            transform.TransformPoint(zoneCollider.center),
-            transform.rotation,
-            transform.lossyScale
-        );
+        //// Use the same matrix the physics engine uses
+        //Matrix4x4 rotationMatrix = Matrix4x4.TRS(
+        //    transform.TransformPoint(zoneCollider.center),
+        //    transform.rotation,
+        //    transform.lossyScale
+        //);
 
-        Gizmos.matrix = rotationMatrix;
-        // Draw the cube using Local Size (Gizmos matrix handles the scale/pos)
-        Gizmos.DrawCube(Vector3.zero, zoneCollider.size);
-        Gizmos.DrawWireCube(Vector3.zero, zoneCollider.size);
+        //Gizmos.matrix = rotationMatrix;
+        //// Draw the cube using Local Size (Gizmos matrix handles the scale/pos)
+        //Gizmos.DrawCube(Vector3.zero, zoneCollider.size);
+        //Gizmos.DrawWireCube(Vector3.zero, zoneCollider.size);
     }
 }
