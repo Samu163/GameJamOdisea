@@ -62,6 +62,7 @@ MonoBehaviour:
   onInteractInput:
     m_PersistentCalls:
       m_Calls: []
+  keyboardExtraRotationDegrees: 45
 --- !u!114 &3377601079083681597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +492,7 @@ GameObject:
   - component: {fileID: 2629736039568539452}
   - component: {fileID: 7690078071661444224}
   - component: {fileID: 9069707250807471528}
+  - component: {fileID: 6739799786665310908}
   m_Layer: 7
   m_Name: PadreBody
   m_TagString: Player
@@ -593,6 +595,27 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!65 &6739799786665310908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658133910859851379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2.0000005, z: 0.85}
+  m_Center: {x: 0.000000059604645, y: 0.00000011920928, z: -0.00000008754434}
 --- !u!1 &3697695755346847312
 GameObject:
   m_ObjectHideFlags: 0

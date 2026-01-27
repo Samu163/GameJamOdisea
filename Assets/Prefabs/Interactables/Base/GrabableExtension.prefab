@@ -263,5 +263,25 @@ MonoBehaviour:
   canBeGrabbedByPlayer1: 1
   canBeGrabbedByPlayer2: 1
   detectionRadius: 0.5
+  disableGravityWhenGrabbed: 1
+  freezeRotationWhenGrabbed: 1
+  onGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onReleased:
+    m_PersistentCalls:
+      m_Calls: []
   showDebugGizmos: 1
   gizmoColor: {r: 0, g: 1, b: 1, a: 1}

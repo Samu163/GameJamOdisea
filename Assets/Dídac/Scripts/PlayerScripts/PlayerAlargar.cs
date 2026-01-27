@@ -121,6 +121,22 @@ public class PlayerAlargar : MonoBehaviour
         // Estado de grounded - solo check para Player 2
         bool isGrounded = isPlayer2 ? IsPlayer2Grounded() : true;
 
+        // NUEVO: Si sueltas el botón y estás agarrando algo, soltar inmediatamente
+        if (!isAlargarHeld && isGrabbingObject)
+        {
+            Debug.Log("[Player] Soltando botón con objeto agarrado - liberando objeto");
+            if (currentGrabbedBox != null)
+            {
+                currentGrabbedBox.ReleasePlayer();
+            }
+            else
+            {
+                // Forzar reset por si acaso
+                isGrabbingObject = false;
+                isMovementLocked = false;
+            }
+        }
+
         // Condiciones combinadas para claridad
         bool canExtend = !isRetracting && !isMovementLocked && !isJumping && isGrounded && canInteract;
 
@@ -231,18 +247,13 @@ public class PlayerAlargar : MonoBehaviour
         Debug.Log($"[Player {playerInput.playerIndex}] Manteniendo agarre...");
     }
 
-    public void OnGrabbedObject(GrabbableObject box)
-    {
-        currentGrabbedBox = box;
-        isGrabbingObject = true;
-        isMovementLocked = true;
-    }
-
     public void OnReleasedObject()
     {
+        Debug.Log($"[Player {playerInput.playerIndex}] OnReleasedObject llamado");
+
         currentGrabbedBox = null;
         isGrabbingObject = false;
-        isMovementLocked = false;
+        isMovementLocked = false;  // Asegurar que se desbloquea
 
         if (totalAlargar > 0)
         {
@@ -426,22 +437,27 @@ public class PlayerAlargar : MonoBehaviour
         {
             StartCoroutine(WallJumpRoutine());
         }
+        else
+        {
+            // Restaurar canInteract si no hay salto
+            canInteract = true;
+        }
 
         isRetracting = false;
+        isQuickRetracting = false;
         shouldJumpAfterRetract = false;
     }
-
     public void CancelAlargar()
     {
         isAlargarHeld = false;
 
         if (totalAlargar <= 0f) return;
 
-        // Si está agarrando algo, soltar primero
+        // SOLUCIÓN: Soltar objeto pero NO hacer return
         if (isGrabbingObject && currentGrabbedBox != null)
         {
             currentGrabbedBox.ReleasePlayer();
-            return;
+            // NO RETURN AQUÍ - continuar con retracción
         }
 
         bool canRetractNormal = DetermineRetractionType();
@@ -639,7 +655,7 @@ public class PlayerAlargar : MonoBehaviour
 
     public bool IsMovementLocked()
     {
-        return isMovementLocked || isRetracting || isGrabbingObject;
+        return isRetracting || isJumping ;
     }
 
     #endregion
