@@ -42,6 +42,7 @@ public class Interactor : MonoBehaviour
         if (IsCarryingInteractable())
         {
             playerStateMachine.ChangeState(playerStateMachine.CurrentState ,"state");
+            AudioManager.instance.PlaySoltarBox();
             // Drop interactable
         }
         else if (currentIntreactable != null) // Lever is failing sometimes here? currentInteractable = null??
