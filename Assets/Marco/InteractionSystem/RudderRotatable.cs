@@ -4,47 +4,52 @@ using UnityEngine;
 public class RudderRotatable : MonoBehaviour
 {
     [Header("Configuración de Rotación (Grados)")]
-    [Tooltip("La rotación final en grados (Euler Angles) cuando el timón está al máximo")]
-    [SerializeField] Vector3 maxRotation = new Vector3(0, 90, 0);
+    [Tooltip("La rotación del objeto cuando la barra de progreso está al 100%")]
+    [SerializeField] Vector3 maxRotation = new Vector3(0, 180, 0); // Ejemplo: 180 grados
 
-    [Tooltip("La rotación inicial en grados (Euler Angles) cuando el timón está al mínimo")]
-    [SerializeField] Vector3 minRotation = new Vector3(0, 0, 0);
+    [Tooltip("La rotación del objeto cuando la barra de progreso está al 0%")]
+    [SerializeField] Vector3 minRotation = new Vector3(0, 0, 0);   // Ejemplo: 0 grados
+
+    [Header("Configuración Inicial")]
+    [Tooltip("0 = Empieza en Min, 0.5 = Empieza en el Centro, 1 = Empieza en Max")]
+    [Range(0f, 1f)]
+    [SerializeField] float initialProgress = 0.5f; // <--- NUEVO: Para empezar centrado
 
     [Header("Conexiones")]
-    [Tooltip("Selecciona el rudder interactable que controla este objeto")]
     public List<RudderInteractable> myRudder;
 
-    [Tooltip("¿Cuántos grados debe girar el TIMÓN (el control) para completar la animación?")]
+    [Tooltip("¿Cuántos grados debe girar el TIMÓN físico para completar todo el recorrido del objeto?")]
     [SerializeField] float rangeInDegrees = 150f;
 
-    // 0.0 significa que estamos en Min, 1.0 significa que estamos en Max
     private float _currentProgress = 0f;
 
     private void Awake()
     {
-        // Suscribirse a los eventos del timón
+        // 1. Establecemos el progreso inicial al valor que configures (ej: 0.5)
+        _currentProgress = initialProgress;
+
         foreach (var rudder in myRudder)
             rudder.onRudderTurned.AddListener(OnRudderTurned);
 
-        // Establecer la rotación inicial
-        transform.localRotation = Quaternion.Euler(minRotation);
+        // 2. Calculamos la rotación inicial basada en ese progreso
+        UpdateRotation();
     }
 
     public void OnRudderTurned(float angle_difference)
     {
-        // Convertimos el cambio de ángulo del timón en un porcentaje de progreso
         float percentChange = angle_difference / rangeInDegrees;
         _currentProgress += percentChange;
 
-        // Limitamos el progreso entre 0 y 1
         _currentProgress = Mathf.Clamp01(_currentProgress);
 
-        // --- CAMBIO PRINCIPAL ---
-        // Convertimos los vectores (Vector3) a Cuaterniones (Quaternion) para rotar suavemente
+        UpdateRotation();
+    }
+
+    // Saqué la lógica a una función aparte para usarla en Awake y al girar
+    private void UpdateRotation()
+    {
         Quaternion minRot = Quaternion.Euler(minRotation);
         Quaternion maxRot = Quaternion.Euler(maxRotation);
-
-        // Usamos Lerp para interpolar entre las dos rotaciones
         transform.localRotation = Quaternion.Lerp(minRot, maxRot, _currentProgress);
     }
 }
