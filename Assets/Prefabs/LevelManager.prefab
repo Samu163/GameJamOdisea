@@ -52,8 +52,8 @@ MonoBehaviour:
   cameraFollow: {fileID: 0}
   player1: {fileID: 0}
   player2: {fileID: 0}
-  player1InitialPosition: {x: -38, y: 1.5, z: 2}
-  player2InitialPosition: {x: -38, y: 3, z: 0.25}
+  player1InitialPosition: {x: -38, y: 1.5, z: 2.5}
+  player2InitialPosition: {x: -38, y: 3, z: 0.75}
   currentLevel: 1
   currentTemple: 1
   templesUnlocked: 1
