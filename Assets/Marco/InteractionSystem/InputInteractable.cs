@@ -35,11 +35,18 @@ public class InputInteractable : MonoBehaviour, IInteractableObject
         active_state = ACTIVE_STATE.OFF;
     }
 
+    public virtual bool IsActive()
+    {
+        return active_state == ACTIVE_STATE.ON;
+    }
+
     #endregion
 
     // Called by interaction area when a player enters it to setup the prompt UI
     public void OnPlayerEnterRange(PlayerInput playerInput)
     {
+        if(playerInput == null) return;
+
         InputAction playerAction = playerInput.actions["Interact"];
 
         // Get the player's device

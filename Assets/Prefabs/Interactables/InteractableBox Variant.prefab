@@ -198,6 +198,14 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 259559278948409601, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: InteractorCollidersToExclude.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 259559278948409601, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: 'InteractorCollidersToExclude.Array.data[0]'
+      value: 
+      objectReference: {fileID: 191709770172432053}
     - target: {fileID: 1094330222572568187, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -300,7 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d16a59e8362f94f8b53b1f7355c413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxInteractable
-  interactableAction: {fileID: 0}
   active_state: 1
   on_interact:
     m_PersistentCalls:

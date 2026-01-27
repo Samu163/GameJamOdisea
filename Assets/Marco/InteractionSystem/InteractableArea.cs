@@ -1,14 +1,18 @@
+using System.ComponentModel;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
 public class InteractableArea : MonoBehaviour
 {
     private IInteractableObject interactableObject;
     private BoxCollider zoneCollider;
-    private bool wasActive = false;
 
     // Default to "Everything"
     public LayerMask detectionLayer = ~0;
+
+    [Description("Interactor that should be ignored when detecting presence in the area, normally this interactable's own interactors")]
+    public List<UnityEngine.Collider> InteractorCollidersToExclude = new List<UnityEngine.Collider>();
 
     // List with every interactor that can currently interact with the interactable (inside interaction area)
     public Collider[] hits;
@@ -40,16 +44,15 @@ public class InteractableArea : MonoBehaviour
             last_hit = hit;
             if (hit.gameObject == this.gameObject) continue; // Ignore self
 
-            if (hit.CompareTag("Interactor"))
+            if (hit.CompareTag("Interactor") && InteractorCollidersToExclude.Contains(hit) == false)
             {
                 isCurrentlyActive = true;
                 break;
             }
         }
 
-        if (isCurrentlyActive != wasActive)
+        if (isCurrentlyActive != interactableObject.IsActive())
         {
-            wasActive = isCurrentlyActive;
             if (isCurrentlyActive)
             {
                 
@@ -57,7 +60,10 @@ public class InteractableArea : MonoBehaviour
                 if (interactableObject is InputInteractable)
                 {
                     InputInteractable inputInteractable = (InputInteractable)interactableObject;
-                    inputInteractable.OnPlayerEnterRange(last_hit.gameObject.GetComponentInParent<PlayerInput>());
+                    if (last_hit != null)
+                    {
+                        inputInteractable.OnPlayerEnterRange(last_hit.gameObject.GetComponentInParent<PlayerInput>());
+                    }
                 }
             }
             else interactableObject.Deactivate();
@@ -72,7 +78,7 @@ public class InteractableArea : MonoBehaviour
         if (zoneCollider == null) zoneCollider = GetComponent<BoxCollider>();
         if (zoneCollider == null) return;
 
-        Gizmos.color = wasActive ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
+        Gizmos.color = interactableObject.IsActive() ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
 
         // Use the same matrix the physics engine uses
         Matrix4x4 rotationMatrix = Matrix4x4.TRS(

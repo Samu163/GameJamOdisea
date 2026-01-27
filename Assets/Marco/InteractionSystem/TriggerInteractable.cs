@@ -25,4 +25,9 @@ public class TriggerInteractable : MonoBehaviour, IInteractableObject
 
     }
 
+    public virtual bool IsActive()
+    {
+        return active_state == ACTIVE_STATE.ON;
+    }
+
 }

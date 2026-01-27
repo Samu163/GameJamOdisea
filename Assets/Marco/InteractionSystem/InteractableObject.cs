@@ -19,6 +19,8 @@ public interface IInteractableObject
 
     }
 
+    public bool IsActive();
+
 }
 
 public enum ACTIVE_STATE
