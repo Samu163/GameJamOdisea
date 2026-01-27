@@ -1,33 +1,65 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LaserReceiver : MonoBehaviour
 {
+    [SerializeField]
+    private bool isReceivingLaser = false;
 
-    public bool isReceivingLaser = false;
+    [SerializeField]
+    private UnityEvent onLaserReceived;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private UnityEvent onLaserExit;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isReceivingLaser)
+        // Estado previo para detectar cambios y evitar invocaciones repetidas
+        private bool previousReceivingState;
+
+        // Propiedad de solo lectura para acceder al estado desde otros scripts si es necesario
+        public bool IsReceivingLaser => isReceivingLaser;
+
+        void Awake()
         {
-            // Logic for when the receiver is receiving the laser
-            Debug.Log("Laser Receiver is active and receiving laser.");
+            // Inicializar previousReceivingState para evitar invocaciones al iniciar si no hubo cambio
+            previousReceivingState = isReceivingLaser;
         }
-    }
 
+        void Update()
+        {
+            // Solo reaccionar cuando exista un cambio en el estado
+            if (isReceivingLaser == previousReceivingState) return;
+
+            previousReceivingState = isReceivingLaser;
+
+            if (isReceivingLaser)
+            {
+                Debug.Log("LaserReceiver: recibido láser (estado cambiado a activo).");
+                onLaserReceived?.Invoke();
+            }
+            else
+            {
+                Debug.Log("LaserReceiver: láser perdido (estado cambiado a inactivo).");
+                onLaserExit?.Invoke();
+            }
+        }
+
+    // Métodos públicos para cambiar el estado (útiles para otros scripts)
     public void ActivateReceiver()
     {
-        isReceivingLaser = true;
+        if (!isReceivingLaser)
+            isReceivingLaser = true;
     }
 
     public void DeactivateReceiver()
     {
-        isReceivingLaser = false;
+        if (isReceivingLaser)
+            isReceivingLaser = false;
+    }
+
+    // Opción: permitir establecer el estado directamente (si se necesita)
+    public void SetReceiving(bool receiving)
+    {
+        isReceivingLaser = receiving;
     }
 }

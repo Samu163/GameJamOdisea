@@ -23,7 +23,9 @@ public class MirrorLaser : MonoBehaviour
     {
         if (isReceivingLaser)
         {
-            Physics.Raycast(originLaser, laserDir, out RaycastHit hitInfo, Mathf.Infinity);
+            // Ejemplo: limitar alcance a 100 y evitar auto-hit
+            Vector3 epsOrigin = originLaser + laserDir * 0.001f;
+            Physics.Raycast(epsOrigin, laserDir, out RaycastHit hitInfo, 100f, mirrorMask);
             if (hitInfo.collider != null)
             {
                 Vector3 distanceToHit = hitInfo.point - originLaser;
