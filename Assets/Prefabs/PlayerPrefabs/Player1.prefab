@@ -264,6 +264,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 557b69ad-608e-4c79-8660-e3a8046ddcd4
     m_ActionName: 'Player2Keyboard/Ladrar[/Keyboard/q,/Keyboard/r,/Keyboard/t,/Keyboard/y,/Keyboard/u,/Keyboard/i,/Keyboard/p,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/j,/Keyboard/k,/Keyboard/z,/Keyboard/x,/Keyboard/v,/Keyboard/b,/Keyboard/n,/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2297227945421911816}
+        m_TargetAssemblyTypeName: PlayerInputScript, Assembly-CSharp
+        m_MethodName: OnSkipLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d7017f39-80e2-4fbf-879b-c69c577c276c
+    m_ActionName: 'PlayerController/SkipLevel[/Keyboard/m]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerController

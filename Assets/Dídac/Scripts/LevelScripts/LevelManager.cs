@@ -73,6 +73,14 @@ public class LevelManager : MonoBehaviour
         cameraFollow.ResetCameraLevel();
     }
 
+    public void SkipLevel()
+    {
+        Debug.Log("Skip Level");
+        currentLevel++;
+        cameraFollow.SkipNextLevel();
+        ResetPlayerPositions();
+    }
+
     public void NextLevelTransition()
     {
         Debug.Log("Next Level Transition");

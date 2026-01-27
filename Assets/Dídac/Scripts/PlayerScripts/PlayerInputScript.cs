@@ -107,6 +107,20 @@ public class PlayerInputScript : MonoBehaviour
         }
     }
 
+    public void OnSkipLevel(InputAction.CallbackContext context)
+    {
+
+        if (!enabled) return;
+
+        if (GameManager.instance.hasGameStarted == false)
+            return;
+
+        if (context.started)
+        {
+            LevelManager.instance.SkipLevel();
+        }
+    }
+
     private void LockMovement()
     {
         enabled = false;

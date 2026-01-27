@@ -48,6 +48,18 @@ public class CameraFollow : MonoBehaviour
         transform.rotation = targetWaypoint.rotation;
     }
 
+    public void SkipNextLevel()
+    {
+        currentWaypointIndex += 2;
+        if (waypoints.Count == 0 || currentWaypointIndex >= waypoints.Count) return;
+        
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+        targetPosition = targetWaypoint.position;
+        targetRotation = targetWaypoint.rotation;
+        isChangingPosition = true;
+        currentLerpTime = 0f;
+    }
+
     private void Update()
     {
         if (isChangingPosition)
