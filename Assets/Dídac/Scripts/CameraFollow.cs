@@ -9,14 +9,20 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 targetPosition;
     private Quaternion targetRotation;
+    private float targetSize;
 
     private bool isChangingPosition = false;
 
     [SerializeField] private float transitionTime = 2f;
     [SerializeField] private float currentLerpTime = 0f;
 
+    private Camera mainCamera;
+
     private void Start()
     {
+
+        mainCamera = GetComponent<Camera>();
+
         if (waypoints.Count > 0)
         {
             Transform initialWaypoint = waypoints[0];
@@ -31,7 +37,16 @@ public class CameraFollow : MonoBehaviour
     {
         currentWaypointIndex++;
         if (waypoints.Count == 0 || currentWaypointIndex >= waypoints.Count) return;
-        
+
+        if (currentWaypointIndex % 2 != 0)
+        {
+            targetSize = 3;
+        }
+        else if (currentWaypointIndex % 2 == 0)
+        {
+            targetSize = 10;
+        }
+
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         targetPosition = targetWaypoint.position;
         targetRotation = targetWaypoint.rotation;
@@ -70,6 +85,7 @@ public class CameraFollow : MonoBehaviour
 
             transform.position = Vector3.Lerp(transform.position, targetPosition, t);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, t);
 
             if (t >= 1f)
             {
