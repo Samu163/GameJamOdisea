@@ -11,7 +11,7 @@ public class TriggerInteractable : MonoBehaviour, IInteractableObject
 
     public virtual void Activate()
     {
-
+        active_state = ACTIVE_STATE.ON;
     }
 
     public virtual void Interact(Interactor interactor)
@@ -22,12 +22,17 @@ public class TriggerInteractable : MonoBehaviour, IInteractableObject
     // Disables interaction
     public virtual void Deactivate()
     {
-
+        active_state = ACTIVE_STATE.OFF;
     }
 
     public virtual bool IsActive()
     {
         return active_state == ACTIVE_STATE.ON;
+    }
+
+    public virtual bool AreaAutomaticActivation()
+    {
+        return true;
     }
 
 }

@@ -84,10 +84,12 @@ public class PlayerInputScript : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
+
+
         onInteractInput?.Invoke(context);
         if (!enabled) return; // If movement is not enable, we read and emit the input but we dont interact
 
-        if (!context.performed) return;
         
         playerInteractor.TryToInteract();
         

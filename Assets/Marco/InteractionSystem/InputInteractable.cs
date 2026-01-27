@@ -70,5 +70,10 @@ public class InputInteractable : MonoBehaviour, IInteractableObject
         // Debug.Log("Interact called on " + gameObject.name);
     }
 
+    public virtual bool AreaAutomaticActivation()
+    {
+        return true;
+    }
+
 
 }

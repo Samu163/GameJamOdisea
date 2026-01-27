@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
+[ExecuteAlways]
 public class InteractableArea : MonoBehaviour
 {
     private IInteractableObject interactableObject;
@@ -51,11 +52,13 @@ public class InteractableArea : MonoBehaviour
             }
         }
 
-        if (isCurrentlyActive != interactableObject.IsActive())
+        // If we detect the interactable is active/inactive when it shouldnt be AND we want the area to autmatically activate interaction when player within range
+
+        if (isCurrentlyActive != interactableObject.IsActive() && interactableObject.AreaAutomaticActivation())
         {
             if (isCurrentlyActive)
             {
-                
+
                 interactableObject.Activate();
                 if (interactableObject is InputInteractable)
                 {
@@ -66,7 +69,10 @@ public class InteractableArea : MonoBehaviour
                     }
                 }
             }
-            else interactableObject.Deactivate();
+            else
+            {
+                interactableObject.Deactivate();
+            }
         }
     }
 
@@ -75,21 +81,22 @@ public class InteractableArea : MonoBehaviour
     // If the Red/Green box doesn't match your object, adjust the Collider size.
     private void OnDrawGizmos()
     {
-        //if (zoneCollider == null) zoneCollider = GetComponent<BoxCollider>();
-        //if (zoneCollider == null) return;
 
-        //Gizmos.color = interactableObject.IsActive() ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
+        if (interactableObject == null) return;
 
-        //// Use the same matrix the physics engine uses
-        //Matrix4x4 rotationMatrix = Matrix4x4.TRS(
-        //    transform.TransformPoint(zoneCollider.center),
-        //    transform.rotation,
-        //    transform.lossyScale
-        //);
+        if (zoneCollider == null) zoneCollider = GetComponent<BoxCollider>();
+        if (zoneCollider == null) return;
 
-        //Gizmos.matrix = rotationMatrix;
-        //// Draw the cube using Local Size (Gizmos matrix handles the scale/pos)
-        //Gizmos.DrawCube(Vector3.zero, zoneCollider.size);
-        //Gizmos.DrawWireCube(Vector3.zero, zoneCollider.size);
+        Gizmos.color = interactableObject.IsActive() ? new Color(0, 1, 0, 0.5f) : new Color(1, 0, 0, 0.5f);
+        // Use the same matrix the physics engine uses
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(
+            transform.TransformPoint(zoneCollider.center),
+            transform.rotation,
+            transform.lossyScale
+        );
+        Gizmos.matrix = rotationMatrix;
+        // Draw the cube using Local Size (Gizmos matrix handles the scale/pos)
+        Gizmos.DrawCube(Vector3.zero, zoneCollider.size);
+        Gizmos.DrawWireCube(Vector3.zero, zoneCollider.size);
     }
 }

@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80203c1c30eb216448e17d5abed70c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RudderInteractable
-  interactableAction: {fileID: 0}
   active_state: 1
   on_interact:
     m_PersistentCalls:
@@ -251,9 +250,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rudderMesh: {fileID: 1855603185230709820}
-  maxTurnAngle: 45
-  linearTurnSpeed: 30
-  radialSensitivity: -1.5
+  maxTurnAngle: 135
+  linearTurnSpeed: 90
+  radialSensitivity: -4.5
 --- !u!114 &3591084818352092028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +366,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b51921e7-f57d-4443-a6b1-6c55dd4dd9c6
     m_ActionName: 'Player2Keyboard/NextLineDialogue[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e3520ba2-bd9b-41e5-bb2c-e002be4cb1fa
+    m_ActionName: 'PlayerController/SkipDialogue[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f9d235e9-260b-4636-8483-7c82d4953329
+    m_ActionName: 'PlayerController/Ladrar[/Keyboard/q,/Keyboard/r,/Keyboard/t,/Keyboard/y,/Keyboard/u,/Keyboard/i,/Keyboard/p,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/j,/Keyboard/k,/Keyboard/z,/Keyboard/x,/Keyboard/v,/Keyboard/b,/Keyboard/n,/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 557b69ad-608e-4c79-8660-e3a8046ddcd4
+    m_ActionName: 'Player2Keyboard/Ladrar[/Keyboard/q,/Keyboard/r,/Keyboard/t,/Keyboard/y,/Keyboard/u,/Keyboard/i,/Keyboard/p,/Keyboard/f,/Keyboard/g,/Keyboard/h,/Keyboard/j,/Keyboard/k,/Keyboard/z,/Keyboard/x,/Keyboard/v,/Keyboard/b,/Keyboard/n,/Keyboard/m]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da0b163b-98d6-4f84-b050-8c14e728c193
+    m_ActionName: 'Player2Keyboard/SkipDialogue[/Keyboard/o]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerController

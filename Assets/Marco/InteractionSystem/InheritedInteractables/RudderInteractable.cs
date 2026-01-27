@@ -188,4 +188,13 @@ public class RudderInteractable : InputInteractable
         isBeingInteractedWith = false;
         base.Activate();
     }
+
+    public override bool AreaAutomaticActivation()
+    {
+        // If we are controlling the rudder (interact is disabled) but we don't want to enable interaction cause you're controlling it already
+        if (isBeingInteractedWith) return false;
+
+        // If we're not controlling the rudder then sure, enable interaction once player is close
+        return true;
+    }
 }
