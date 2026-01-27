@@ -69,6 +69,15 @@ public class AudioManager : MonoBehaviour
     [Header("Ballesta SFX")]
     public AudioSource ballestaSource;
 
+    [Header("UI Hover SFX")]
+    public AudioSource uiHoverSource;
+
+    [Header("UI Confirm SFX")]
+    public AudioSource uiConfirmSource;
+
+    [Header("UI Decline SFX")]
+    public AudioSource uiDeclinesource;
+
     private void Awake()
     {
         if (instance == null)
@@ -227,6 +236,25 @@ public class AudioManager : MonoBehaviour
     public void PlayBallesta()
     {
         ballestaSource.Play();
+    }
+
+
+    // Este audio manager es una terroristada
+    public void PlayUIHoverSfx()
+    {
+       uiHoverSource.Play();
+    }
+
+    public void PlayUIConfirmSfx()
+    {
+
+       uiConfirmSource.Play();
+    }
+
+    public void PlayUIDeclineSfx()
+    {
+
+       uiDeclinesource.Play();
     }
 
 }

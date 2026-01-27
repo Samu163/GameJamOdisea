@@ -28,12 +28,14 @@ public class UIButtonEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         // Evitar que se acumulen tweens anteriores
         targetTransform.DOKill();
         targetTransform.DOScale(hoverScale, duration).SetEase(ease);
+        AudioManager.instance.PlayUIHoverSfx();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         targetTransform.DOKill();
         targetTransform.DOScale(originalScale, duration).SetEase(ease);
+
     }
 
     void OnDisable()
