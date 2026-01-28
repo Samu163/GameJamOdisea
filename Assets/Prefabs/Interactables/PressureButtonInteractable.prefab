@@ -238,7 +238,13 @@ MonoBehaviour:
   on_interact:
     m_PersistentCalls:
       m_Calls: []
-  door: {fileID: 0}
+  onActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  buttonMesh: {fileID: 7673166387610433211}
 --- !u!4 &9082068645049042215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2573944957378159298, guid: 18334e4ab56d8f249bb768ad9ac6b6a8, type: 3}
