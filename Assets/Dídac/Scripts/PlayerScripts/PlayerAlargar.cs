@@ -295,20 +295,37 @@ public class PlayerAlargar : MonoBehaviour
         }
     }
 
+    [Header("Body Scale Compensation")]
+    [SerializeField] private float bodyExtensionRatio = 1.0f;
+    [Tooltip("Cuánto se estira el body en relación al movimiento. 1.0 = escala igual que el movimiento")]
+    [SerializeField] private float bodyAnchorOffset = 0f;
+    [Tooltip("0 = centrado, 1 = pegado a la parte de abajo (se estira más hacia arriba)")]
+
     public void Alargar()
     {
-        Vector3 increment = new Vector3(0, alargarAmount * 0.5f, 0);
-        targetBodyScale += increment;
-
         if (isPlayer1)
         {
-            targetBodyPosition += new Vector3(0, 0, alargarAmount * 0.5f);
+            // Head se mueve hacia adelante
             targetHeadPosition += new Vector3(0, 0, alargarAmount);
+
+            // Body se escala para cubrir la distancia
+            targetBodyScale += new Vector3(0, alargarAmount * 0.5f * bodyExtensionRatio, 0);
+
+            // Body se mueve interpolado entre centrado (0.5) y pegado a bottom (bodyAnchorOffset)
+            float positionFactor = Mathf.Lerp(0.5f, bodyAnchorOffset, bodyAnchorOffset);
+            targetBodyPosition += new Vector3(0, 0, alargarAmount * positionFactor);
         }
         else if (isPlayer2)
         {
-            targetBodyPosition += increment;
+            // Head se mueve hacia arriba
             targetHeadPosition += new Vector3(0, alargarAmount, 0);
+
+            // Body se escala para cubrir la distancia
+            targetBodyScale += new Vector3(0, alargarAmount * 0.5f * bodyExtensionRatio, 0);
+
+            // Body se mueve interpolado entre centrado (0.5) y pegado a bottom (bodyAnchorOffset)
+            float positionFactor = Mathf.Lerp(0.5f, bodyAnchorOffset, bodyAnchorOffset);
+            targetBodyPosition += new Vector3(0, alargarAmount * positionFactor, 0);
         }
 
         totalAlargar += alargarAmount;
