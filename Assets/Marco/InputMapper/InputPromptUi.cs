@@ -26,6 +26,6 @@ public class InputPromptUI : MonoBehaviour
         string iconName = InputIconMapper.GetIconForAction(action, currentDevice);
         // knows exactly which dictionary (Xbox vs PS vs Switch) to check.
 
-        text.text = $"Press <sprite name=\"{iconName}\">";
+        text.text = $"Pulsa <sprite name=\"{iconName}\">";
     }
 }

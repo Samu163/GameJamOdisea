@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialogueController : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class DialogueController : MonoBehaviour
     private Dictionary<string, float> characterPitchDic;
     private Dictionary<string, string> characterToDialogueNameDic;
 
+    public UnityEvent enableEvent;
+    public UnityEvent disableEvent;
+
     private void Start()
     {
         UIController.instance.dialogueController = this;
@@ -52,6 +56,8 @@ public class DialogueController : MonoBehaviour
 
     public void ShowDialogueBox(Sprite NPCsprite, string[] nameTalker, string[] dialogue)
     {
+        enableEvent?.Invoke();
+
         npcSprite = NPCsprite;
         currentDialogue = dialogue;
         orderOfTalkers = nameTalker;
@@ -86,6 +92,8 @@ public class DialogueController : MonoBehaviour
 
     public void HideDialogueBox()
     {
+        disableEvent?.Invoke();
+
         dialogueBox.GetComponent<RectTransform>()
             .DOAnchorPosY(-120f, 0.5f)
             .SetEase(Ease.InBack)
