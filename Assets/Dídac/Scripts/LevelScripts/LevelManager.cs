@@ -81,12 +81,20 @@ public class LevelManager : MonoBehaviour
         ResetPlayerPositions();
     }
 
+    public IEnumerator NextLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        cameraFollow.NextCameraPosition();
+        ResetPlayerPositions();
+    }
+
     public void NextLevelTransition()
     {
         Debug.Log("Next Level Transition");
         currentLevel++;
-        cameraFollow.NextCameraPosition();
-        ResetPlayerPositions();
+        SceneTransitionManager.instance.NextLevelTransition();
+        StartCoroutine(NextLevel());
+        
 
         if (currentLevel > templesData[currentTemple - 1].numberOfLevels)
         {

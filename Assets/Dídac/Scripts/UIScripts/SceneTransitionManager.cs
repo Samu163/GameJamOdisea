@@ -12,8 +12,13 @@ public class SceneTransitionManager : MonoBehaviour
     public RectTransform wallRectTransform;
     public float transitionDuration = 1.0f;
     public Ease easeType = Ease.InOutQuad;
-
     private float initialYPosition;
+
+    [Header("Level Transition Settings")]
+    public RectTransform levelWallTransform;
+    public float levelTransitionDuration = 1.0f;
+    public Ease levelEaseType = Ease.InOutQuad;
+    private float initialLevelWallXPosition;
 
     void Awake()
     {
@@ -25,6 +30,7 @@ public class SceneTransitionManager : MonoBehaviour
 
             // Guardamos la posición inicial (arriba, fuera de pantalla)
             initialYPosition = wallRectTransform.anchoredPosition.y;
+            initialLevelWallXPosition = levelWallTransform.anchoredPosition.x;
         }
         else
         {
@@ -38,6 +44,16 @@ public class SceneTransitionManager : MonoBehaviour
     {
         GameManager.instance.currentSceneName = sceneName;
         StartCoroutine(TransitionRoutine(sceneName));
+    }
+
+    public void ResetLevelTransition(string sceneName)
+    {
+
+    }
+
+    public void NextLevelTransition()
+    {
+        StartCoroutine(LevelTransitionRoutine());
     }
 
     IEnumerator TransitionRoutine(string sceneName)
@@ -73,5 +89,20 @@ public class SceneTransitionManager : MonoBehaviour
 
         // Desbloqueamos interacciones
         // CanvasGroup.blocksRaycasts = false;
+    }
+
+    private IEnumerator LevelTransitionRoutine()
+    {
+        
+        yield return levelWallTransform.DOAnchorPosX(0, levelTransitionDuration)
+            .SetEase(levelEaseType)
+            .WaitForCompletion();
+
+        yield return new WaitForSeconds(0.2f);
+
+        yield return levelWallTransform.DOAnchorPosX(initialLevelWallXPosition, levelTransitionDuration)
+            .SetEase(easeType)
+            .WaitForCompletion();
+
     }
 }

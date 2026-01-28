@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using DG.Tweening;
 
 
 public class AudioManager : MonoBehaviour
@@ -110,7 +111,13 @@ public class AudioManager : MonoBehaviour
     {
         if (!isTitelMusicPlaying)
         {
-            StartCoroutine(FadeOutCoroutine(1f, gameMusic, titelMusic));
+            float startVolume = gameMusic.volume;
+            gameMusic.DOFade(0, 1f).OnComplete(() => 
+            { 
+                gameMusic.Stop();
+                titelMusic.Play();
+                gameMusic.volume = startVolume;
+            });
             isGameMusicPlaying = false;
             isTitelMusicPlaying = true;
         }
@@ -120,9 +127,15 @@ public class AudioManager : MonoBehaviour
     {
         if (!isGameMusicPlaying)
         {
-            StartCoroutine(FadeOutCoroutine(1f, titelMusic, gameMusic));
+            float startVolume = titelMusic.volume;
+            titelMusic.DOFade(0, 1f).OnComplete(() =>
+            {
+                titelMusic.Stop();
+                gameMusic.clip = levelClips[0];
+                gameMusic.Play();
+                titelMusic.volume = startVolume;
+            });
             isTitelMusicPlaying = false;
-            gameMusic.clip = levelClips[0];
             isGameMusicPlaying = true;
         }
     }
@@ -131,9 +144,15 @@ public class AudioManager : MonoBehaviour
     {
         if (!isGameMusicPlaying)
         {
-            StartCoroutine(FadeOutCoroutine(1f, titelMusic, gameMusic));
+            float startVolume = titelMusic.volume;
+            titelMusic.DOFade(0, 1f).OnComplete(() =>
+            {
+                titelMusic.Stop();
+                gameMusic.clip = levelClips[1];
+                gameMusic.Play();
+                titelMusic.volume = startVolume;
+            });
             isTitelMusicPlaying = false;
-            gameMusic.clip = levelClips[1];
             isGameMusicPlaying = true;
         }
     }
@@ -142,31 +161,17 @@ public class AudioManager : MonoBehaviour
     {
         if (!isGameMusicPlaying)
         {
-            StartCoroutine(FadeOutCoroutine(1f, titelMusic, gameMusic));
+            float startVolume = titelMusic.volume;
+            titelMusic.DOFade(0, 1f).OnComplete(() =>
+            {
+                titelMusic.Stop();
+                gameMusic.clip = levelClips[2];
+                gameMusic.Play();
+                titelMusic.volume = startVolume;
+            });
             isTitelMusicPlaying = false;
-            gameMusic.clip = levelClips[2];
             isGameMusicPlaying = true;
         }
-    }
-
-    private IEnumerator FadeOutCoroutine(float duration, AudioSource audioSource, AudioSource toPlay)
-    {
-        float startVolume = audioSource.volume;
-        float timeElapsed = 0;
-
-        while (timeElapsed < duration)
-        {
-            audioSource.volume = Mathf.Lerp(startVolume, 0, timeElapsed / duration);
-
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        audioSource.volume = 0;
-        audioSource.Stop();
-        toPlay.Play();
-
-        audioSource.volume = startVolume;
     }
 
     public void PlayFootstepGamepad()
