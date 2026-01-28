@@ -20,6 +20,19 @@ public class SceneTransitionManager : MonoBehaviour
     public Ease levelEaseType = Ease.InOutQuad;
     private float initialLevelWallXPosition;
 
+    [Header("Configuración Iris")]
+    public Image irisImage; // Arrastra aquí la imagen IrisOverlay
+    public float irisTransitionDuration = 0.8f;
+    public Ease easeClose = Ease.InCubic; // Rápido al final para cerrar
+    public Ease easeOpen = Ease.OutCubic; // Rápido al inicio al abrir
+
+    // Valores del shader
+    private const string RADIUS_PROPERTY = "_HoleRadius";
+    private const float RADIUS_OPEN = 1.5f; // Valor suficiente para abrirse más allá de las esquinas
+    private const float RADIUS_CLOSED = 0.0f; // Valor para cerrar completamente
+
+    private Material irisMaterialInstance;
+
     void Awake()
     {
         // Configuración del Singleton para que sobreviva entre escenas
@@ -31,6 +44,10 @@ public class SceneTransitionManager : MonoBehaviour
             // Guardamos la posición inicial (arriba, fuera de pantalla)
             initialYPosition = wallRectTransform.anchoredPosition.y;
             initialLevelWallXPosition = levelWallTransform.anchoredPosition.x;
+
+            irisMaterialInstance = irisImage.material;
+            irisMaterialInstance.SetFloat(RADIUS_PROPERTY, RADIUS_OPEN);
+            irisImage.enabled = false;
         }
         else
         {
@@ -48,7 +65,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void ResetLevelTransition(string sceneName)
     {
-
+        StartCoroutine(IrisTransitionRoutine(sceneName));
     }
 
     public void NextLevelTransition()
@@ -104,5 +121,35 @@ public class SceneTransitionManager : MonoBehaviour
             .SetEase(easeType)
             .WaitForCompletion();
 
+    }
+
+    IEnumerator IrisTransitionRoutine(string sceneName)
+    {
+        // Activamos la imagen para que se empiece a ver
+        irisImage.enabled = true;
+
+        // 1. CERRAR EL IRIS (Pantalla a negro)
+        // Animamos la propiedad "_HoleRadius" del material de 1.5 a 0
+        yield return irisMaterialInstance.DOFloat(RADIUS_CLOSED, RADIUS_PROPERTY, transitionDuration)
+            .SetEase(easeClose)
+            .WaitForCompletion();
+
+        // 2. CARGAR ESCENA
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.3f); // Pequeña pausa dramática en negro
+
+        // 3. ABRIR EL IRIS (Revelar nueva escena)
+        // Animamos de 0 a 1.5
+        yield return irisMaterialInstance.DOFloat(RADIUS_OPEN, RADIUS_PROPERTY, transitionDuration)
+            .SetEase(easeOpen)
+            .WaitForCompletion();
+
+        // Desactivamos la imagen al terminar
+        irisImage.enabled = false;
     }
 }

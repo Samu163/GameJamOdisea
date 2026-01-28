@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        SceneTransitionManager.instance.ChangeScene(currentSceneName);
+        SceneTransitionManager.instance.ResetLevelTransition(currentSceneName);
         StartCoroutine(ResetPlayersCoroutine());
     }
 

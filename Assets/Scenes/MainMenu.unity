@@ -1795,25 +1795,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5540231640852202660, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5540231640852202660, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5540231640852202660, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -112.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 5540231640852202660, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -802
-      objectReference: {fileID: 0}
-    - target: {fileID: 5540231640852202660, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+    - target: {fileID: 2181690872741819639, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
+      propertyPath: irisTransitionDuration
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7474729796815491015, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
       propertyPath: m_Name
