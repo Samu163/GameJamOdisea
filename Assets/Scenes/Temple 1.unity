@@ -2209,7 +2209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1279026978
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2501,6 +2501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 911152531926669559, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000061035156
+      objectReference: {fileID: 0}
     - target: {fileID: 7474729796815491015, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
       propertyPath: m_Name
       value: TransitionCanvas
