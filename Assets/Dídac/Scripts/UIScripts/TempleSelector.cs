@@ -11,8 +11,11 @@ public class TempleSelector : MonoBehaviour
     private void Awake()
     {
         Temple1.onClick.AddListener(GameManager.instance.LoadTemple1);
+        Temple1.onClick.AddListener(AudioManager.instance.PlayUIConfirmSfx);
         Temple2.onClick.AddListener(GameManager.instance.LoadTemple2);
+        Temple2.onClick.AddListener(AudioManager.instance.PlayUIConfirmSfx);
         Temple3.onClick.AddListener(GameManager.instance.LoadTemple3);
+        Temple3.onClick.AddListener(AudioManager.instance.PlayUIConfirmSfx);
     }
 
     private void Update()

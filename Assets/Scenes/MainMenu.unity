@@ -1795,10 +1795,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2181690872741819639, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
-      propertyPath: irisTransitionDuration
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7474729796815491015, guid: 959010dac8d6e424ea44b5fe541cb5fa, type: 3}
       propertyPath: m_Name
       value: TransitionCanvas

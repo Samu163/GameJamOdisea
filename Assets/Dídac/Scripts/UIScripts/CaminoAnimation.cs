@@ -84,6 +84,12 @@ public class CaminoAnimation : MonoBehaviour
         AnimateUnlockedCamino(toAnimateIndex);
     }
 
+    public IEnumerator PlaySFX()
+    {
+        yield return new WaitForSeconds(0.2f);
+        AudioManager.instance.PlayCaminoSFX();
+    }
+
     public void AnimateUnlockedCamino(int index)
     {
         switch (LevelManager.instance.templesUnlocked)
@@ -91,28 +97,34 @@ public class CaminoAnimation : MonoBehaviour
             case 1:
                 if (index >= camino1.Count) return;
                 camino1[toAnimateIndex].SetActive(true);
+                StartCoroutine(PlaySFX());
                 camino1[toAnimateIndex].transform.DOScale(originalScale, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     toAnimateIndex++;
                     AnimateUnlockedCamino(toAnimateIndex);
+                    
                 });
                 break;
             case 2:
                 if (index >= camino2.Count) return;
                 camino2[toAnimateIndex].SetActive(true);
+                StartCoroutine(PlaySFX());
                 camino2[toAnimateIndex].transform.DOScale(originalScale, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     toAnimateIndex++;
                     AnimateUnlockedCamino(toAnimateIndex);
+                    
                 });
                 break;
             case 3:
                 if (index >= camino3.Count) return;
                 camino3[toAnimateIndex].SetActive(true);
+                StartCoroutine(PlaySFX());
                 camino3[toAnimateIndex].transform.DOScale(originalScale, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack).OnComplete(() =>
                 {
                     toAnimateIndex++;
                     AnimateUnlockedCamino(toAnimateIndex);
+                    
                 });
                 break;
             default:

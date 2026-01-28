@@ -82,6 +82,9 @@ public class AudioManager : MonoBehaviour
     [Header("UI Decline SFX")]
     public AudioSource uiDeclinesource;
 
+    [Header("UI Camino SFX")]
+    public AudioSource uiCaminoSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -304,6 +307,11 @@ public class AudioManager : MonoBehaviour
     {
 
        uiDeclinesource.Play();
+    }
+
+    public void PlayCaminoSFX()
+    {
+        uiCaminoSource.Play();
     }
 
 }
