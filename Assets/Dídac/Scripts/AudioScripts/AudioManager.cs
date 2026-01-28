@@ -1,6 +1,8 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class AudioManager : MonoBehaviour
@@ -108,9 +110,8 @@ public class AudioManager : MonoBehaviour
     {
         if (!isTitelMusicPlaying)
         {
-            gameMusic.Stop();
+            StartCoroutine(FadeOutCoroutine(1f, gameMusic, titelMusic));
             isGameMusicPlaying = false;
-            titelMusic.Play();
             isTitelMusicPlaying = true;
         }
     }
@@ -119,12 +120,53 @@ public class AudioManager : MonoBehaviour
     {
         if (!isGameMusicPlaying)
         {
-            titelMusic.Stop();
+            StartCoroutine(FadeOutCoroutine(1f, titelMusic, gameMusic));
             isTitelMusicPlaying = false;
             gameMusic.clip = levelClips[0];
-            gameMusic.Play();
             isGameMusicPlaying = true;
         }
+    }
+
+    public void PlayTemple2Music()
+    {
+        if (!isGameMusicPlaying)
+        {
+            StartCoroutine(FadeOutCoroutine(1f, titelMusic, gameMusic));
+            isTitelMusicPlaying = false;
+            gameMusic.clip = levelClips[1];
+            isGameMusicPlaying = true;
+        }
+    }
+
+    public void PlayTemple3Music()
+    {
+        if (!isGameMusicPlaying)
+        {
+            StartCoroutine(FadeOutCoroutine(1f, titelMusic, gameMusic));
+            isTitelMusicPlaying = false;
+            gameMusic.clip = levelClips[2];
+            isGameMusicPlaying = true;
+        }
+    }
+
+    private IEnumerator FadeOutCoroutine(float duration, AudioSource audioSource, AudioSource toPlay)
+    {
+        float startVolume = audioSource.volume;
+        float timeElapsed = 0;
+
+        while (timeElapsed < duration)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0, timeElapsed / duration);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.volume = 0;
+        audioSource.Stop();
+        toPlay.Play();
+
+        audioSource.volume = startVolume;
     }
 
     public void PlayFootstepGamepad()

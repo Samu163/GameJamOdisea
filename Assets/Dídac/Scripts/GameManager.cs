@@ -50,17 +50,20 @@ public class GameManager : MonoBehaviour
     {
         LevelManager.instance.currentTemple = 1;
         SceneTransitionManager.instance.ChangeScene("Temple 1");
+        AudioManager.instance.PlayTemple1Music();
     }
 
     public void LoadTemple2()
     {
         LevelManager.instance.currentTemple = 2;
         SceneTransitionManager.instance.ChangeScene("Temple 2");
+        AudioManager.instance.PlayTemple2Music();
     }
 
     public void LoadTemple3()
     {
         LevelManager.instance.currentTemple = 3;
         SceneTransitionManager.instance.ChangeScene("Temple 3");
+        AudioManager.instance.PlayTemple3Music();
     }
 }
