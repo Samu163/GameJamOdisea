@@ -428,8 +428,8 @@ MonoBehaviour:
   frontObstacleOffset: {x: 0, y: 0.5, z: 0}
   grabDetectionRadius: 0.6
   isJumping: 0
-  bodyExtensionRatio: 1
-  bodyAnchorOffset: 0
+  bodyExtensionRatio: 2.2
+  bodyAnchorOffset: 0.9
 --- !u!136 &8514550286223105392
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -846,7 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83003a29df8028642933889f8224f46b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2336354
+      value: 1.0719552
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83003a29df8028642933889f8224f46b, type: 3}
       propertyPath: m_LocalScale.z
@@ -854,7 +854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83003a29df8028642933889f8224f46b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.047
+      value: -1.754
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83003a29df8028642933889f8224f46b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1055,7 +1055,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: deb9a9db7fdb9dd4e9b7e6b0b1541a67, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.0453088
+      value: 2.3081198
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: deb9a9db7fdb9dd4e9b7e6b0b1541a67, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1063,7 +1063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: deb9a9db7fdb9dd4e9b7e6b0b1541a67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4345
+      value: -2.656
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: deb9a9db7fdb9dd4e9b7e6b0b1541a67, type: 3}
       propertyPath: m_LocalPosition.z
