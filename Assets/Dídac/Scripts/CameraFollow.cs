@@ -71,6 +71,7 @@ public class CameraFollow : MonoBehaviour
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         targetPosition = targetWaypoint.position;
         targetRotation = targetWaypoint.rotation;
+        targetSize = 10f;
         isChangingPosition = true;
         currentLerpTime = 0f;
     }

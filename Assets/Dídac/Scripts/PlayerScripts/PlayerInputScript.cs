@@ -39,7 +39,7 @@ public class PlayerInputScript : MonoBehaviour
 
         if (context.performed)
         {
-           if (playerAlargar.isAlargarHeld || !GameManager.instance.hasGameStarted)
+           if (playerAlargar.isAlargarHeld || !GameManager.instance.hasGameStarted || UIController.instance.isDialogueActive)
            {
                playerMovement.inputDir = Vector3.zero;
                return;
@@ -74,6 +74,8 @@ public class PlayerInputScript : MonoBehaviour
 
         if (GameManager.instance.hasGameStarted == false)
             return;
+
+        if (UIController.instance.isDialogueActive) return;
 
         if (context.started)
         {

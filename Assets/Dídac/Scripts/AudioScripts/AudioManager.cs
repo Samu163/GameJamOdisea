@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [Header("Music Settings")]
     public AudioSource titelMusic;
     public AudioSource gameMusic;
+    public List<AudioClip> levelClips;
     private bool isTitelMusicPlaying = true;
     private bool isGameMusicPlaying = false;
 
@@ -103,7 +104,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayTitelMusic()
+    public void PlayTitleMusic()
     {
         if (!isTitelMusicPlaying)
         {
@@ -114,12 +115,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayGameMusic()
+    public void PlayTemple1Music()
     {
         if (!isGameMusicPlaying)
         {
             titelMusic.Stop();
             isTitelMusicPlaying = false;
+            gameMusic.clip = levelClips[0];
             gameMusic.Play();
             isGameMusicPlaying = true;
         }

@@ -36,6 +36,18 @@ public class LevelComplete : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player1"))
+        {
+            hasPlayer1Completed = false;
+        }
+        else if (other.CompareTag("Player2"))
+        {
+            hasPlayer2Completed = false;
+        }
+    }
+
 
 
 }
