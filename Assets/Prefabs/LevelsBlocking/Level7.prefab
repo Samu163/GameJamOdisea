@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cc36e8fdfa0eb44b8d12138ce26719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPermanent: 1
+  isPermanent: 0
   numberOfInteractables: 1
   bridgeBlocks:
   - {fileID: 4344791802901528194}
@@ -3452,7 +3452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cc36e8fdfa0eb44b8d12138ce26719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPermanent: 1
+  isPermanent: 0
   numberOfInteractables: 1
   bridgeBlocks:
   - {fileID: 2574199963847523004}
