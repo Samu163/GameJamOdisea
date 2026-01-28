@@ -30,6 +30,8 @@ public class LevelManager : MonoBehaviour
 
     public LayerMask ignoreLayer;
 
+    public LevelActivator levelActivator;
+
     private void Awake()
     {
         if (instance == null)
@@ -90,6 +92,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         cameraFollow.NextCameraPosition();
         ResetPlayerPositions();
+        levelActivator.ActivateNextLevel(currentLevel);
     }
 
     public void NextLevelTransition()
