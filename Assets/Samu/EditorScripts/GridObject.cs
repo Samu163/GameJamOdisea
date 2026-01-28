@@ -37,6 +37,54 @@ public class GridObject : MonoBehaviour
             CalculateGridSizeFromBounds();
         }
     }
+
+    public void CalculateGridSizeFromColliders()
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        if (colliders.Length == 0)
+        {
+            Debug.LogWarning("No se encontraron colliders en " + gameObject.name);
+            return;
+        }
+
+        // Inicializar con valores extremos
+        Bounds combinedBounds = new Bounds(transform.position, Vector3.zero);
+        bool firstCollider = true;
+
+        foreach (Collider col in colliders)
+        {
+            if (firstCollider)
+            {
+                combinedBounds = col.bounds;
+                firstCollider = false;
+            }
+            else
+            {
+                combinedBounds.Encapsulate(col.bounds);
+            }
+        }
+
+        // Convertir a espacio local
+        Vector3 localSize = transform.InverseTransformVector(combinedBounds.size);
+        localSize = new Vector3(
+            Mathf.Abs(localSize.x),
+            Mathf.Abs(localSize.y),
+            Mathf.Abs(localSize.z)
+        );
+
+        // Redondear hacia arriba
+        gridSizeX = Mathf.CeilToInt(localSize.x);
+        gridSizeY = Mathf.CeilToInt(localSize.y);
+        gridSizeZ = Mathf.CeilToInt(localSize.z);
+
+        // Asegurar que no sea 0
+        gridSizeX = Mathf.Max(1, gridSizeX);
+        gridSizeY = Mathf.Max(1, gridSizeY);
+        gridSizeZ = Mathf.Max(1, gridSizeZ);
+
+        Debug.Log($"Dimensiones calculadas desde colliders: {gridSizeX}x{gridSizeY}x{gridSizeZ}");
+    }
     public void CalculateGridSizeFromBounds()
     {
         Bounds bounds = GetTotalBounds();
