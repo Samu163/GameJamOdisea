@@ -28,6 +28,8 @@ public class LevelManager : MonoBehaviour
     public int templesUnlocked = 1;
     public List<TempleData> templesData;
 
+    public LayerMask ignoreLayer;
+
     private void Awake()
     {
         if (instance == null)
@@ -55,9 +57,11 @@ public class LevelManager : MonoBehaviour
         player1.GetComponent<Rigidbody>().MovePosition(new Vector3(player1InitialPosition.x + 30f * (currentLevel - 1), player1InitialPosition.y, player1InitialPosition.z));
         player1.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         player1.GetComponent<Rigidbody>().useGravity = true;
+        player1.GetComponent<CapsuleCollider>().excludeLayers = ignoreLayer;
         player2.GetComponent<Rigidbody>().MovePosition(new Vector3(player2InitialPosition.x + 30f * (currentLevel - 1), player2InitialPosition.y, player2InitialPosition.z));
         player2.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         player2.GetComponent<Rigidbody>().useGravity = true;
+        player2.GetComponent<CapsuleCollider>().excludeLayers = ignoreLayer;
     }
 
     public void DeactivatePlayers()
