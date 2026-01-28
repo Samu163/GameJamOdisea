@@ -277,6 +277,7 @@ public class LevelPainter : EditorWindow
         return snapped + pivotOffset;
     }
 
+
     private void DrawPlacementGuides(Vector3 position, GridObject gridObj)
     {
         Vector3 size = new Vector3(gridObj.gridSizeX, gridObj.gridSizeY, gridObj.gridSizeZ);
