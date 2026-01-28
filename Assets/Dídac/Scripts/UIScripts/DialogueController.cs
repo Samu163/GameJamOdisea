@@ -5,22 +5,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class DialogueController : MonoBehaviour
 {
-
     [Header("Dialogue UI Elements")]
     [SerializeField] private Sprite npcSprite;
     [SerializeField] private Image talkingSprite;
     [SerializeField] private Sprite fatherSprite;
     [SerializeField] private Sprite motherSprite;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI characterText;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private float typingSpeed = 0.025f;
     [SerializeField] private float sfxPerXChars = 3f;
 
     private Vector2 originalScale;
-
+    private Vector2 originalPos;
 
     private int currentIndex = 0;
     private bool isTyping = false;
@@ -29,11 +28,13 @@ public class DialogueController : MonoBehaviour
     private string[] orderOfTalkers;
 
     private Dictionary<string, float> characterPitchDic;
+    private Dictionary<string, string> characterToDialogueNameDic;
 
     private void Start()
     {
         UIController.instance.dialogueController = this;
         originalScale = dialogueBox.GetComponent<RectTransform>().localScale;
+        originalPos = dialogueBox.GetComponent<RectTransform>().anchoredPosition;
 
         characterPitchDic = new()
         {
@@ -41,7 +42,12 @@ public class DialogueController : MonoBehaviour
             ["Father"] = 0.5f,
             ["Mother"] = 1f
         };
-
+        characterToDialogueNameDic = new()
+        {
+            ["NPC"] = "Cachorrito",
+            ["Father"] = "Papa Salsicha",
+            ["Mother"] = "Mama Salsicha"
+        };
     }
 
     public void ShowDialogueBox(Sprite NPCsprite, string[] nameTalker, string[] dialogue)
@@ -67,22 +73,29 @@ public class DialogueController : MonoBehaviour
         }
 
         dialogueBox.SetActive(true);
-        dialogueBox.GetComponent<RectTransform>().DOScale(originalScale, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack);
-        StartCoroutine(StartTyping(dialogue[0], 0.5f));
 
+        dialogueBox.GetComponent<RectTransform>().localScale = originalScale;
+
+        dialogueBox.GetComponent<RectTransform>()
+            .DOAnchorPosY(originalPos.y, 0.5f)
+            .From(new Vector2(originalPos.x, -120f))
+            .SetEase(Ease.OutBack);
+
+        StartCoroutine(StartTyping(dialogue[0], 0.5f));
     }
 
     public void HideDialogueBox()
     {
-        dialogueBox.GetComponent<RectTransform>().DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
-        {
-            LevelManager.instance.NextLevelTransition();
-            dialogueText.text = "";
-            dialogueBox.SetActive(false);
-            UIController.instance.DeactivateDialogue();
-            
-            
-        });
+        dialogueBox.GetComponent<RectTransform>()
+            .DOAnchorPosY(-120f, 0.5f)
+            .SetEase(Ease.InBack)
+            .OnComplete(() =>
+            {
+                LevelManager.instance.NextLevelTransition();
+                dialogueText.text = "";
+                dialogueBox.SetActive(false);
+                UIController.instance.DeactivateDialogue();
+            });
     }
 
     public void SkipTyping()
@@ -96,7 +109,6 @@ public class DialogueController : MonoBehaviour
 
     public void NextDialogueLine()
     {
-
         if (!isTyping)
         {
             currentDialogueIndex++;
@@ -119,7 +131,7 @@ public class DialogueController : MonoBehaviour
         currentIndex = 0;
         dialogueText.text = "";
 
-        //AudioManager.instance.PlayTalking();
+        characterText.text = characterToDialogueNameDic[orderOfTalkers[currentDialogueIndex]];
 
         switch (orderOfTalkers[currentDialogueIndex])
         {
