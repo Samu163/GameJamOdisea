@@ -277,7 +277,12 @@ public class AudioManager : MonoBehaviour
 
     public void PlayParrillaFuego()
     {
-        parrillaFuegoSource.Play();
+        parrillaFuegoSource.DOFade(1f, 0.5f);
+    }
+
+    public void StopParrillaFuego()
+    {
+        parrillaFuegoSource.DOFade(0, 0.5f);
     }
 
     public void PlayPinchos()

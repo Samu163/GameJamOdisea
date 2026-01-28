@@ -1904,6 +1904,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3106003686885004795, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 573201623a633924894762549e37ea3b, type: 3}
+    - target: {fileID: 3106003686885004795, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 573201623a633924894762549e37ea3b, type: 3}
     - target: {fileID: 3431242942089406378, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 56.93112
@@ -1964,6 +1972,18 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: ea1957f9573c62148a49593a396ff88a, type: 3}
+    - target: {fileID: 4933069286806770666, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933069286806770666, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 361418e2e529fa04282adfd3d457fa81, type: 3}
+    - target: {fileID: 4933069286806770666, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 361418e2e529fa04282adfd3d457fa81, type: 3}
     - target: {fileID: 5825197209165683510, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
       propertyPath: m_Resource
       value: 
@@ -1972,6 +1992,14 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 9d4fb648c8d331244a2a2d85f6026d47, type: 3}
+    - target: {fileID: 6352091123934624923, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 415fa541e1060d9439ed11cef1a44748, type: 3}
+    - target: {fileID: 6352091123934624923, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 415fa541e1060d9439ed11cef1a44748, type: 3}
     - target: {fileID: 9117100938635114058, guid: 35e6e3913efecce408d5026e43067f78, type: 3}
       propertyPath: m_Resource
       value: 
