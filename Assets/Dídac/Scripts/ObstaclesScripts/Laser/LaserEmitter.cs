@@ -8,6 +8,11 @@ public class LaserEmitter : MonoBehaviour
     private Vector3 reflectionDir;
     private Vector3 hitPos;
 
+    private void Start()
+    {
+        AudioManager.instance.PlayLaser();
+    }
+
     // Update is called once per frame
     void Update()
     {

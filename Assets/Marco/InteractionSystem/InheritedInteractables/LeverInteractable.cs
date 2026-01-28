@@ -30,6 +30,8 @@ public class LeverInteractable : InputInteractable
             leverObject.transform.DORotate(rotationVector, 0.2f).OnComplete(() => OnChangeLeverState());
             onUnTurn?.Invoke();
         }
+
+        AudioManager.instance.PlayPalanca();
         
         base.Interact(interactor);
     }

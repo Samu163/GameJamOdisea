@@ -25,6 +25,7 @@ public class FireChorro : MonoBehaviour
             if (activationTimer >= activeDuration)
             {
                 fire.SetActive(false);
+                AudioManager.instance.StopParrillaFuego();
                 isActive = false;
                 activationTimer = 0f;
             }
@@ -35,6 +36,7 @@ public class FireChorro : MonoBehaviour
             if (activationTimer >= inactiveDuration)
             {
                 fire.SetActive(true);
+                AudioManager.instance.PlayParrillaFuego();
                 isActive = true;
                 activationTimer = 0f;
             }
