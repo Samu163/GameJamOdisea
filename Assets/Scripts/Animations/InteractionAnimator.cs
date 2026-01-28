@@ -23,6 +23,9 @@ public class InteractionAnimator : MonoBehaviour
     private HashSet<int> activePlates = new HashSet<int>();
     private bool bridgeCompleted = false;
 
+    private bool isAnimationCompleted = false;
+    private bool isLastBlock = false;
+
     private void Start()
     {
         foreach (Transform block in bridgeBlocks)
@@ -30,6 +33,7 @@ public class InteractionAnimator : MonoBehaviour
             if (block != null) block.position = new Vector3(block.position.x, startY, block.position.z);
         }
     }
+
 
     // ---------------------------------------------------------
     // EVENTOS
@@ -73,6 +77,7 @@ public class InteractionAnimator : MonoBehaviour
                 bridgeCompleted = true;
                 StopAllCoroutines();
                 StartCoroutine(BuildSequence());
+                AudioManager.instance.PlayPuente();
             }
         }
         else
@@ -83,10 +88,12 @@ public class InteractionAnimator : MonoBehaviour
             if (conditionMet)
             {
                 StartCoroutine(BuildSequence());
+                AudioManager.instance.PlayPuente();
             }
             else
             {
                 StartCoroutine(CollapseSequence());
+                AudioManager.instance.PlayPuente();
             }
         }
     }
@@ -99,10 +106,20 @@ public class InteractionAnimator : MonoBehaviour
     {
         for (int i = 0; i < bridgeBlocks.Count; i += 2)
         {
-            MovePair(i, targetY);
+
+            if (i == bridgeBlocks.Count - 1)
+            {
+                isLastBlock = true;
+            }
+
+            MovePair(i, targetY, isLastBlock);
+
+            
 
             yield return new WaitForSeconds(delayBetweenPairs);
         }
+
+        
     }
 
     private IEnumerator CollapseSequence()
@@ -116,24 +133,33 @@ public class InteractionAnimator : MonoBehaviour
                 continue;
             }
 
-            MovePair(i, startY, usePrevIndex: true);
+            if (i <= 0)
+            {
+                isLastBlock = true;
+            }
+
+            MovePair(i, startY, isLastBlock, usePrevIndex: true);
+
+            
             yield return new WaitForSeconds(delayBetweenPairs);
         }
+
+       
     }
 
     // ---------------------------------------------------------
     // HELPERS
     // ---------------------------------------------------------
 
-    private void MovePair(int index, float destY, bool usePrevIndex = false)
+    private void MovePair(int index, float destY, bool isLast, bool usePrevIndex = false)
     {
         int secondIndex = usePrevIndex ? index - 1 : index + 1;
 
         if (IsValidBlock(index))
-            StartCoroutine(MoveBlock(bridgeBlocks[index], destY));
+            StartCoroutine(MoveBlock(bridgeBlocks[index], destY, isLast));
 
         if (IsValidBlock(secondIndex))
-            StartCoroutine(MoveBlock(bridgeBlocks[secondIndex], destY));
+            StartCoroutine(MoveBlock(bridgeBlocks[secondIndex], destY, isLast));
     }
     private bool HasMovedFromStart(int index)
     {
@@ -152,7 +178,7 @@ public class InteractionAnimator : MonoBehaviour
         return bridgeBlocks[index].position.y > (startY + 0.05f);
     }
 
-    private IEnumerator MoveBlock(Transform block, float target)
+    private IEnumerator MoveBlock(Transform block, float target, bool isLast)
     {
         while (Mathf.Abs(block.position.y - target) > 0.01f)
         {
@@ -162,5 +188,10 @@ public class InteractionAnimator : MonoBehaviour
             yield return null;
         }
         block.position = new Vector3(block.position.x, target, block.position.z);
+
+        if (isLast)
+        {
+            AudioManager.instance.StopPuente();
+        }
     }
 }

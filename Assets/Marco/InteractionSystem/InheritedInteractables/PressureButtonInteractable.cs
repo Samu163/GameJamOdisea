@@ -21,6 +21,7 @@ public class PressureButtonInteractable : TriggerInteractable
 
         buttonMesh.transform.DOKill();
         buttonMesh.transform.DOScaleY(0.2f, 0.1f).SetEase(Ease.OutExpo);
+        AudioManager.instance.PlayPlaca();
 
         base.Activate();
         onActivate?.Invoke();
@@ -32,6 +33,7 @@ public class PressureButtonInteractable : TriggerInteractable
 
         buttonMesh.transform.DOKill();
         buttonMesh.transform.DOScaleY(defaultScaleY, 0.8f).SetEase(Ease.OutElastic);
+        AudioManager.instance.PlayPlaca();
 
         base.Deactivate();
         onDeactivate?.Invoke();

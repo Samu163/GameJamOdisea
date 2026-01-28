@@ -262,12 +262,28 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRudder()
     {
+        if (rudderSource.isPlaying) return;
         rudderSource.Play();
+    }
+
+    public void PauseRudder()
+    {
+        rudderSource.Pause();
+    }
+
+    public void StopRudder()
+    {
+        rudderSource.Stop();
     }
 
     public void PlayPuente()
     {
         puenteSource.Play();
+    }
+
+    public void StopPuente()
+    {
+        puenteSource.Stop();
     }
 
     public void PlayLaser()

@@ -30,6 +30,7 @@ public class Ballesta : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         projectile.Shoot();
+        AudioManager.instance.PlayBallesta();
         StartCoroutine(EnableShootingAfterDelay(shootInterval));
     }
 

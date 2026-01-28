@@ -56,6 +56,7 @@ public class RudderInteractable : InputInteractable
 
 
         isBeingInteractedWith = true;
+        
         interactor.onInteractionLockMovement?.Invoke();
 
         _isTrackingRotation = false;
@@ -84,6 +85,7 @@ public class RudderInteractable : InputInteractable
         if (_currentInputVector.magnitude < 0.2f)
         {
             _isTrackingRotation = false;
+            AudioManager.instance.PauseRudder();
             return;
         }
 
@@ -93,6 +95,7 @@ public class RudderInteractable : InputInteractable
         {
             _lastStickAngle = currentStickAngle;
             _isTrackingRotation = true;
+            AudioManager.instance.PlayRudder();
             return;
         }
 
@@ -123,6 +126,12 @@ public class RudderInteractable : InputInteractable
         {
             float delta = _currentInputVector.x * linearTurnSpeed * Time.deltaTime;
             ApplyRotation(delta);
+
+            AudioManager.instance.PlayRudder();
+        }
+        else
+        {
+            AudioManager.instance.PauseRudder();
         }
     }
 
@@ -183,6 +192,7 @@ public class RudderInteractable : InputInteractable
             currentPlayerInputScript.onInteractInput.RemoveListener(OnInteractPressedWhileInteracting);
             currentPlayerInputScript.onMovementInput.RemoveListener(OnRudderMovement);
             currentPlayerInputScript = null;
+            AudioManager.instance.StopRudder();
         }
 
         isBeingInteractedWith = false;

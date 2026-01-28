@@ -18,6 +18,7 @@ public class Pinchos : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         spikes.SetActive(true);
+        AudioManager.instance.PlayPinchos();
         StartCoroutine(DeactivateSpikes(deactivateDelay));
     }
 
