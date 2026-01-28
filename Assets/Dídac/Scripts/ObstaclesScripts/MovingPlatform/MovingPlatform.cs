@@ -65,6 +65,11 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+    public void Activate()
+    {
+        isActive = !isActive;
+    }
+
     private IEnumerator PauseAndSwitch()
     {
         isPaused = true;

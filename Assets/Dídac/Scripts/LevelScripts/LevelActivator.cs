@@ -9,7 +9,7 @@ public class LevelActivator : MonoBehaviour
     private void Awake()
     {
         LevelManager.instance.levelActivator = this;
-        ActivateNextLevel(1);
+        ActivateNextLevel(LevelManager.instance.currentLevel);
     }
 
     public void ActivateNextLevel(int index)
