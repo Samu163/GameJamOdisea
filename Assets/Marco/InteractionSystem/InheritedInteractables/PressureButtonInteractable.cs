@@ -7,12 +7,11 @@ public class PressureButtonInteractable : TriggerInteractable
 {
     [SerializeField] private UnityEvent onActivate;
     [SerializeField] private UnityEvent onDeactivate;
-    private MeshRenderer buttonMesh;
+    [SerializeField] public  MeshRenderer buttonMesh;
     float defaultScaleY;
 
     protected void Awake()
     {
-        buttonMesh = GetComponentInChildren<MeshRenderer>();
         defaultScaleY = buttonMesh.transform.localScale.y;
     }
 
