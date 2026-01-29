@@ -194,10 +194,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _angle: 0.001
-    - _caustics_Alpha: 0.26
+    - _caustics_Alpha: 1.22
     - _caustics_Speed: 1
     - _caustics_Strenght: 7.2
-    - _caustics_scale: 9.38
+    - _caustics_scale: 10.12
     - _cell_density: 400
     - _deph_normal: 2.91
     - _foam: 1
@@ -229,8 +229,8 @@ Material:
     - _Vector4: {r: 0, g: 0, b: 0, a: 0}
     - _Wave_Direction: {r: 0.5, g: 0.1, b: 0, a: 0}
     - _Waves_direction: {r: 1, g: 1, b: 1, a: 0}
-    - _deep_water_color: {r: 0.25728753, g: 0.19215018, b: 0.32075468, a: 0.7607843}
+    - _deep_water_color: {r: 0.25728747, g: 0.19215012, b: 0.32075462, a: 0.9647059}
     - _foam_color: {r: 1, g: 1, b: 1, a: 1}
-    - _shallow_water_color: {r: 0.50008434, g: 0.38407794, b: 0.5943396, a: 0.5254902}
+    - _shallow_water_color: {r: 0.5000843, g: 0.3840779, b: 0.5943396, a: 0.43137255}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
