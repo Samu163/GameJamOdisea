@@ -433,6 +433,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1992907022170750173, guid: d51cdad61aa493b4f99261512fea6d9c, type: 3}
+      propertyPath: linearTurnSpeed
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 3912551587602151285, guid: d51cdad61aa493b4f99261512fea6d9c, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -476,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 4210754121165081608, guid: d51cdad61aa493b4f99261512fea6d9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426277188698135121, guid: d51cdad61aa493b4f99261512fea6d9c, type: 3}
+      propertyPath: linearTurnSpeed
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4661795606420204566, guid: d51cdad61aa493b4f99261512fea6d9c, type: 3}
       propertyPath: m_LocalPosition.y

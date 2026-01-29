@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.29781076
       objectReference: {fileID: 0}
+    - target: {fileID: 7117019168941305412, guid: 8b9ba075d42fbcc409a161041619b259, type: 3}
+      propertyPath: linearTurnSpeed
+      value: 130
+      objectReference: {fileID: 0}
     - target: {fileID: 7242254709232441330, guid: 8b9ba075d42fbcc409a161041619b259, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.93700194
@@ -278,6 +282,10 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 760293606}
+    - target: {fileID: 8197426847145028386, guid: 8b9ba075d42fbcc409a161041619b259, type: 3}
+      propertyPath: linearTurnSpeed
+      value: 130
+      objectReference: {fileID: 0}
     - target: {fileID: 8612588080593048212, guid: 8b9ba075d42fbcc409a161041619b259, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.93700194
@@ -798,6 +806,10 @@ PrefabInstance:
     - target: {fileID: 3707762257133678414, guid: 76e34c37f21e92c46b4e82d987f5877a, type: 3}
       propertyPath: rotationAngle
       value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988955552818875521, guid: 76e34c37f21e92c46b4e82d987f5877a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 4287171175957171922, guid: 76e34c37f21e92c46b4e82d987f5877a, type: 3}
       propertyPath: m_Name
