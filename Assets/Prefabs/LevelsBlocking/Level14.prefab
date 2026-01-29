@@ -2428,6 +2428,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4210754121165081608}
     m_Modifications:
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: nameTalkers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: finalDialogues.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'nameTalkers.Array.data[1]'
+      value: Mother
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'nameTalkers.Array.data[2]'
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'nameTalkers.Array.data[3]'
+      value: Mother
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'nameTalkers.Array.data[4]'
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'finalDialogues.Array.data[0]'
+      value: "Mira mam\xE1, me he hecho un tatuaje"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'finalDialogues.Array.data[1]'
+      value: "Qui\xE9n te ha hecho un tatuaje en este sitio?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'finalDialogues.Array.data[2]'
+      value: "Un cham\xE1n muy majo"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'finalDialogues.Array.data[3]'
+      value: Te dije que no hablaras con desconocidos
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118599593269573671, guid: c12442ed00113024ba108626514c29fa, type: 3}
+      propertyPath: 'finalDialogues.Array.data[4]'
+      value: "No hemos hablado, nos hemos comunicado con se\xF1ales"
+      objectReference: {fileID: 0}
     - target: {fileID: 2588985446537016582, guid: c12442ed00113024ba108626514c29fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.5
