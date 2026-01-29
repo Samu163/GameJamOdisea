@@ -55,12 +55,13 @@ public class GameManager : MonoBehaviour
     {
         LevelManager.instance.currentTemple = 1;
         SceneTransitionManager.instance.ChangeScene("Temple 1");
+        AudioManager.instance.PlayTemple1Music();
     }
     public void LoadCinematic()
     {
         LevelManager.instance.currentTemple = 1;
         SceneTransitionManager.instance.ChangeScene("Cinematica");
-        AudioManager.instance.PlayTemple1Music();
+        
     }
 
     public void LoadTemple2()

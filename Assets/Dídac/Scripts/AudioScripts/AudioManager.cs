@@ -134,6 +134,7 @@ public class AudioManager : MonoBehaviour
             titelMusic.DOFade(0, 1f).OnComplete(() =>
             {
                 titelMusic.Stop();
+                gameMusic.Stop();
                 gameMusic.clip = levelClips[0];
                 gameMusic.Play();
                 titelMusic.volume = startVolume;
@@ -151,6 +152,7 @@ public class AudioManager : MonoBehaviour
             titelMusic.DOFade(0, 1f).OnComplete(() =>
             {
                 titelMusic.Stop();
+                gameMusic.Stop();
                 gameMusic.clip = levelClips[1];
                 gameMusic.Play();
                 titelMusic.volume = startVolume;
@@ -168,6 +170,7 @@ public class AudioManager : MonoBehaviour
             titelMusic.DOFade(0, 1f).OnComplete(() =>
             {
                 titelMusic.Stop();
+                gameMusic.Stop();
                 gameMusic.clip = levelClips[2];
                 gameMusic.Play();
                 titelMusic.volume = startVolume;
