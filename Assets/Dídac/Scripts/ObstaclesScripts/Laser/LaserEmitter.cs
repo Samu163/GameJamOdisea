@@ -10,6 +10,7 @@ public class LaserEmitter : MonoBehaviour
 
     // Variables internas
     private MirrorLaser currentHittingMirror;
+    private LaserReceiver currentHittingReceiver;
     private Vector3 reflectionDir;
     private Vector3 hitPos;
 
@@ -68,13 +69,37 @@ public class LaserEmitter : MonoBehaviour
                 currentHittingMirror.ActivateMirror(reflectionDir, hitPos);
             }
         }
+        else if (hitInfo.collider.CompareTag("LaserReceiver"))
+        {
+            LaserReceiver receiver = hitInfo.collider.GetComponent<LaserReceiver>();
+
+            if (currentHittingReceiver != null && currentHittingReceiver != receiver)
+                currentHittingReceiver.DeactivateReceiver();
+
+            currentHittingReceiver = receiver;
+            if (currentHittingReceiver != null)
+                currentHittingReceiver.ActivateReceiver();
+
+            // Limpiamos mirror si hubiera
+            if (currentHittingMirror != null) { currentHittingMirror.DeactivateMirror(); currentHittingMirror = null; }
+        }
         else
         {
-            if (currentHittingMirror != null)
-            {
-                currentHittingMirror.DeactivateMirror();
-                currentHittingMirror = null;
-            }
+            CleanUpInteractions();
+        }
+    }
+
+    void CleanUpInteractions()
+    {
+        if (currentHittingMirror != null)
+        {
+            currentHittingMirror.DeactivateMirror();
+            currentHittingMirror = null;
+        }
+        if (currentHittingReceiver != null)
+        {
+            currentHittingReceiver.DeactivateReceiver();
+            currentHittingReceiver = null;
         }
     }
 
