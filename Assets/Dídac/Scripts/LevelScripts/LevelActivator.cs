@@ -6,7 +6,7 @@ public class LevelActivator : MonoBehaviour
 {
     public List<GameObject> levels;
 
-    private void Awake()
+    private void Start()
     {
         LevelManager.instance.levelActivator = this;
         ActivateNextLevel(LevelManager.instance.currentLevel);
