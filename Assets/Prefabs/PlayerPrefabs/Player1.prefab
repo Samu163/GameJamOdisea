@@ -308,6 +308,7 @@ MonoBehaviour:
   jumpDelay: 0.1
   jumpLockDuration: 0.3
   jumpCooldown: 0.8
+  timeToJumpAfterRetract: 0
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
@@ -387,6 +388,7 @@ MonoBehaviour:
   animator3: {fileID: 9202561174882658570}
   runSpeedThreshold: 0.5
   speedTransitionSpeed: 5
+  forceIdleDuringStretch: 1
   syncAllAnimators: 1
   showDebugInfo: 0
 --- !u!1 &1658133910859851379
@@ -799,7 +801,7 @@ Transform:
   m_GameObject: {fileID: 4320282026202114761}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
-  m_LocalPosition: {x: -0.05, y: -0.04, z: -0.24}
+  m_LocalPosition: {x: -0.05, y: 1.21, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

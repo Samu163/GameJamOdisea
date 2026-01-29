@@ -26,6 +26,8 @@ public class InteractionAnimator : MonoBehaviour
     private bool isAnimationCompleted = false;
     private bool isLastBlock = false;
 
+    public Rigidbody boxRigidbody;
+
     private void Start()
     {
         foreach (Transform block in bridgeBlocks)
@@ -76,6 +78,12 @@ public class InteractionAnimator : MonoBehaviour
             {
                 bridgeCompleted = true;
                 StopAllCoroutines();
+
+                if (boxRigidbody != null)
+                {
+                    boxRigidbody.useGravity = false;
+                }
+
                 StartCoroutine(BuildSequence());
                 AudioManager.instance.PlayPuente();
             }
@@ -188,6 +196,11 @@ public class InteractionAnimator : MonoBehaviour
             yield return null;
         }
         block.position = new Vector3(block.position.x, target, block.position.z);
+
+        if (boxRigidbody)
+        {
+            boxRigidbody.useGravity = true;
+        }
 
         if (isLast)
         {
