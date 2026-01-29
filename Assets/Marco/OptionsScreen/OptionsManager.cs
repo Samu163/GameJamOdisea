@@ -6,4 +6,9 @@ public class OptionsManager : MonoBehaviour
     {
         SceneTransitionManager.instance.ChangeScene("MainMenu");
     }
+
+    public void PlayButtonConfirm()
+    {
+        AudioManager.instance.PlayUIConfirmSfx();
+    }
 }
