@@ -904,6 +904,10 @@ PrefabInstance:
       propertyPath: rangeInDegrees
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 1321604231759905176, guid: 730350573f877d244bfd63cea1827fbb, type: 3}
+      propertyPath: linearTurnSpeed
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1757342797080154619, guid: 730350573f877d244bfd63cea1827fbb, type: 3}
       propertyPath: cameraFollow
       value: 
@@ -914,7 +918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3908718767477200502, guid: 730350573f877d244bfd63cea1827fbb, type: 3}
       propertyPath: activeDuration
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4869481412194587380, guid: 730350573f877d244bfd63cea1827fbb, type: 3}
       propertyPath: rangeInDegrees
