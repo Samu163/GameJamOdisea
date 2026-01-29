@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: water
+  m_Name: water 2
   m_Shader: {fileID: -6465566751694194690, guid: 7afefe52747e09c4091f05f19eb4b2f6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -152,7 +152,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Depth: 0.17
+    - _Depth: 0.1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -168,15 +168,15 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Metallic: 0.165
-    - _Normal_strenght: 0.32
+    - _Metallic: 0.22
+    - _Normal_strenght: 0.495
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _Peak_Sharpness: 0.01
     - _QueueControl: 1
     - _QueueOffset: 2
     - _ReceiveShadows: 1
-    - _Refraction_Power: 1.28
+    - _Refraction_Power: 2
     - _Rim_strenght: 31.8
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -194,10 +194,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _angle: 0.001
-    - _caustics_Alpha: 0.05
-    - _caustics_Speed: 2
-    - _caustics_Strenght: 3.74
-    - _caustics_scale: 11.08
+    - _caustics_Alpha: 0.26
+    - _caustics_Speed: 1
+    - _caustics_Strenght: 7.2
+    - _caustics_scale: 9.38
     - _cell_density: 400
     - _deph_normal: 2.91
     - _foam: 1
@@ -205,7 +205,7 @@ Material:
     - _foam_cutoff: 2.68
     - _foam_scale: 1.11
     - _foam_scale_1: 0.000001
-    - _foam_speed: 4.3
+    - _foam_speed: 4.73
     - _fr: 2.33
     - _highFrequeny: 1
     - _intensit: 2
@@ -229,8 +229,8 @@ Material:
     - _Vector4: {r: 0, g: 0, b: 0, a: 0}
     - _Wave_Direction: {r: 0.5, g: 0.1, b: 0, a: 0}
     - _Waves_direction: {r: 1, g: 1, b: 1, a: 0}
-    - _deep_water_color: {r: 0.5853821, g: 0.7169812, b: 0.503916, a: 0.22745098}
+    - _deep_water_color: {r: 0.25728753, g: 0.19215018, b: 0.32075468, a: 0.7607843}
     - _foam_color: {r: 1, g: 1, b: 1, a: 1}
-    - _shallow_water_color: {r: 0.31068504, g: 0.3773585, b: 0.2758989, a: 0.6156863}
+    - _shallow_water_color: {r: 0.50008434, g: 0.38407794, b: 0.5943396, a: 0.5254902}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
