@@ -549,7 +549,7 @@ MonoBehaviour:
   body: {fileID: 2776692672154900002}
   head: {fileID: 589675609805453749}
   bottom: {fileID: 5102935307496450452}
-  alargarAmount: 0.5
+  alargarAmount: 0.6
   maxRange: 3.5
   isAlargarHeld: 0
   jumpForceUp: 6
@@ -577,8 +577,8 @@ MonoBehaviour:
   frontObstacleOffset: {x: 0, y: 0.5, z: -2.6}
   grabDetectionRadius: 0.6
   isJumping: 0
-  bodyExtensionRatio: 1.15
-  bodyAnchorOffset: 0.9
+  bodyExtensionRatio: 1.05
+  bodyAnchorOffset: 0.82
 --- !u!136 &8514550286223105392
 CapsuleCollider:
   m_ObjectHideFlags: 0
