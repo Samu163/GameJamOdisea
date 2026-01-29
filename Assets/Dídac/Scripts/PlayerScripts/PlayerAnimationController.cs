@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Controla las animaciones del jugador basándose en su estado de movimiento y alargar
 /// SOPORTA 3 ANIMATORS SIMULTÁNEOS - Todos se sincronizan automáticamente
+/// NUEVO: Fuerza animación a Idle durante el estiramiento
 /// </summary>
 public class PlayerAnimationController : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private float speedTransitionSpeed = 5f;
     [Tooltip("Velocidad de transición del parámetro Speed")]
     
+    [Header("Stretch Animation Reset")]
+    [SerializeField] private bool forceIdleDuringStretch = true;
+    [Tooltip("Si está activo, fuerza la animación a Idle durante el estiramiento")]
+    
     [Header("Sync Settings")]
     [SerializeField] private bool syncAllAnimators = true;
     [Tooltip("Si está activo, todos los animators se sincronizan. Si no, solo se usa animator1")]
@@ -49,6 +54,9 @@ public class PlayerAnimationController : MonoBehaviour
     
     // Array de animators activos para fácil iteración
     private Animator[] activeAnimators;
+    
+    // NUEVO: Control de pausa de animaciones
+    private bool areAnimationsFrozen = false;
     
     private void Awake()
     {
@@ -115,10 +123,71 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if (activeAnimators == null || activeAnimators.Length == 0) return;
         
+        // NUEVO: Controlar reset a Idle durante estiramiento
+        if (forceIdleDuringStretch)
+        {
+            UpdateIdleForce();
+        }
+        
         UpdateSpeedParameter();
         UpdateAlargarState();
         UpdateJumpState();
     }
+    
+    #region Idle Force Control
+    
+    /// <summary>
+    /// NUEVO: Fuerza la animación a Idle durante el estiramiento
+    /// </summary>
+    private void UpdateIdleForce()
+    {
+        if (playerAlargar == null) return;
+        
+        bool shouldForceIdle = playerAlargar.isAlargarHeld;
+        
+        // Solo actualizar si hay cambio de estado
+        if (shouldForceIdle != areAnimationsFrozen)
+        {
+            if (shouldForceIdle)
+            {
+                ForceIdleAnimation();
+            }
+            else
+            {
+                ReleaseIdleForce();
+            }
+            
+            areAnimationsFrozen = shouldForceIdle;
+        }
+    }
+    
+    /// <summary>
+    /// NUEVO: Fuerza todas las animaciones a volver a Idle (Speed = 0)
+    /// </summary>
+    private void ForceIdleAnimation()
+    {
+        Debug.Log("⏸️ Forzando animación a Idle durante estiramiento");
+        
+        foreach (Animator anim in activeAnimators)
+        {
+            if (anim != null)
+            {
+                // Forzar Speed a 0 para que vuelva a Idle
+                anim.SetFloat(Speed, 0f);
+            }
+        }
+    }
+    
+    /// <summary>
+    /// NUEVO: Libera el control de Idle y permite animaciones normales
+    /// </summary>
+    private void ReleaseIdleForce()
+    {
+        Debug.Log("▶️ Liberando control de Idle - animaciones normales");
+        // No hace nada aquí porque UpdateSpeedParameter se encargará de actualizar
+    }
+    
+    #endregion
     
     #region Speed & Movement
     
@@ -128,6 +197,12 @@ public class PlayerAnimationController : MonoBehaviour
     private void UpdateSpeedParameter()
     {
         if (playerMovement == null) return;
+        
+        // NUEVO: Si está forzando Idle, no actualizar Speed
+        if (forceIdleDuringStretch && playerAlargar != null && playerAlargar.isAlargarHeld)
+        {
+            return;
+        }
         
         float targetSpeed = playerMovement.GetCurrentSpeed();
         
@@ -278,13 +353,16 @@ public class PlayerAnimationController : MonoBehaviour
         if (!showDebugInfo) return; // Solo si está activado en el Inspector
         
         #if UNITY_EDITOR
-        GUILayout.BeginArea(new Rect(10, 10, 350, 250));
+        GUILayout.BeginArea(new Rect(10, 10, 350, 300));
         GUILayout.Box("=== Player Animation Debug ===");
         GUILayout.Label($"Active Animators: {activeAnimators.Length}");
         GUILayout.Label($"Speed: {currentSpeed:F2}");
         GUILayout.Label($"IsRunning: {IsRunning()}");
         GUILayout.Label($"IsAlargarHeld: {playerAlargar?.isAlargarHeld}");
         GUILayout.Label($"IsJumping: {playerAlargar?.isJumping}");
+        
+        GUILayout.Space(5);
+        GUILayout.Label($"⏸️ Forcing Idle: {areAnimationsFrozen}");
         
         GUILayout.Space(10);
         GUILayout.Label("--- Animators Status ---");
@@ -295,7 +373,8 @@ public class PlayerAnimationController : MonoBehaviour
                 string state = activeAnimators[i].GetCurrentAnimatorStateInfo(0).IsName("Idle") ? "Idle" :
                                activeAnimators[i].GetCurrentAnimatorStateInfo(0).IsName("Run") ? "Run" :
                                activeAnimators[i].GetCurrentAnimatorStateInfo(0).IsName("Alargar") ? "Alargar" : "Other";
-                GUILayout.Label($"Animator {i + 1}: {state}");
+                float speedParam = activeAnimators[i].GetFloat(Speed);
+                GUILayout.Label($"Animator {i + 1}: {state} (Speed param: {speedParam:F2})");
             }
         }
         

@@ -576,7 +576,7 @@ MonoBehaviour:
   frontObstacleOffset: {x: 0, y: 0.5, z: 0}
   grabDetectionRadius: 0.6
   isJumping: 0
-  bodyExtensionRatio: 2.2
+  bodyExtensionRatio: 1.15
   bodyAnchorOffset: 0.9
 --- !u!136 &8514550286223105392
 CapsuleCollider:
@@ -636,6 +636,7 @@ MonoBehaviour:
   animator3: {fileID: 4830499564012409787}
   runSpeedThreshold: 0.5
   speedTransitionSpeed: 5
+  forceIdleDuringStretch: 1
   syncAllAnimators: 1
   showDebugInfo: 0
 --- !u!1 &2776692672154900002
