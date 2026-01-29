@@ -30,9 +30,14 @@ public class DialogueController : MonoBehaviour
 
     private Dictionary<string, float> characterPitchDic;
     private Dictionary<string, string> characterToDialogueNameDic;
+    private Dictionary<string, GameObject> characterToImageDic;
 
     public UnityEvent enableEvent;
     public UnityEvent disableEvent;
+
+    public GameObject fatherImage;
+    public GameObject motherImage;
+    public GameObject pupImage;
 
     private void Start()
     {
@@ -52,6 +57,13 @@ public class DialogueController : MonoBehaviour
             ["Father"] = "Papa Salsicha",
             ["Mother"] = "Mama Salsicha"
         };
+
+        characterToImageDic = new()
+        {
+            ["Father"] = fatherImage,
+            ["Mother"] = motherImage,
+            ["NPC"] = pupImage
+        };
     }
 
     public void ShowDialogueBox(Sprite NPCsprite, string[] nameTalker, string[] dialogue)
@@ -62,21 +74,21 @@ public class DialogueController : MonoBehaviour
         currentDialogue = dialogue;
         orderOfTalkers = nameTalker;
 
-        switch (orderOfTalkers[currentDialogueIndex])
-        {
-            case "NPC":
-                talkingSprite.sprite = npcSprite;
-                break;
-            case "Father":
-                talkingSprite.sprite = fatherSprite;
-                break;
-            case "Mother":
-                talkingSprite.sprite = motherSprite;
-                break;
-            default:
-                talkingSprite.sprite = null;
-                break;
-        }
+        //switch (orderOfTalkers[currentDialogueIndex])
+        //{
+        //    case "NPC":
+        //        talkingSprite.sprite = npcSprite;
+        //        break;
+        //    case "Father":
+        //        talkingSprite.sprite = fatherSprite;
+        //        break;
+        //    case "Mother":
+        //        talkingSprite.sprite = motherSprite;
+        //        break;
+        //    default:
+        //        talkingSprite.sprite = null;
+        //        break;
+        //}
 
         dialogueBox.SetActive(true);
 
@@ -104,6 +116,21 @@ public class DialogueController : MonoBehaviour
                 dialogueBox.SetActive(false);
                 UIController.instance.DeactivateDialogue();
             });
+    }
+
+    void ShowCorrectTalkingSprite(string talker)
+    {
+        foreach (var character in characterToImageDic)
+        {
+            if (character.Key == talker)
+            {
+                character.Value.SetActive(true);
+            }
+            else
+            {
+                character.Value.SetActive(false);
+            }
+        }
     }
 
     public void SkipTyping()
@@ -134,6 +161,7 @@ public class DialogueController : MonoBehaviour
 
     public IEnumerator StartTyping(string dialogue, float delayBeforeStart)
     {
+        ShowCorrectTalkingSprite(orderOfTalkers[currentDialogueIndex]);
         yield return new WaitForSeconds(delayBeforeStart);
         isTyping = true;
         currentIndex = 0;
@@ -141,21 +169,21 @@ public class DialogueController : MonoBehaviour
 
         characterText.text = characterToDialogueNameDic[orderOfTalkers[currentDialogueIndex]];
 
-        switch (orderOfTalkers[currentDialogueIndex])
-        {
-            case "NPC":
-                talkingSprite.sprite = npcSprite;
-                break;
-            case "Father":
-                talkingSprite.sprite = fatherSprite;
-                break;
-            case "Mother":
-                talkingSprite.sprite = motherSprite;
-                break;
-            default:
-                talkingSprite.sprite = null;
-                break;
-        }
+        //switch (orderOfTalkers[currentDialogueIndex])
+        //{
+        //    case "NPC":
+        //        talkingSprite.sprite = npcSprite;
+        //        break;
+        //    case "Father":
+        //        talkingSprite.sprite = fatherSprite;
+        //        break;
+        //    case "Mother":
+        //        talkingSprite.sprite = motherSprite;
+        //        break;
+        //    default:
+        //        talkingSprite.sprite = null;
+        //        break;
+        //}
 
         while (currentIndex < dialogue.Length && isTyping)
         {
