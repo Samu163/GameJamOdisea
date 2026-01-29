@@ -6889,7 +6889,7 @@ Transform:
   m_GameObject: {fileID: 3872978742228147279}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: 9.614998, y: -0.21000296, z: 8}
+  m_LocalPosition: {x: 9.614998, y: -0.83, z: 8}
   m_LocalScale: {x: 1, y: 29.677061, z: 14.631927}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7489,6 +7489,7 @@ MonoBehaviour:
   startY: -3.5
   riseSpeed: 3
   delayBetweenPairs: 0.5
+  boxRigidbody: {fileID: 0}
 --- !u!1 &5181697829614850908
 GameObject:
   m_ObjectHideFlags: 0
@@ -39246,7 +39247,7 @@ PrefabInstance:
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: buttonMesh
       value: 
-      objectReference: {fileID: 3521101740743375740}
+      objectReference: {fileID: 0}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -39268,11 +39269,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
---- !u!23 &3521101740743375740 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6296391495085705021, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
-  m_PrefabInstance: {fileID: 7474904271693773889}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9085677429384682536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849570625603592297, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
