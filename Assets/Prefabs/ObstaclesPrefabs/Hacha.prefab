@@ -208,9 +208,9 @@ GameObject:
   - component: {fileID: 1267081215549523342}
   - component: {fileID: 1191851165414086548}
   - component: {fileID: 6946313849040870390}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hacha
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
