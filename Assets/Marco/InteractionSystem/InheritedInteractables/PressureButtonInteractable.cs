@@ -3,7 +3,7 @@ using DG.Tweening;
 using System.Collections; 
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider))] // Asegura que tenga collider
+//[RequireComponent(typeof(Collider))] // Asegura que tenga collider
 public class PressureButtonInteractable : TriggerInteractable
 {
     [Header("Pressure Settings")]
@@ -24,10 +24,13 @@ public class PressureButtonInteractable : TriggerInteractable
 
     protected void Awake()
     {
+        if (buttonMesh == null)
+        {
+            buttonMesh = transform.parent.GetComponentInChildren<MeshRenderer>();
+        }
+
         defaultScaleY = buttonMesh.transform.localScale.z;
 
-        // Aseguramos que el collider sea Trigger
-        GetComponent<Collider>().isTrigger = true;
     }
 
     // ---------------------------------------------------------

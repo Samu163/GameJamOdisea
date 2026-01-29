@@ -258,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_Size.x
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_Size.y
@@ -266,7 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117958351331344023, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_Size.z
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 259559278948409601, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: InteractorCollidersToExclude.Array.size
@@ -327,6 +327,22 @@ PrefabInstance:
     - target: {fileID: 2675380327334202454, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063430382994041701, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9988961
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063430382994041701, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.04697397
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063430382994041701, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5063430382994041701, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6370612992588965886, guid: aab77d877d69c9947ac357b9c4b91287, type: 3}
       propertyPath: m_Layer
