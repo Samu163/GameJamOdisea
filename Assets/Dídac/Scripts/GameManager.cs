@@ -46,6 +46,11 @@ public class GameManager : MonoBehaviour
         SceneTransitionManager.instance.ChangeScene("TemplesMap");
     }
 
+    public void GoToOptions()
+    {
+        SceneTransitionManager.instance.ChangeScene("Options");
+    }
+
     public void LoadTemple1()
     {
         LevelManager.instance.currentTemple = 1;
