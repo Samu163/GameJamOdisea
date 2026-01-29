@@ -735,6 +735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grabbable
       objectReference: {fileID: 0}
+    - target: {fileID: 4852538882724069878, guid: 02fca13c4f58f434cb4451e21a6db2aa, type: 3}
+      propertyPath: handleTransform
+      value: 
+      objectReference: {fileID: 6261011060040922352}
     - target: {fileID: 6536290798485615972, guid: 02fca13c4f58f434cb4451e21a6db2aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9
@@ -2007,11 +2011,11 @@ PrefabInstance:
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8992955938010924904}
+      objectReference: {fileID: 2524028183322682891}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8992955938010924904}
+      objectReference: {fileID: 2524028183322682891}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ActivatePlate
@@ -2022,11 +2026,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5899,6 +5903,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8449105283685207308, guid: b7a791346cbca9a44a727c22870c75fa, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449105283685207308, guid: b7a791346cbca9a44a727c22870c75fa, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6154,11 +6166,11 @@ PrefabInstance:
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8992955938010924904}
+      objectReference: {fileID: 2524028183322682891}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8992955938010924904}
+      objectReference: {fileID: 2524028183322682891}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ActivatePlate
@@ -6169,11 +6181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5296744834538404403, guid: 20563d2fd258690448be6546c8db42ea, type: 3}
       propertyPath: onDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6257,7 +6269,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2575823879133559648, guid: f30985d174a647e448b28a89a487770c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.73135
+      value: -3.18
       objectReference: {fileID: 0}
     - target: {fileID: 2575823879133559648, guid: f30985d174a647e448b28a89a487770c, type: 3}
       propertyPath: m_LocalPosition.y

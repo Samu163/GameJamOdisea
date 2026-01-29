@@ -23,6 +23,8 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 target;
     private bool isPaused = false;
 
+    public bool startFromInitialPos = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,6 +47,11 @@ public class MovingPlatform : MonoBehaviour
         pointA = initialPosition - axis * movementDistance;
         pointB = initialPosition + axis * movementDistance;
         target = pointB;
+
+        if (startFromInitialPos)
+        {
+            transform.position = pointA;
+        }
     }
 
     private void FixedUpdate()
