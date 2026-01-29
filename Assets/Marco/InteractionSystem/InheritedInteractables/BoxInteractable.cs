@@ -66,6 +66,7 @@ public class BoxInteractable : InputInteractable
     // Corroutine to lerp the box's position to the player's hands before parenting
     private IEnumerator GrabRoutine(Transform grabPoint)
     {
+        meshCollider.enabled = false;
         float elapsed = 0f;
 
         while (elapsed < grabTime)
@@ -83,6 +84,7 @@ public class BoxInteractable : InputInteractable
         }
 
         FakeParent(grabPoint);
+        meshCollider.enabled = true;
 
     }
 
