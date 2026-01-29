@@ -161,8 +161,9 @@ public class DialogueController : MonoBehaviour
 
     public IEnumerator StartTyping(string dialogue, float delayBeforeStart)
     {
-        ShowCorrectTalkingSprite(orderOfTalkers[currentDialogueIndex]);
+        
         yield return new WaitForSeconds(delayBeforeStart);
+        ShowCorrectTalkingSprite(orderOfTalkers[currentDialogueIndex]);
         isTyping = true;
         currentIndex = 0;
         dialogueText.text = "";
