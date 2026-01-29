@@ -101,7 +101,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 230
+        y: 314
         width: 214
         height: 80
       alignment: 0
@@ -123,7 +123,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 105
+        y: 189
         width: 323
         height: 102
       alignment: 0
@@ -145,7 +145,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 19
+        y: 103
         width: 193
         height: 81
       alignment: 0
@@ -158,6 +158,28 @@ TextureImporter:
       bones: []
       spriteID: f1b045775c9d6dc45a3cd5d91ca47f86
       internalID: 276888190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleTextRenders_3
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 14
+        width: 196
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 770ddad0cc6abde4cbe5a774daaed726
+      internalID: 356318806
       vertices: []
       indices: 
       edges: []
@@ -181,6 +203,8 @@ TextureImporter:
       TitleTextRenders_0: 304373555
       TitleTextRenders_1: 2066997201
       TitleTextRenders_2: 276888190
+      TitleTextRenders_3: 356318806
+      TitleTextRenders_4: 965757346
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
