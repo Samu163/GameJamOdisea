@@ -105,15 +105,15 @@ public class PlayerSelector : MonoBehaviour
         playerInputManager.playerPrefab = player1Prefab;
         playerInputManager.JoinPlayer(1, -1, "Gamepad", GameManager.instance.player1Device);
 
-        if (IsDeviceGamepad(GameManager.instance.player1Device))
-        {
-            playerInputManager.playerPrefab = player2Prefab;
-            playerInputManager.JoinPlayer(2, -1, "Gamepad", GameManager.instance.player2Device);
-        }
-        else
+        if (!IsDeviceGamepad(GameManager.instance.player1Device))
         {
             playerInputManager.playerPrefab = player2KeyboardPrefab;
             playerInputManager.JoinPlayer(2, -1, "Keyboard", GameManager.instance.player2Device);
+        }
+        else
+        {
+            playerInputManager.playerPrefab = player2Prefab;
+            playerInputManager.JoinPlayer(2, -1, "Gamepad", GameManager.instance.player2Device);
         }
         player1Selected.gameObject.SetActive(false);
         player2Selected.gameObject.SetActive(false);

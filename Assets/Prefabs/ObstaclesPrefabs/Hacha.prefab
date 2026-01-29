@@ -207,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267081215549523342}
   - component: {fileID: 1191851165414086548}
+  - component: {fileID: 6946313849040870390}
   m_Layer: 0
   m_Name: Hacha
   m_TagString: Untagged
@@ -251,3 +252,24 @@ MonoBehaviour:
   objectType: 0
   gizmoColor: {r: 0, g: 1, b: 0, a: 0.3}
   showGizmos: 1
+--- !u!65 &6946313849040870390
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850165360292630026}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.196002, y: 2.344041, z: 2.4497185}
+  m_Center: {x: 0.047729015, y: -0.67202055, z: -0.1184544}

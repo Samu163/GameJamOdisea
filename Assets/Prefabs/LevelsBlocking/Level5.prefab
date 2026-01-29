@@ -6416,6 +6416,7 @@ MonoBehaviour:
   startY: -2.5
   riseSpeed: 3
   delayBetweenPairs: 0.5
+  boxRigidbody: {fileID: 0}
 --- !u!1 &2001271851089520510
 GameObject:
   m_ObjectHideFlags: 0
@@ -34866,6 +34867,7 @@ MonoBehaviour:
   startY: 0
   riseSpeed: 3
   delayBetweenPairs: 0.5
+  boxRigidbody: {fileID: 0}
 --- !u!4 &1866348871776296011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2597093210177116502, guid: f0dcfbee467a95b4c8376852f0e5d092, type: 3}
@@ -36822,6 +36824,7 @@ MonoBehaviour:
   startY: 8
   riseSpeed: 3
   delayBetweenPairs: 0.5
+  boxRigidbody: {fileID: 0}
 --- !u!4 &5541062468147054429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2597093210177116502, guid: 108e144456a11214dab5a892db612548, type: 3}
