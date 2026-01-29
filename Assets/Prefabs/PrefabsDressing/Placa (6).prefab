@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3944870259928088385, guid: 7237d95ebb1306741b5f2eefb60530d8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a03a33a83933ecc4c90b7c79add6fc09, type: 2}
+    - target: {fileID: -1130311065217377561, guid: 7237d95ebb1306741b5f2eefb60530d8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a03a33a83933ecc4c90b7c79add6fc09, type: 2}
     - target: {fileID: 919132149155446097, guid: 7237d95ebb1306741b5f2eefb60530d8, type: 3}
       propertyPath: m_Name
       value: Placa (6)
