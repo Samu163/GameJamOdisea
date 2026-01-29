@@ -54,8 +54,8 @@ public class DialogueController : MonoBehaviour
         characterToDialogueNameDic = new()
         {
             ["NPC"] = "Cachorrito",
-            ["Father"] = "Papa Salsicha",
-            ["Mother"] = "Mama Salsicha"
+            ["Father"] = "Papa Salchicha",
+            ["Mother"] = "Mama Salchicha"
         };
 
         characterToImageDic = new()

@@ -2275,10 +2275,6 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 1811488987}
-    - target: {fileID: 4616128848913731464, guid: ed7c895a512880746b1acab09cd01cbc, type: 3}
-      propertyPath: targetY
-      value: 0.8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2336,6 +2332,10 @@ PrefabInstance:
     - target: {fileID: 2384497319885853582, guid: 4b637f0f6bee78a43a07f096e64e6409, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628726090658306175, guid: 4b637f0f6bee78a43a07f096e64e6409, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.11
       objectReference: {fileID: 0}
     - target: {fileID: 4349123572407180556, guid: 4b637f0f6bee78a43a07f096e64e6409, type: 3}
       propertyPath: m_Name

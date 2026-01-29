@@ -109,6 +109,7 @@ public class LevelManager : MonoBehaviour
             templesUnlocked++;
             currentLevel = 1;
             SceneTransitionManager.instance.ChangeScene("TemplesMap");
+            AudioManager.instance.PlayTitleMusic();
         }
 
         

@@ -1294,7 +1294,7 @@ PrefabInstance:
       objectReference: {fileID: 1279040785}
     - target: {fileID: 3056560001683440755, guid: 2dded71daa2463244b6ba8a5f8714fbd, type: 3}
       propertyPath: currentSceneName
-      value: Temple 2
+      value: Temple 3
       objectReference: {fileID: 0}
     - target: {fileID: 6157915428900874374, guid: 2dded71daa2463244b6ba8a5f8714fbd, type: 3}
       propertyPath: m_Name
@@ -1688,6 +1688,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level15
       objectReference: {fileID: 0}
+    - target: {fileID: 1206624643088415275, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: movementDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1206624643088415275, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: startFromInitialPos
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439953216422305546, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: startY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439953216422305546, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: targetY
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632347644631853464, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: targetY
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206243736587013442, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 7959026183571683253, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
       propertyPath: cameraFollow
       value: 
@@ -1731,6 +1755,14 @@ PrefabInstance:
     - target: {fileID: 8808458195358905314, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992955938010924904, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: startY
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992955938010924904, guid: 9f79c2c7823cd9f4ebead58cdb5cd3f8, type: 3}
+      propertyPath: targetY
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
