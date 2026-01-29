@@ -1,23 +1,24 @@
 using UnityEngine;
 
-public class InspectorAnimationTrigger : MonoBehaviour
+public class AnimationTriggerRelay : MonoBehaviour
 {
-    [Header("Animation")]
-    public Animator animator;
-    public string triggerName = "Play";
-
-    [Header("Inspector Control")]
-    public bool playAnimation;
-
-    private void OnValidate()
+    public Animator targetAnimator;
+    public string triggerName;
+    public bool animation = false;
+    // This is called by the animation event
+    public void TriggerTargetAnimation()
     {
-        // Only run in Play Mode
-        if (!Application.isPlaying) return;
-
-        if (playAnimation)
+        if (targetAnimator != null)
         {
-            animator.SetTrigger(triggerName);
-            playAnimation = false; // reset so it can be clicked again
+            targetAnimator.SetTrigger(triggerName);
+        }
+    }
+    private void Update()
+    {
+        if (animation == true)
+        {
+            TriggerTargetAnimation();
+
         }
     }
 }
