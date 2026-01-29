@@ -2275,8 +2275,14 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 1811488987}
+    - target: {fileID: 4493277714401743224, guid: ed7c895a512880746b1acab09cd01cbc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1734198249767997175, guid: ed7c895a512880746b1acab09cd01cbc, type: 3}
+    - {fileID: 4395788620931842843, guid: ed7c895a512880746b1acab09cd01cbc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed7c895a512880746b1acab09cd01cbc, type: 3}
@@ -2335,7 +2341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3628726090658306175, guid: 4b637f0f6bee78a43a07f096e64e6409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.11
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4349123572407180556, guid: 4b637f0f6bee78a43a07f096e64e6409, type: 3}
       propertyPath: m_Name
