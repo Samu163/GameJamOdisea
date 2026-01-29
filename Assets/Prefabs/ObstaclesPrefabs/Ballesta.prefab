@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5976196157479158970}
   m_Layer: 0
   m_Name: Ballesta
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,6 +361,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0c84570a45b982146b124a22e996aa0c, type: 2}
+    - target: {fileID: 3551520506228896894, guid: 4b3e3cd580ecb614da1be2a32159f1e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.666
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551520506228896894, guid: 4b3e3cd580ecb614da1be2a32159f1e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551520506228896894, guid: 4b3e3cd580ecb614da1be2a32159f1e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.961
+      objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: 4b3e3cd580ecb614da1be2a32159f1e8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
