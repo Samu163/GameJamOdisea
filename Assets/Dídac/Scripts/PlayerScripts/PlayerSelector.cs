@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerSelector : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class PlayerSelector : MonoBehaviour
 
     [SerializeField] private Image player1Selected;
     [SerializeField] private Image player2Selected;
+
+
+    public UnityEvent<int> OnPlayerJoined;
 
     private void Start()
     {
@@ -44,7 +48,8 @@ public class PlayerSelector : MonoBehaviour
 
     private void OnJoinActionPerformed(InputAction.CallbackContext context)
     {
-
+        // Emit onPlayerjoined with the number of players
+        OnPlayerJoined?.Invoke(numPlayers);
         InputDevice device = context.control.device;
 
         if (IsDeviceAlreadyPaired(device))
@@ -92,6 +97,7 @@ public class PlayerSelector : MonoBehaviour
             StartCoroutine(StartGame());
         }
 
+
     }
 
     public void ResetLevelPlayers()
@@ -128,8 +134,8 @@ public class PlayerSelector : MonoBehaviour
     public IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.25f);
-        player1Selected.gameObject.SetActive(false);
-        player2Selected.gameObject.SetActive(false);
+        //player1Selected.gameObject.SetActive(false);
+        //player2Selected.gameObject.SetActive(false);
         GameManager.instance.hasGameStarted = true;
         LevelManager.instance.ResetPlayerPositions();
     }
