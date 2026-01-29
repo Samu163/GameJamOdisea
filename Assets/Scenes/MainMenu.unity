@@ -2801,7 +2801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mi Media Salsicha
+  m_text: Mi Media Salchicha
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d900449189720c74c9084b96d9fc6313, type: 2}
   m_sharedMaterial: {fileID: -8869498978006019561, guid: d900449189720c74c9084b96d9fc6313, type: 2}

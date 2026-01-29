@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mama Salsicha
+  m_text: Mama Salchicha
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 052d44bf0fc0e994fbf9d807fc85866f, type: 2}
   m_sharedMaterial: {fileID: 8393728362875362908, guid: 052d44bf0fc0e994fbf9d807fc85866f, type: 2}
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Papa Salsicha
+  m_text: Papa Salchicha
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 052d44bf0fc0e994fbf9d807fc85866f, type: 2}
   m_sharedMaterial: {fileID: 8393728362875362908, guid: 052d44bf0fc0e994fbf9d807fc85866f, type: 2}
