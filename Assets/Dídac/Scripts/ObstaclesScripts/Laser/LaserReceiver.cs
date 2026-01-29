@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +14,11 @@ public class LaserReceiver : MonoBehaviour
 
     [SerializeField]
     private UnityEvent onLaserExit;
+
+    public Material brillanteMaterial;
+    public Material normalMaterial;
+
+    public List<GameObject> cristales;
 
         // Estado previo para detectar cambios y evitar invocaciones repetidas
         private bool previousReceivingState;
@@ -49,12 +56,22 @@ public class LaserReceiver : MonoBehaviour
     {
         if (!isReceivingLaser)
             isReceivingLaser = true;
+
+        foreach (var cristal in cristales)
+        {
+            cristal.GetComponent<MeshRenderer>().material = brillanteMaterial;
+        }
     }
 
     public void DeactivateReceiver()
     {
         if (isReceivingLaser)
             isReceivingLaser = false;
+
+        foreach (var cristal in cristales)
+        {
+            cristal.GetComponent<MeshRenderer>().material = normalMaterial;
+        }
     }
 
     // Opción: permitir establecer el estado directamente (si se necesita)

@@ -251,6 +251,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  brillanteMaterial: {fileID: 2100000, guid: 001aba715a2b0014aa09d142c33e3c73, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 52b1e143680f59e4a8f6f4784980ae48, type: 2}
+  cristales:
+  - {fileID: 7142332448595843234}
+  - {fileID: 262450106534912470}
+  - {fileID: 2112853540420233327}
 --- !u!65 &8997009681945214271
 BoxCollider:
   m_ObjectHideFlags: 0
