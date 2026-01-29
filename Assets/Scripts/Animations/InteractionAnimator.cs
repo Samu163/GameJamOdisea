@@ -107,7 +107,7 @@ public class InteractionAnimator : MonoBehaviour
         for (int i = 0; i < bridgeBlocks.Count; i += 2)
         {
 
-            if (i == bridgeBlocks.Count - 1)
+            if (i >= bridgeBlocks.Count - 1)
             {
                 isLastBlock = true;
             }
