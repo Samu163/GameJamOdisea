@@ -557,6 +557,7 @@ MonoBehaviour:
   jumpDelay: 0.4
   jumpLockDuration: 0.5
   jumpCooldown: 1
+  timeToJumpAfterRetract: 0
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
@@ -567,13 +568,13 @@ MonoBehaviour:
   ceilingCheckOffset: {x: 0, y: 0, z: 0.5}
   wallTag: Wall
   wallCheckDistance: 0.1
-  wallCheckRadius: 1
-  wallCheckOffset: {x: -0.4, y: 0, z: 0}
+  wallCheckRadius: 1.2
+  wallCheckOffset: {x: -1.4, y: 0, z: 0}
   player2GroundCheckDistance: 0.5
   player2GroundCheckRadius: 0.3
   frontObstacleCheckDistance: 1
   frontObstacleCheckRadius: 0.5
-  frontObstacleOffset: {x: 0, y: 0.5, z: 0}
+  frontObstacleOffset: {x: 0, y: 0.5, z: -2.6}
   grabDetectionRadius: 0.6
   isJumping: 0
   bodyExtensionRatio: 1.15
