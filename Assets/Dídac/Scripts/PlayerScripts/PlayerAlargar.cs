@@ -21,6 +21,8 @@ public class PlayerAlargar : MonoBehaviour
     [SerializeField] private float jumpLockDuration = 0.3f;
     [SerializeField] private float jumpCooldown = 0.8f;
 
+    [SerializeField] private float timeToJumpAfterRetract = 0f;
+
     [Header("Ground Check - Player 1")]
     [SerializeField] private float groundCheckDistance = 1f;
     [SerializeField] private LayerMask groundLayer;
@@ -415,6 +417,15 @@ public class PlayerAlargar : MonoBehaviour
 
     private void HandleRetraction()
     {
+        // --- NUEVO: Snap inmediato si está muy cerca ---
+        float distanceRemaining = Vector3.Distance(head.transform.localPosition, initialHeadLocalPos);
+        if (distanceRemaining < 0.05f)
+        {
+            CompleteRetraction();
+            return;
+        }
+        // ------------------------------------------------
+
         float lerpSpeed = isQuickRetracting ? 0.3f : 0.1f;
         LerpParts(initialBodyScale, initialBodyLocalPos, initialHeadLocalPos, initialBottomLocalPos, lerpSpeed);
 
@@ -423,6 +434,7 @@ public class PlayerAlargar : MonoBehaviour
             MoveBodyToFollowHead();
         }
 
+        // Mantenemos el check original por seguridad
         if (IsRetractionComplete())
         {
             CompleteRetraction();
@@ -450,6 +462,21 @@ public class PlayerAlargar : MonoBehaviour
     {
         ResetPositions();
 
+        // --- NUEVO: Corrección de posición (Fix del tepeo) ---
+        if (!isQuickRetracting)
+        {
+            // Calculamos dónde debe estar el Root para que la Head coincida EXACTAMENTE con el punto de agarre
+            Vector3 correctRootPos = releaseHeadWorldPos - (transform.rotation * initialHeadLocalPos);
+            transform.position = correctRootPos;
+        }
+
+        // Reactivamos físicas
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+        }
+        // -----------------------------------------------------
+
         if (isPlayer2 && shouldJumpAfterRetract)
         {
             StartCoroutine(WallJumpRoutine());
@@ -470,11 +497,10 @@ public class PlayerAlargar : MonoBehaviour
 
         if (totalAlargar <= 0f) return;
 
-        // SOLUCIÓN: Soltar objeto pero NO hacer return
+        // Soltar objeto pero NO hacer return
         if (isGrabbingObject && currentGrabbedBox != null)
         {
             currentGrabbedBox.ReleasePlayer();
-            // NO RETURN AQUÍ - continuar con retracción
         }
 
         bool canRetractNormal = DetermineRetractionType();
@@ -488,6 +514,14 @@ public class PlayerAlargar : MonoBehaviour
         {
             isQuickRetracting = false;
             releaseHeadWorldPos = head.transform.position;
+
+            // --- NUEVO: Desactivar físicas durante la subida ---
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.isKinematic = true; // Esto evita que la gravedad te baje mientras subes
+            }
+            // ---------------------------------------------------
         }
         else
         {
@@ -495,7 +529,6 @@ public class PlayerAlargar : MonoBehaviour
             shouldJumpAfterRetract = false;
         }
     }
-
     private void ForceQuickRetract()
     {
         isAlargarHeld = false;
@@ -557,6 +590,13 @@ public class PlayerAlargar : MonoBehaviour
     private IEnumerator WallJumpRoutine()
     {
         Debug.Log("Iniciando salto!");
+
+        // --- NUEVO: Espera configurada ---
+        if (timeToJumpAfterRetract > 0)
+        {
+            yield return new WaitForSeconds(timeToJumpAfterRetract);
+        }
+        // ---------------------------------
 
         SetJumpState(true);
 

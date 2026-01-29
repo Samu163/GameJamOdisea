@@ -640,7 +640,7 @@ MonoBehaviour:
   - {fileID: 5965377268403377179}
   - {fileID: 6874421679918579705}
   - {fileID: 5308515342104448207}
-  targetY: 0.5
+  targetY: 0.8
   startY: -3.5
   riseSpeed: 3
   delayBetweenPairs: 0.5
@@ -970,6 +970,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 910437256951548793}
     m_Modifications:
+    - target: {fileID: 1798558364578656839, guid: b7a791346cbca9a44a727c22870c75fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4546661119246391553, guid: b7a791346cbca9a44a727c22870c75fa, type: 3}
       propertyPath: m_Name
       value: InteractableBox Variant
