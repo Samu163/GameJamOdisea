@@ -550,7 +550,7 @@ MonoBehaviour:
   head: {fileID: 589675609805453749}
   bottom: {fileID: 5102935307496450452}
   alargarAmount: 0.6
-  maxRange: 3.5
+  maxRange: 3
   isAlargarHeld: 0
   jumpForceUp: 6
   jumpForceForward: 3
