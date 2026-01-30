@@ -48,14 +48,14 @@ public class DialogueController : MonoBehaviour
         characterPitchDic = new()
         {
             ["NPC"] = 2,
-            ["Father"] = 0.5f,
+            ["Father"] = 0.7f,
             ["Mother"] = 1f
         };
         characterToDialogueNameDic = new()
         {
             ["NPC"] = "Cachorrito",
-            ["Father"] = "Papa Salchicha",
-            ["Mother"] = "Mama Salchicha"
+            ["Father"] = "Papá Salchicha",
+            ["Mother"] = "Mamá Salchicha"
         };
 
         characterToImageDic = new()

@@ -141,10 +141,10 @@ public class PlayerInputScript : MonoBehaviour
         if (GameManager.instance.hasGameStarted == false)
             return;
 
-        //if (context.started)
-        //{
-        //    LevelManager.instance.SkipLevel();
-        //}
+        if (context.started)
+        {
+            LevelManager.instance.SkipLevel();
+        }
     }
 
     private void LockMovement()
